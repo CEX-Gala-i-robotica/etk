@@ -34,11 +34,7 @@ void load_css_theme()
     
     gtk_css_provider_load_from_data(css_provider, css_theme, -1, NULL);
     
-    gtk_style_context_add_provider_for_screen(
-        screen,
-        GTK_STYLE_PROVIDER(css_provider),
-        GTK_STYLE_PROVIDER_PRIORITY_APPLICATION
-    );
+    gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(css_provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     
     g_object_unref(css_provider);
 }
@@ -56,11 +52,14 @@ void on_toggle_style(GtkWidget *button, gpointer data)
     GtkWidget *target_button = GTK_WIDGET(data);
     GtkStyleContext *context = gtk_widget_get_style_context(target_button);
     
-    if (gtk_style_context_has_class(context, "btn-primary")) {
+    if(gtk_style_context_has_class(context, "btn-primary"))
+    {
         gtk_style_context_remove_class(context, "btn-primary");
         gtk_style_context_add_class(context, "btn-danger");
         gtk_button_set_label(GTK_BUTTON(target_button), "Danger Button");
-    } else {
+    }
+    else
+    {
         gtk_style_context_remove_class(context, "btn-danger");
         gtk_style_context_add_class(context, "btn-primary");
         gtk_button_set_label(GTK_BUTTON(target_button), "Primary Button");
