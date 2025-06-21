@@ -11,6 +11,7 @@
 
 dht11_data_t read_dht11() {
     dht11_data_t result = {0, 0, 0};
+/*
     uint8_t data[5] = {0, 0, 0, 0, 0};
     uint8_t laststate = 1;
     uint8_t counter = 0;
@@ -56,6 +57,7 @@ dht11_data_t read_dht11() {
         result.temperature = (float)data[2];
         result.valid = 1;
     }
+*/
     
     return result;
 }
