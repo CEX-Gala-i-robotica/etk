@@ -22,6 +22,7 @@ GtkWidget *main_window;
 
 /*
 Internal functions
+....
 */
 
 
