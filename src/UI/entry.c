@@ -127,7 +127,7 @@ void ui_structure()
     GtkWidget *scrolled_window;
     int i;
     
-    const int LISTBOX_WIDTH = 250;
+    const int LISTBOX_WIDTH = 350;
     const int BUTTON_WIDTH = 100;
     const int BUTTON_HEIGHT = 40;
 
@@ -164,24 +164,121 @@ Todo:
     
     // Parent 1
     gtk_tree_store_append(store, &parent, NULL);
-    gtk_tree_store_set(store, &parent, 0, "Alice", 1, 30, -1);
+    gtk_tree_store_set(store, &parent, 0, "Microcontrolere & Plarforme", 1, 30, -1);
     // Child of Alice
     gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Alice's Child 1", 1, 5, -1);
+    gtk_tree_store_set(store, &child, 0, "Arduino UNO", 1, 5, -1);
     
-    // Parent 2
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Arduino Nano", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Arduino Mega", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Arduino Giga", 1, 5, -1);
+    
+    
     gtk_tree_store_append(store, &parent, NULL);
-    gtk_tree_store_set(store, &parent, 0, "Bob", 1, 25, -1);
+    gtk_tree_store_set(store, &parent, 0, "Module de extensie (Shield)", 1, 25, -1);
     // Child of Bob
     gtk_tree_store_append(store, &child, &parent);
     gtk_tree_store_set(store, &child, 0, "Bob's Child 1", 1, 3, -1);
+    
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Display-uri", 1, 25, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "LCD I2C", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "LCD", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "OLED", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "TFT", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "7 Segment Display", 1, 5, -1);
+    
+    
+    
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Senzori Analogici / Digitali", 1, 25, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Ultrasonic HC06", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Receptor Infraroșu", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "DHT", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Detector de gaz", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Nivel de apă", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Umiditate Sol", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Senzor de rotații", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Senzor Giroscopic (MPU 6050)", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Senzor de viteză", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Microfon", 1, 5, -1);
+    
+    // Items...
+    
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Motoare", 1, 25, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Servo", 1, 5, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Microfon", 1, 5, -1);
+    
+    // Items...
+    
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Alimentare & Control Tensiune", 1, 25, -1);
+    
+    // Items...
+    
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Comunicare & Retea", 1, 25, -1);
+    
+    // Items...
+    
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Stocare & Interfete", 1, 25, -1);
+    
+    // Items...
+    
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Componente Pasive", 1, 25, -1);
+    
+    // Items...
+    
+    
     
     GtkWidget *treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
     
     // Only add the name column
     GtkCellRenderer *renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
-    GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes("Component list", renderer, "dummy", 0, NULL); // 0 is the string column
+    GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes("Component list", renderer, "text", 0, NULL); // 0 is the string column
     gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), column);
     
     gtk_container_add(GTK_CONTAINER(scrolled_window), treeview);
@@ -191,20 +288,19 @@ Todo:
     gtk_box_pack_start(GTK_BOX(vbox), hbox_buttons, FALSE, FALSE, 0);
     
     // Run Probe button
-    btn_run_probe = gtk_button_new_with_label("Run Automatic Probe");
+    btn_run_probe = gtk_button_new_with_label("Efectuează Probă Automată");
     gtk_widget_set_size_request(btn_run_probe, BUTTON_WIDTH, BUTTON_HEIGHT);
     gtk_style_context_add_class(gtk_widget_get_style_context(btn_run_probe), "normal-btn");
     g_signal_connect(btn_run_probe, "clicked", G_CALLBACK(on_button_clicked), NULL);
     gtk_box_pack_start(GTK_BOX(hbox_buttons), btn_run_probe, FALSE, FALSE, 0);
 
     // Stop Probe button
-    btn_stop_probe = gtk_button_new_with_label("Stop Probe");
+    btn_stop_probe = gtk_button_new_with_label("Anulează Probă");
     gtk_widget_set_size_request(btn_stop_probe, BUTTON_WIDTH, BUTTON_HEIGHT);
     gtk_style_context_add_class(gtk_widget_get_style_context(btn_stop_probe), "gray-btn");
     g_signal_connect(btn_stop_probe, "clicked", G_CALLBACK(on_button_clicked), NULL);
     gtk_box_pack_start(GTK_BOX(hbox_buttons), btn_stop_probe, FALSE, FALSE, 0);
 }
-
 
 void ui_entry(int ac, char *av[])
 {
@@ -212,7 +308,7 @@ void ui_entry(int ac, char *av[])
     
     main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(main_window), "MPP Box");
-    gtk_window_set_default_size(GTK_WINDOW(main_window), 500, 500);
+    gtk_window_set_default_size(GTK_WINDOW(main_window), 800, 500);
     gtk_container_set_border_width(GTK_CONTAINER(main_window), 20);
     gtk_style_context_add_class(gtk_widget_get_style_context(main_window), "main-window");
     
