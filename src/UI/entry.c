@@ -147,25 +147,44 @@ void ui_structure()
     gtk_widget_set_size_request(scrolled_window, LISTBOX_WIDTH, -1); // fixed width, expands vertically
     gtk_box_pack_start(GTK_BOX(hbox_top), scrolled_window, FALSE, TRUE, 0);
 
-    // Listbox (fixed width, expands vertically)
-    listbox = gtk_list_box_new();
-    gtk_container_add(GTK_CONTAINER(scrolled_window), listbox);
-    gtk_widget_set_size_request(listbox, LISTBOX_WIDTH, -1);
-    //gtk_box_pack_start(GTK_BOX(hbox_top), listbox, FALSE, TRUE, 0);
-    
-    // Add a horizontal spacer to push the listbox to the left (optional)
     GtkWidget *spacer = gtk_label_new(NULL);
     gtk_box_pack_start(GTK_BOX(hbox_top), spacer, TRUE, TRUE, 0);
+    
 
-    gtk_style_context_add_class(gtk_widget_get_style_context(listbox), "list-box");
-    for(i = 0; i < 32; i++)
-    {
-        GtkWidget *row = gtk_list_box_row_new();
-        GtkWidget *label = gtk_label_new(items[i]);
-        gtk_container_add(GTK_CONTAINER(row), label);
-        gtk_style_context_add_class(gtk_widget_get_style_context(row), "list-label");
-        gtk_list_box_insert(GTK_LIST_BOX(listbox), row, -1);
-    }
+/*
+Component list tree view
+
+Todo:
+- Add & organize the tree vew of electronic components
+- Apply style for each of the item categories
+*/
+    GtkTreeStore *store = gtk_tree_store_new(2, G_TYPE_STRING, G_TYPE_INT);
+    
+    GtkTreeIter parent, child;
+    
+    // Parent 1
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Alice", 1, 30, -1);
+    // Child of Alice
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Alice's Child 1", 1, 5, -1);
+    
+    // Parent 2
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Bob", 1, 25, -1);
+    // Child of Bob
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Bob's Child 1", 1, 3, -1);
+    
+    GtkWidget *treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+    
+    // Only add the name column
+    GtkCellRenderer *renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
+    GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes("Component list", renderer, "dummy", 0, NULL); // 0 is the string column
+    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), column);
+    
+    gtk_container_add(GTK_CONTAINER(scrolled_window), treeview);
 
     // Horizontal box for buttons
     hbox_buttons = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
