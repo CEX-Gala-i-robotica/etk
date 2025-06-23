@@ -63,13 +63,6 @@ const char *items[] =
     "RTClock DS1307",   
 };
 
-enum {
-    COL_NAME,
-    COL_COLOR,
-    COL_CLASS, // CSS class for styling
-    NUM_COLS
-};
-
 void load_css_theme()
 {
     GtkCssProvider *css_provider = gtk_css_provider_new();
@@ -143,67 +136,11 @@ void on_tree_selection_changed(GtkTreeSelection *selection, gpointer user_data)
     }
 }
 
-static void set_row_css_class(GtkTreeViewColumn *col, GtkCellRenderer *renderer, GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
+gboolean row_separator_func(GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
 {
-    gchar *css_class;
-    gtk_tree_model_get(model, iter, COL_CLASS, &css_class, -1);
-
-    if(css_class && *css_class)
-    {
-        g_object_set(renderer, "cell-background-set", TRUE, NULL);
-        // Set a style class on the row via GtkCellRenderer's "style" property
-        // But GtkCellRendererText doesn't have a style property, so we use "cell-background" as a workaround
-        // Alternatively, you can use GtkTreeViewRowSeparatorFunc or custom widgets in GTK4
-        // Here, we just set a tag in the model and use CSS selectors on the row
-        // But for GTK3, per-row CSS classes are not directly supported, so we use cell-background
-        // For demonstration, let's set cell background color via CSS class
-        // But since that's not possible, we set "cell-background" property directly
-        // (If you want to use CSS classes, you need to use GtkListBox in GTK3. For TreeView, it's limited.)
-        // So, let's map class to color:
-        if(g_strcmp0(css_class, "red-row") == 0)
-            g_object_set(renderer, "cell-background", "#ffcccc", NULL);
-        else if(g_strcmp0(css_class, "green-row") == 0)
-            g_object_set(renderer, "cell-background", "#ccffcc", NULL);
-        else if(g_strcmp0(css_class, "blue-row") == 0)
-            g_object_set(renderer, "cell-background", "#ccccff", NULL);
-        else
-            g_object_set(renderer, "cell-background", NULL, NULL);
-    }
-    else
-    {
-        g_object_set(renderer, "cell-background", NULL, NULL);
-    }
-    g_free(css_class);
+    // Return TRUE to draw a separator after this row
+    return TRUE;
 }
-
-
-
-
-
-static void
-set_row_color(GtkTreeViewColumn *col,
-              GtkCellRenderer   *renderer,
-              GtkTreeModel      *model,
-              GtkTreeIter       *iter,
-              gpointer           data)
-{
-    gchar *color;
-    gtk_tree_model_get(model, iter, COL_COLOR, &color, -1);
-
-    if (color && *color) {
-        g_object_set(renderer,
-                     "cell-background", color,
-                     "cell-background-set", TRUE,
-                     NULL);
-    } else {
-        g_object_set(renderer,
-                     "cell-background-set", FALSE,
-                     NULL);
-    }
-    g_free(color);
-}
-
-
 
 void ui_structure()
 {
@@ -248,86 +185,193 @@ Component list tree view
 Todo:
 - Apply style for each of the item categories
 */
-// Create TreeStore
-GtkTreeStore *store = gtk_tree_store_new(NUM_COLS, G_TYPE_STRING, G_TYPE_STRING);
-
-    GtkTreeIter iter1, iter2, iter3;
-    GtkTreeIter child1, child2;
-
-    // Fruits
-    gtk_tree_store_append(store, &iter1, NULL);
-    gtk_tree_store_set(store, &iter1,
-                       COL_NAME, "Fruits",
-                       COL_COLOR, "#ffcccc",
-                       -1);
-
-    gtk_tree_store_append(store, &child1, &iter1);
-    gtk_tree_store_set(store, &child1,
-                       COL_NAME, "Apple",
-                       COL_COLOR, "",
-                       -1);
-
-    gtk_tree_store_append(store, &child2, &iter1);
-    gtk_tree_store_set(store, &child2,
-                       COL_NAME, "Banana",
-                       COL_COLOR, "",
-                       -1);
-
-    // Vegetables
-    gtk_tree_store_append(store, &iter2, NULL);
-    gtk_tree_store_set(store, &iter2,
-                       COL_NAME, "Vegetables",
-                       COL_COLOR, "#ccffcc",
-                       -1);
-
-    gtk_tree_store_append(store, &child1, &iter2);
-    gtk_tree_store_set(store, &child1,
-                       COL_NAME, "Carrot",
-                       COL_COLOR, "",
-                       -1);
-
-    gtk_tree_store_append(store, &child2, &iter2);
-    gtk_tree_store_set(store, &child2,
-                       COL_NAME, "Broccoli",
-                       COL_COLOR, "",
-                       -1);
-
-    // Drinks
-    gtk_tree_store_append(store, &iter3, NULL);
-    gtk_tree_store_set(store, &iter3,
-                       COL_NAME, "Drinks",
-                       COL_COLOR, "#ccccff",
-                       -1);
-
-    gtk_tree_store_append(store, &child1, &iter3);
-    gtk_tree_store_set(store, &child1,
-                       COL_NAME, "Water",
-                       COL_COLOR, "",
-                       -1);
-
-    gtk_tree_store_append(store, &child2, &iter3);
-    gtk_tree_store_set(store, &child2,
-                       COL_NAME, "Juice",
-                       COL_COLOR, "",
-                       -1);
-
-    GtkWidget *treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
-    gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
-
-    GtkCellRenderer *renderer = gtk_cell_renderer_text_new();
-    GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes(
-        "Name", renderer, "text", COL_NAME, NULL);
-
-    gtk_tree_view_column_set_cell_data_func(column, renderer, set_row_color, NULL, NULL);
-
-    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), column);
     
-        // Already have a scrolled window
-        gtk_container_add(GTK_CONTAINER(scrolled_window), treeview);
     
-        //gtk_container_add(GTK_CONTAINER(scrolled_window), scrolled);
+
+    GtkTreeStore *store = gtk_tree_store_new(2, G_TYPE_STRING, G_TYPE_INT);
+    
+    GtkTreeIter parent, child;
+    
+    
+    // Tree 1
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Microcontrolere & Plarforme", 1, 0, -1);
+    
+    // Items
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Arduino UNO", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Arduino Nano", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Arduino Mega", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Arduino Giga", 1, tree_item_index++, -1);
+    
+    
+    // Tree 2
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Module de extensie (Shield)", 1, 25, -1);
+    
+    // Items
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Simple Shield", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Display-uri", 1, 25, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "LCD I2C", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "LCD", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "OLED", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "TFT", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "7 Segment Display", 1, tree_item_index++, -1);
+    
+    
+    // Tree 3
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Senzori Analogici / Digitali", 1, 25, -1);
+    
+    // Items
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Ultrasonic HC06", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Receptor Infraroșu", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "DHT", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Detector de gaz", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Detector de fum", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Nivel de apă", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Umiditate Sol", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Senzor de rotații", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Senzor Giroscopic (MPU 6050)", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Senzor de viteză", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Microfon", 1, tree_item_index++, -1);
+
+    
+    // Tree 4
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Motoare", 1, 25, -1);
+    
+    // Items
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Servo", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Stepper ULN2003", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Stepper A4988", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Punte H L298N", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Servo PCA9685", 1, tree_item_index++, -1);
  
     
+    // Tree 5
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Alimentare & Control Tensiune", 1, 25, -1);
+    
+    
+    // Tree 6
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Comunicare & Retea", 1, 25, -1);
+   
+   
+    // Tree 7 
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Stocare & Interfete", 1, 25, -1);
+    
+    // Items
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Modul de precizie RTC", 1, tree_item_index++, -1);
+   
+    
+    // Tree 8
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Componente Pasive", 1, 25, -1);
+    
+    // Items
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Modul Tastatură", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Potențiometru", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Modul joystick X2", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Senzor Debit Apă", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Fotorezistor", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Sezor Magnetic (Hall)", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Buzzer", 1, tree_item_index++, -1);
+
+    
+    // Tree 9
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "LED-uri & module", 1, 0, -1);
+    
+    //Items
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "LED Simplu", 1, tree_item_index++, -1);
+    
+    gtk_tree_store_append(store, &child, &parent);
+    gtk_tree_store_set(store, &child, 0, "Matrice LED", 1, tree_item_index++, -1);
+    
+    
+    
+    GtkWidget *treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+    
+    
+    
+    GtkTreeSelection *selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+    g_signal_connect(selection, "changed", G_CALLBACK(on_tree_selection_changed), NULL);
+    
+    // Only add the name column
+    GtkCellRenderer *renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
+    GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes("Component list", renderer, "text", 0, NULL); // 0 is the string column
+    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), column);
+    
+    gtk_container_add(GTK_CONTAINER(scrolled_window), treeview);
 
     // Horizontal box for buttons
     hbox_buttons = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
