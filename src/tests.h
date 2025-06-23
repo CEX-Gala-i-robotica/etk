@@ -6,38 +6,42 @@
 
 enum TestType
 {
-    Servo,
-    Stepper,
-    H_BridgeL298N,
-    DHT,
-    LCD_I2C,
-    MPU6500,
-    Ultrasonic,
-    Keypad2x4,
-    Keypad4x4,
-    Keypad3x4,
-    Infrared,
-    LED_Matrix,
-    WaterLevel,
-    SoilMoisture,
-    SpeedSensor,
-    GasDetector,
-    SmokeDetector,
-    Microphone,
-    PH_Meter,
-    HallSensor,
-    FlowMeter,
-    Potentiometer,
-    Photoresistor,
-    StepperMotorULN2003,
-    RFID_RC522,
-    JoystickX2,
-    IR_Remote,
-    PCA9685,
-    A4988_Stepper,
-    RT_Clock_DS1302,
-    RT_Clock_DS3231,
-    RTClock_DS1307,
+    Servo,               // yes
+    Stepper,             // ???
+    H_BridgeL298N,       // yes
+    DHT,                 // yes
+    LCD_I2C,             // yes
+    LCD,                 // yes
+    OLED,                // yes
+    TFT,                 // yes
+    Seven_Seg_Display,   // yes
+    MPU6500,             // yes (Giroscopic sensor)
+    UltrasonicHC06,      // yes
+    Keypad2x4,           // Not self contained
+    Keypad4x4,           // Not self contained
+    Keypad3x4,           // Not self contained
+    Infrared,            // yes
+    LED_Matrix,          // todo
+    WaterLevel,          // yes
+    SoilMoisture,        // yes
+    SpeedSensor,         // yes
+    GasDetector,         // yes
+    SmokeDetector,       // yes
+    Microphone,          // yes
+    PH_Meter,            // todo
+    HallSensor,          // yes
+    FlowMeter,           // yes
+    Potentiometer,       // yes
+    Photoresistor,       // yes
+    StepperMotorULN2003, // yes
+    RFID_RC522,          // todo
+    JoystickX2,          // yes
+    IR_Remote,           //
+    PCA9685,             // yes
+    A4988_Stepper,       // yes
+    RT_Clock_DS1302,     // Not Self contained
+    RT_Clock_DS3231,     // Not Self contained
+    RT_Clock_DS1307,     // Not Self contained
 };
 
 void RunAutomaticTest(enum TestType t, bool loop);
