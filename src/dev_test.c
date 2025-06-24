@@ -40,46 +40,19 @@ void Dev_Test(int argc, char *argv[])
 {
     gtk_init(&argc, &argv);
 
-    AppData app = {0};
-
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "ToolPalette Selection Example");
-    gtk_window_set_default_size(GTK_WINDOW(window), 300, 400);
+    gtk_window_set_title(GTK_WINDOW(window), "Icon Button Example");
+    gtk_window_set_default_size(GTK_WINDOW(window), 200, 100);
+
+    GtkWidget *button = gtk_button_new();
+    GtkWidget *image = gtk_image_new_from_icon_name("document-open", GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image(GTK_BUTTON(button), image);
+
+    gtk_container_add(GTK_CONTAINER(window), button);
+
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
-    GtkWidget *palette = gtk_tool_palette_new();
-
-    // First group
-    GtkWidget *group1 = gtk_tool_item_group_new("Group 1");
-    gtk_container_add(GTK_CONTAINER(palette), group1);
-
-    for (int i = 1; i <= 3; ++i) {
-        gchar *label = g_strdup_printf("Item %d", i);
-        GtkToggleToolButton *item = GTK_TOGGLE_TOOL_BUTTON(gtk_toggle_tool_button_new());
-        gtk_tool_button_set_label(GTK_TOOL_BUTTON(item), label);
-        gtk_tool_item_group_insert(GTK_TOOL_ITEM_GROUP(group1), GTK_TOOL_ITEM(item), -1);
-        g_signal_connect(item, "toggled", G_CALLBACK(on_tool_item_toggled), &app);
-        g_free(label);
-    }
-
-    // Second group
-    GtkWidget *group2 = gtk_tool_item_group_new("Group 2");
-    gtk_container_add(GTK_CONTAINER(palette), group2);
-
-    for (int i = 1; i <= 2; ++i) {
-        gchar *label = g_strdup_printf("Tool %d", i);
-        GtkToggleToolButton *item = GTK_TOGGLE_TOOL_BUTTON(gtk_toggle_tool_button_new());
-        gtk_tool_button_set_label(GTK_TOOL_BUTTON(item), label);
-        gtk_tool_item_group_insert(GTK_TOOL_ITEM_GROUP(group2), GTK_TOOL_ITEM(item), -1);
-        g_signal_connect(item, "toggled", G_CALLBACK(on_tool_item_toggled), &app);
-        g_free(label);
-    }
-
-    GtkWidget *scrolled = gtk_scrolled_window_new(NULL, NULL);
-    gtk_container_add(GTK_CONTAINER(scrolled), palette);
-
-    gtk_container_add(GTK_CONTAINER(window), scrolled);
-
     gtk_widget_show_all(window);
+
     gtk_main();
 }
