@@ -81,7 +81,7 @@
 #include "softTone.h"
 
 #include "wiringPi.h"
-#include "../version.h"
+#include "version.h"
 #include "wiringPiLegacy.h"
 
 // Environment Variables

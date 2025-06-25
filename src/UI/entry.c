@@ -105,7 +105,11 @@ void load_assets()
     settings_icon = gtk_image_new_from_pixbuf(load_svg_icon(i_settings_hnd));
     start_icon = gtk_image_new_from_pixbuf(load_svg_icon(i_start_hnd));
     stop_icon = gtk_image_new_from_pixbuf(load_svg_icon(i_stop_handle));
-
+    
+    
+    g_object_unref(i_settings_hnd);
+    g_object_unref(i_start_hnd);
+    g_object_unref(i_stop_handle);
 }
 
 
@@ -274,7 +278,6 @@ void ui_structure()
     
     btn_settings = gtk_button_new_with_label("");
     gtk_button_set_image(GTK_BUTTON(btn_settings), settings_icon);
-    gtk_style_context_add_class(gtk_widget_get_style_context(GTK_WIDGET(settings_icon)), "general-icons");
     gtk_button_set_always_show_image(GTK_BUTTON(btn_settings), TRUE);
     gtk_style_context_add_class(gtk_widget_get_style_context(btn_settings), "normal-btn");
     g_signal_connect(btn_settings, "clicked", G_CALLBACK(on_settings_click), NULL);
@@ -549,7 +552,7 @@ void ui_entry(int ac, char *av[])
     
     //g_object_unref(handle);
     //g_object_unref(pixbuf);
-    //g_object_unref(&settings_icon);
-    //g_object_unref(&start_icon);
-    //g_object_unref(&stop_icon);
+    //g_object_unref(settings_icon);
+    //g_object_unref(start_icon);
+    //g_object_unref(stop_icon);
 }

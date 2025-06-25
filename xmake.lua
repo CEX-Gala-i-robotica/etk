@@ -4,7 +4,9 @@ add_requires("librsvg-2.0", {system = true})
 
 target("mpp-box")
     set_kind("binary")
-    add_files("src/*.c", "src/UI/*.c", "src/components/*.c")
+    add_includedirs("ext_deps/", "ext_deps/wiringpi")
+    add_syslinks("m", "crypt", "rt", "pthread")
+    add_files("ext_deps/wiringpi/*.c", "ext_deps/cJSON/*.c", "ext_deps/csv/*.c", "src/*.c", "src/UI/*.c", "src/components/*.c")
     add_packages("gtk+-3.0", "librsvg-2.0")
     after_build(function (target)
         -- Copy the assets and the css theme next to the build directory
