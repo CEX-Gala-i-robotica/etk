@@ -129,6 +129,13 @@ void on_settings_click(GtkWidget *btn, gpointer data)
     gtk_container_set_border_width(GTK_CONTAINER(settings_window), 20);
     gtk_style_context_add_class(gtk_widget_get_style_context(settings_window), "main-window");
     
+    GtkWidget *headerbar = gtk_header_bar_new();
+    gtk_header_bar_set_title(GTK_HEADER_BAR(headerbar), "ETK - Setări");
+    gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(headerbar), TRUE);
+    gtk_widget_set_name(headerbar, "window-header");
+    
+    gtk_window_set_titlebar(GTK_WINDOW(settings_window), headerbar);
+    
     
     
     // UI Stuff here
@@ -267,6 +274,7 @@ void ui_structure()
     
     btn_settings = gtk_button_new_with_label("");
     gtk_button_set_image(GTK_BUTTON(btn_settings), settings_icon);
+    gtk_style_context_add_class(gtk_widget_get_style_context(GTK_WIDGET(settings_icon)), "general-icons");
     gtk_button_set_always_show_image(GTK_BUTTON(btn_settings), TRUE);
     gtk_style_context_add_class(gtk_widget_get_style_context(btn_settings), "normal-btn");
     g_signal_connect(btn_settings, "clicked", G_CALLBACK(on_settings_click), NULL);
@@ -512,6 +520,13 @@ void ui_entry(int ac, char *av[])
     gtk_window_set_default_size(GTK_WINDOW(main_window), 800, 500);
     gtk_container_set_border_width(GTK_CONTAINER(main_window), 20);
     gtk_style_context_add_class(gtk_widget_get_style_context(main_window), "main-window");
+    
+    GtkWidget *headerbar = gtk_header_bar_new();
+    gtk_header_bar_set_title(GTK_HEADER_BAR(headerbar), "ETK"); // plsss I want ETK as official name
+    gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(headerbar), TRUE);
+    gtk_widget_set_name(headerbar, "window-header");
+    
+    gtk_window_set_titlebar(GTK_WINDOW(main_window), headerbar);
     
     load_assets();
     
