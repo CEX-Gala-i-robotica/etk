@@ -6,7 +6,7 @@
 
 
 #define MAX_TIMINGS 85
-#define DHT_PIN 4  // GPIO 4
+//#define DHT_PIN 4  // GPIO 4
 
 
 typedef struct

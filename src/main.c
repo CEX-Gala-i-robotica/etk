@@ -8,6 +8,7 @@
     #include "dev_test.h"
 #else
     #include "UI/entry.h"
+    #include "gpio_utils.h"
 #endif
 
 int main(int argc, char *argv[])
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
     Dev_Test(argc,argv);
 #else
     ui_entry(argc, argv);
+    signal(SIGINT, onExit);
 #endif
 
     return 0;

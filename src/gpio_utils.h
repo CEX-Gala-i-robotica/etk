@@ -2,7 +2,18 @@
 #define GPIO_UTILS_H
 
 
+
+#include <stdbool.h>
+
+//int current_gpio_pin;
+
+
+#define I2C_DEV_SYSFS "/dev/i2c-1"
+#define I2C_KMOD_SYSFS "/sys/class/i2c-adapter/"
+
+
 // PLEASE DO NOT TOUCH THESE !!!
+//todo: Find missing GPIO pins
 #define GPIO_22 3
 #define GPIO_23 4
 #define GPIO_24 5
@@ -27,8 +38,13 @@
 #define GPIO_19 24
 #define GPIO_6  22
 #define GPIO_20 28
-#define GPIO_1
+//#define GPIO_13
+//#define GPIO_5
 // PLEASE DO NOT TOUCH THESE !!!
 
+bool isI2C_available();
+bool isPWM_available(int pin);
 void gpioInit();
+void gpioCleanup(int pin);
+void onExit(int s);
 #endif
