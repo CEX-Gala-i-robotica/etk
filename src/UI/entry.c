@@ -43,7 +43,7 @@ void load_css_theme()
     
     //gtk_css_provider_load_from_data(css_provider, css_theme, -1, NULL);
     
-    if (!gtk_css_provider_load_from_file(css_provider,  g_file_new_for_path("mpp-box-theme.css"), &error))
+    if (!gtk_css_provider_load_from_file(css_provider,  g_file_new_for_path("assets/etk-gtk.css"), &error))
     {
         g_warning("Failed to load CSS file: %s", error->message);
         g_error_free(error);
@@ -217,29 +217,11 @@ void on_tree_selection_changed(GtkTreeSelection *selection, gpointer user_data)
     }
 }
 
-gboolean on_treeview_button_press(GtkWidget *treeview, GdkEventButton *event, gpointer user_data)
+void on_treeview_row_activated(GtkTreeView *treeview, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data)
 {
-    if(event->type == GDK_BUTTON_PRESS && event->button == 1)
-    {
-        GtkTreePath *path = NULL;
-        GtkTreeViewColumn *column;
-        gint cell_x, cell_y;
-
-        if(gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(treeview), (gint)event->x, (gint)event->y, &path, &column, &cell_x, &cell_y))
-        {
-            if(gtk_tree_view_row_expanded(GTK_TREE_VIEW(treeview), path))
-            { 
-                gtk_tree_view_collapse_row(GTK_TREE_VIEW(treeview), path);
-            }
-            else
-            {
-                gtk_tree_view_expand_row(GTK_TREE_VIEW(treeview), path, FALSE);
-            }
-            gtk_tree_path_free(path);
-            return TRUE; // Stop further handling
-        }
-    }
-    return FALSE; // Propagate event
+    if(gtk_tree_view_row_expanded(treeview, path)) gtk_tree_view_collapse_row(treeview, path);
+    else
+        gtk_tree_view_expand_row(treeview, path, FALSE);
 }
 
 void ui_structure()
@@ -472,7 +454,7 @@ Component list tree view
     
     GtkWidget *treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
     
-    g_signal_connect(treeview, "button-press-event", G_CALLBACK(on_treeview_button_press), NULL);
+    g_signal_connect(treeview, "row-activated", G_CALLBACK(on_treeview_row_activated), NULL);
     
     
     

@@ -2,14 +2,13 @@ add_rules("mode.debug", "mode.release", "plugin.compile_commands.autoupdate", {o
 add_requires("gtk+-3.0", {system = true})
 add_requires("librsvg-2.0", {system = true})
 
-target("mpp-box")
+target("etk")
     set_kind("binary")
     add_includedirs("ext_deps/", "ext_deps/wiringpi")
     add_syslinks("m", "crypt", "rt", "pthread")
-    add_files("ext_deps/wiringpi/*.c", "ext_deps/cJSON/*.c", "ext_deps/csv/*.c", "src/*.c", "src/UI/*.c", "src/components/*.c")
+    add_files("ext_deps/wiringpi/*.c", "ext_deps/cJSON/*.c", "ext_deps/csv/*.c", "ext_deps/log_c/*.c", "src/*.c", "src/UI/*.c", "src/components/*.c")
     add_packages("gtk+-3.0", "librsvg-2.0")
     after_build(function (target)
         -- Copy the assets and the css theme next to the build directory
         os.cp("src/assets", target:targetdir())
-        os.cp("src/mpp-box-theme.css", target:targetdir())
     end)

@@ -2,6 +2,7 @@
 #include <softServo.h>
 #include <softPwm.h>
 #include <stdio.h>
+#include <log_c/log.h>
 
 
 
@@ -41,7 +42,7 @@ void RunServoTest(enum PWM_Mode pm, int pin)
         printf("Servo auto test: DEFAULT PWM Mode\n");
         if (wiringPiSetup() == -1)
         {
-            printf("Failed to setup GPIO !!!\n");
+            log_error("Failed to setup wiring Pi!");
         }
         else
         {
@@ -76,7 +77,7 @@ void RunServoTest(enum PWM_Mode pm, int pin)
         printf("Servo auto test: SOFT_BASED PWM Mode\n");
         if (wiringPiSetup() == -1)
         {
-            printf("Failed to setup GPIO !!!\n");
+            log_error("Failed to setup wiring Pi!");
         }
         else
         {
@@ -84,7 +85,7 @@ void RunServoTest(enum PWM_Mode pm, int pin)
             {
                 if(softPwmCreate(GPIO_18, 0, 200) != 0)
                 {
-                    printf("softPwmCreate failed!\n");
+                    log_error("softPwmCreate failed!\n");
                 }
                 else
                 {

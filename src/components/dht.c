@@ -1,6 +1,7 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <log_c/log.h>
 
 
 
@@ -25,7 +26,7 @@ dht11_data_t read_dht11(int pin)
     
     if (wiringPiSetup() == -1)
     {
-        printf("Setup wiringPi failed!");
+        log_error("Failed to setup wiring Pi!");
     }
     else
     {
@@ -65,12 +66,11 @@ dht11_data_t read_dht11(int pin)
         // Check we read 40 bits (5 bytes)
         if((j >= 40) && (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF)))
         {
-            printf("Humidity = %d.%d %% Temperature = %d.%d *C\n", data[0], data[1], data[2], data[3]);
+            log_info("Humidity: %d.%d | Temperature: %d.%d *C\n", data[0], data[1], data[2], data[3]);
         }
         else
         {
-            printf("j = %d\n", j);
-            printf("Data not good, skip\n");
+            log_warn("No data ! Skipping...\n");
         }
     }
     

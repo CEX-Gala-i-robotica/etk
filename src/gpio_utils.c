@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <log_c/log.h>
 
 
 
@@ -15,7 +16,7 @@ void gpioCleanup(int pin)
 {
     digitalWrite(pin, LOW);
     pinMode(pin, INPUT);
-    printf("gpio cleanup: %d\n", pin);
+    log_info("gpio cleanup: %d\n", pin);
 }
 
 void onExit(int s)
@@ -33,8 +34,8 @@ bool isPWM_available(int pin)
     {
         if(pin == noPWM[i])
         {
-            printf("PIN %d does not support PWM\n", pin);
-            printf("Please use the following pins for PWM Support:");
+            log_error("PIN %d does not support PWM\n", pin);
+            log_info("Please use the following pins for PWM Support:");
             for(int i = 0; i < 4; i++)
             {
                 printf("%d, ", yesPWM[i]);
@@ -52,12 +53,12 @@ bool isI2C_available()
     int fd2 = open(I2C_KMOD_SYSFS, O_RDWR);
     if (fd1 < 0)
     {
-        printf("I2C Not Enabled !!!! [ %s ]\nTrying from kerel module...", I2C_DEV_SYSFS);
+        log_error("I2C Not Enabled !!!! [ %s ]\nTrying from kerel module...", I2C_DEV_SYSFS);
         return false;
         if(fd2 < 0)
         {
             exit(1);
-            printf("I2C Not Enabled !!!! [ %s ]\n", I2C_KMOD_SYSFS);
+            log_error("I2C Not Enabled !!!! [ %s ]\n", I2C_KMOD_SYSFS);
             return false;
         }
         else

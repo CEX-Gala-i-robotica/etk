@@ -4,15 +4,24 @@
 
 
 
-#define MAX_ROWS 8
-#define MAX_COLS 8
+#define KEYPAD_4X4_MAX_ROWS 4
+#define KEYPAD_4X4_MAX_COLS 4
+
+#define KEYPAD_4X3_MAX_ROWS 4
+#define KEYPAD_4X3_MAX_COLS 3
 
 
 typedef struct
 {
-    int rowPins[MAX_ROWS];
-    int colPins[MAX_COLS];
-}Keypad;
+    int rowPins[KEYPAD_4X4_MAX_ROWS];
+    int colPins[KEYPAD_4X4_MAX_COLS];
+}Keypad4x4;
+
+typedef struct
+{
+    int rowPins[KEYPAD_4X3_MAX_ROWS];
+    int colPins[KEYPAD_4X3_MAX_COLS];
+}Keypad4x3;
 
 static char keypad4x4_layout[4][4] =
 {
@@ -30,6 +39,9 @@ static char keypad4x3_layout[4][3] =
     { '*', '0', '#' }
 };
 
-void setupKeypad(int cols, int rows, Keypad kp);
-char KeypadScan(Keypad kp, char kp_layout[MAX_ROWS][MAX_COLS]);
+void setupKeypad4x4(Keypad4x4 kp);
+char KeypadScan4x4(Keypad4x4 kp, char kp_layout[KEYPAD_4X4_MAX_ROWS][KEYPAD_4X4_MAX_COLS]);
+
+void setupKeypad4x3(Keypad4x3 kp);
+char KeypadScan4x3(Keypad4x3 kp, char kp_layout[KEYPAD_4X3_MAX_ROWS][KEYPAD_4X3_MAX_COLS]);
 #endif

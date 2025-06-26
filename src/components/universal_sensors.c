@@ -1,6 +1,7 @@
 #include <wiringPi.h>
 #include <wiringPiSPI.h>
 #include <stdio.h>
+#include <log_c/log.h>
 
 
 
@@ -26,7 +27,7 @@ void UniversalSensorTest(enum SensorInput tm, int pin)
 {
     if (wiringPiSetup() == -1)
     {
-        printf("Failed to setup GPIO !!!\n");
+        log_error("Failed to setup wiring Pi!");
     }
     else
     {
@@ -53,6 +54,7 @@ void UniversalSensorTest(enum SensorInput tm, int pin)
         }
         else if(tm == ANALOGIC_INPUT)
         {
+            // Not working on Raspberry pi 5
             if(wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1)
             {
                 printf("SPI setup failed!\n");

@@ -2,6 +2,7 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <log_c/log.h>
 
 
 
@@ -22,7 +23,7 @@ void RunUltrasonicSensorTest(int trig, int echo)
     float distance;
     if (wiringPiSetup() == -1)
     {
-        printf("Failed to setup GPIO !!!\n");
+        log_error("Failed to setup wiring Pi!");
     }
     else
     {

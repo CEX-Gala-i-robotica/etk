@@ -1,6 +1,7 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <log_c/log.h>
 
 
 #include "stepper_uln2003.h"
@@ -29,7 +30,7 @@ void RunStepperULN2003Test(StepperULN2003 stepper)
 {
     if (wiringPiSetup() == -1)
     {
-        printf("Setup wiringPi failed!");
+        log_error("Failed to setup wiring Pi!");
     }
     else
     {

@@ -21,6 +21,7 @@
 #include "components/mpu6050.h"
 #include "components/LCD_I2C.h"
 #include "components/universal_sensors.h"
+#include "components/keypad.h"
 
 //#define SERVO_PIN GPIO_26
 #define	PIN	28
@@ -237,5 +238,44 @@ wiringPiSetup();
     
     //RunLCD_I2C_Test();
     //UniversalSensorTest(DIGITAL_INPUT, GPIO_14);
-    UniversalSensorTest(ANALOGIC_INPUT, GPIO_14);
+    //UniversalSensorTest(ANALOGIC_INPUT, GPIO_14);
+    /*
+    Keypad basic_keypad4x4 =
+    {
+        .rowPins = {GPIO_20, GPIO_21, GPIO_16, GPIO_12},
+        .colPins = {GPIO_7, GPIO_8, GPIO_25, GPIO_24}
+    };
+    setupKeypad(4, 4, basic_keypad4x4);
+    
+    while(1)
+    {
+        char key = KeypadScan(basic_keypad4x4, keypad4x4_layout);
+        if (key)
+        {
+            printf("Key Pressed: %c\n", key);
+        }
+        delay(100); // Polling delay
+    }
+    */
+    
+    
+/*
+    // Already deprecated use
+    Keypad basic_keypad4x3 =
+    {
+        .rowPins = {GPIO_20, GPIO_21, GPIO_16, GPIO_12},
+        .colPins = {GPIO_7, GPIO_8, GPIO_25}
+    };
+    setupKeypad(4, 3, basic_keypad4x3);
+    
+    while(1)
+    {
+        char key = KeypadScan(basic_keypad4x3, keypad4x3_layout);
+        if (key)
+        {
+            printf("Key Pressed: %c\n", key);
+        }
+        delay(100); // Polling delay
+    }
+*/
 }

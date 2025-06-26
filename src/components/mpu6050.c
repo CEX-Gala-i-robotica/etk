@@ -1,6 +1,7 @@
 #include <wiringPiI2C.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <log_c/log.h>
 #include <math.h>
 
 
@@ -28,11 +29,11 @@ void ReadMPU6050()
         int fd = wiringPiI2CSetup(MPU6050_ADDR);
         if (fd == -1)
         {
-            printf("Failed to init I2C communication.\n");
+            log_error("Failed to setup wiring Pi I2C!");
         }
         else
         {
-            printf("MPU6050 successfully connected.\n");
+            log_info("MPU6050 successfully connected.\n");
             
             wiringPiI2CWriteReg8(fd, PWR_MGMT_1, 0);
             

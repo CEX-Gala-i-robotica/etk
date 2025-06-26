@@ -2,6 +2,7 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <log_c/log.h>
 
 
 #include "LCD_I2C.h"
@@ -61,7 +62,7 @@ void RunLCD_I2C_Test()
     lcd_fd = wiringPiI2CSetup(LCD_ADDR);
     if (lcd_fd == -1)
     {
-        printf("Failed to init I2C communication.\n");
+        log_error("Failed to setup wiring Pi I2C!");
     }
     lcd_init();
 
