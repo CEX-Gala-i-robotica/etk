@@ -20,6 +20,7 @@
 #include "components/ultrasonic.h"
 #include "components/mpu6050.h"
 #include "components/LCD_I2C.h"
+#include "components/universal_sensors.h"
 
 //#define SERVO_PIN GPIO_26
 #define	PIN	28
@@ -234,5 +235,7 @@ wiringPiSetup();
     //    printf("Yes i2c\n");    
     //}
     
-    RunLCD_I2C_Test();
+    //RunLCD_I2C_Test();
+    //UniversalSensorTest(DIGITAL_INPUT, GPIO_14);
+    UniversalSensorTest(ANALOGIC_INPUT, GPIO_14);
 }
