@@ -69,7 +69,7 @@ static void stdout_callback(log_Event *ev)
 
 #ifndef LOGC__STDOUT_NO_FILEINFO
     fprintf(
-        ev->stream, "\x1b[90m%s:%d:\x1b[0m ",
+        ev->stream, "\x1b[35m%s:%d:\x1b[0m ",
         ev->file, ev->line);
 #endif
 #else

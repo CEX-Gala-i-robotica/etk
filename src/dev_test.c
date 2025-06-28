@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <signal.h>
+#include <log_c/log.h>
 
 
 #include "dev_test.h"
@@ -22,6 +23,8 @@
 #include "components/LCD_I2C.h"
 #include "components/universal_sensors.h"
 #include "components/keypad.h"
+#include "components/TTP229.h"
+#include "components/A4988.h"
 
 //#define SERVO_PIN GPIO_26
 #define	PIN	28
@@ -278,4 +281,120 @@ wiringPiSetup();
         delay(100); // Polling delay
     }
 */
+
+/*
+    Setup_TTP229();
+    
+    while(1)
+    {
+            log_error("Pressed key: %d", TTP229_GetPressed());
+        }
+        
+*/
+
+/*
+// Not good enough
+int keyPins[8] = 
+{
+    GPIO_14,
+    GPIO_15,
+    GPIO_18,
+    GPIO_23,
+    GPIO_24,
+    GPIO_25,
+    GPIO_8,
+    GPIO_7
+};
+
+if (wiringPiSetup() == -1)
+{
+    log_error("Failed to setup wiring pi !!!\n");
+}
+else
+{
+    for (int i=0; i<8; i++) pinMode(keyPins[i], INPUT);
+
+    while (1) {
+        for (int i=0; i<8; i++) {
+            printf("K%d: %d ", i+1, digitalRead(keyPins[i]));
+        }
+        printf("\n");
+        delay(100);
+    }
+}
+*/
+
+/*
+if (wiringPiSetup() == -1) {
+    printf("WiringPi setup failed!\n");
+   
+}
+
+pinMode(GPIO_17, OUTPUT);
+pinMode(GPIO_18, INPUT);
+
+printf("TTP229 4x4 Touchpad test. Press Ctrl+C to exit.\n");
+
+while (1) {
+    unsigned short keyState = 0;
+    // Read 16 bits (one for each key)
+    for (int i = 0; i < 16; i++) {
+        digitalWrite(GPIO_17, LOW);
+        delayMicroseconds(2); // Short delay
+        digitalWrite(GPIO_17, HIGH);
+        delayMicroseconds(2); // Short delay
+
+        int bit = digitalRead(GPIO_18);
+        // TTP229: 0 = pressed, 1 = not pressed
+        if (bit == 0) {
+            keyState |= (1 << i);
+        }
+    }
+
+    // Print pressed keys
+    printf("Pressed keys: ");
+    for (int i = 0; i < 16; i++) {
+        if (keyState & (1 << i)) {
+            printf("%d ", i+1); // Key numbers 1-16
+        }
+    }
+    printf("\n");
+
+    delay(100); // 100 ms
+}
+
+*/
+
+/*
+wiringPiSetup();
+    
+pinMode(GPIO_17, OUTPUT);
+pinMode(GPIO_18, INPUT);
+
+while (1) {
+    digitalWrite(GPIO_17, LOW);
+    delayMicroseconds(2);
+    digitalWrite(GPIO_17, HIGH);
+    delayMicroseconds(2);
+
+    printf("SDO: %d\n", digitalRead(GPIO_18));
+    delay(100);
+}
+*/
+
+//tempTest();
+    A4988_Stepper stepper_test =
+    {
+        .dir_pin = GPIO_26,
+        .step_pin = GPIO_21,
+        .enable_pin = GPIO_16
+    };
+    
+    A4988_Setup(stepper_test);
+    
+    while(1)
+    {
+        A4988_Step(stepper_test, 2000, 850, FORWARD);
+        A4988_Step(stepper_test, 2000, 850, BACKWARDS);
+    }
 }

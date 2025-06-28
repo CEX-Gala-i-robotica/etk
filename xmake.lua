@@ -4,6 +4,7 @@ add_requires("librsvg-2.0", {system = true})
 
 target("etk")
     set_kind("binary")
+    add_defines("LOGC__USER_SETTINGS")
     add_includedirs("ext_deps/", "ext_deps/wiringpi")
     add_syslinks("m", "crypt", "rt", "pthread")
     add_files("ext_deps/wiringpi/*.c", "ext_deps/cJSON/*.c", "ext_deps/csv/*.c", "ext_deps/log_c/*.c", "src/*.c", "src/UI/*.c", "src/components/*.c")

@@ -5,4 +5,4 @@
 
 
 
-void Dev_Test();
+void Dev_Test(int argc, char *argv[]);
