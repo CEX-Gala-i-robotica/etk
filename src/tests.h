@@ -22,8 +22,8 @@ enum TestType
     Keypad3x4,           // Not self contained
     Infrared,            // yes
     LED_Matrix,          // todo
-    WaterLevel,          // yes
-    SoilMoisture,        // yes
+    WaterLevel,          // yes (Analog)
+    SoilMoisture,        // yes (Analogic)
     SpeedSensor,         // yes
     GasDetector,         // yes
     SmokeDetector,       // yes
