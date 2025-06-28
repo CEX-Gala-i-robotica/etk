@@ -5,47 +5,24 @@
 #include "A4988.h"
 #include "../gpio_utils.h"
 
-//#define DIR_PIN GPIO_26   // WiringPi pin 1 (GPIO18)
-//#define STEP_PIN GPIO_21  // WiringPi pin 0 (GPIO17)
-//#define EN_PIN GPIO_16
 
-/*
-void tempTest()
-{
-    if (wiringPiSetup() == -1) {
-        printf("WiringPi setup failed!\n");
 
-    }
-// 6 1 4 3 (PIN ORDER !!!)
-    pinMode(DIR_PIN, OUTPUT);
-    pinMode(STEP_PIN, OUTPUT);
-    pinMode(EN_PIN, OUTPUT);
 
-    digitalWrite(EN_PIN, LOW); // Enable driver (LOW = enabled)
-    digitalWrite(DIR_PIN, HIGH); // Set direction
+bool is_driver_enabled = false;
+bool is_driver_in_sleep;
+bool is_driver_reset;
 
-    for (int i = 0; i < 2000; i++) {
-        digitalWrite(STEP_PIN, HIGH);
-        delayMicroseconds(850);
-        digitalWrite(STEP_PIN, LOW);
-        delayMicroseconds(850);
-    }
-
-    digitalWrite(EN_PIN, HIGH); // Disable driver (optional)
-    printf("Done!\n");
-}
-*/
 
 void A4988_Setup(A4988_Stepper driver)
 {
-    if (wiringPiSetup() == -1)
+    if(wiringPiSetup() == -1)
     {
         log_error("Failed to setup wiring pi !!!");
     }
     else
     {
-        pinMode(driver.dir_pin, OUTPUT);
-        pinMode(driver.step_pin, OUTPUT);
+        pinMode(driver.dir_pin,    OUTPUT);
+        pinMode(driver.step_pin,   OUTPUT);
         pinMode(driver.enable_pin, OUTPUT);
     }
 }
@@ -73,4 +50,106 @@ void A4988_Step(A4988_Stepper driver, int steps, int delay, enum A4988_Direction
     }
 
     digitalWrite(driver.enable_pin, HIGH); // Disable driver (optional)
+}
+
+void A4988Full_Setup(A4988_FullStepper driver)
+{
+    if(wiringPiSetup() == -1)
+    {
+        log_error("Failed to setup wiring pi !!!");
+    }
+    else
+    {
+        pinMode(driver.dir_pin,    OUTPUT);
+        pinMode(driver.step_pin,   OUTPUT);
+        pinMode(driver.enable_pin, OUTPUT);
+        pinMode(driver.sleep,      OUTPUT);
+        pinMode(driver.rst,        OUTPUT);
+        pinMode(driver.ms1,        OUTPUT);
+        pinMode(driver.ms2,        OUTPUT);
+        pinMode(driver.ms3,        OUTPUT);
+    }
+}
+
+void A4988_Enable(A4988_FullStepper driver, bool toggle)
+{
+    if(toggle)
+    {
+        digitalWrite(driver.enable_pin, LOW);
+        is_driver_enabled = true;
+    }
+    else
+    {
+        digitalWrite(driver.enable_pin, HIGH);
+        is_driver_enabled = false;
+    }
+}
+
+void A4988_Sleep(A4988_FullStepper driver, bool toggle)
+{
+    if(toggle)
+    {
+        digitalWrite(driver.sleep, LOW);
+        is_driver_in_sleep = true;
+    }
+    else
+    {
+        digitalWrite(driver.sleep, HIGH);
+        is_driver_in_sleep = false;
+    }
+}
+
+void A4988Full_SetDirection(A4988_FullStepper driver, enum A4988_Directions step_dirs)
+{
+    digitalWrite(driver.enable_pin, LOW);
+    if(step_dirs == FORWARD)
+    {
+        digitalWrite(driver.dir_pin, HIGH);
+        log_info("A4988: Direction changed: forward");
+    }
+    else if(step_dirs == BACKWARDS)
+    {
+        digitalWrite(driver.dir_pin, LOW);
+        log_info("A4988: Direction changed: backwards");
+    }
+}
+
+void A4988_Reset(A4988_FullStepper driver, bool toggle)
+{
+    if(toggle)
+    {
+        digitalWrite(driver.rst, LOW);
+        is_driver_reset = true;
+    }
+    else
+    {
+        digitalWrite(driver.rst, HIGH);
+        is_driver_reset = false;
+    }
+}
+
+void A4988Full_Step(A4988_FullStepper driver, int steps, int delay, enum A4988_Directions step_dirs)
+{
+    if(!is_driver_enabled)
+    {
+        log_warn("A4988: Driver is not enabled !!!");
+    }
+    else if(is_driver_in_sleep)
+    {
+        log_warn("A4988: Driver is in sleep mode !!!");
+    }
+    else if(is_driver_reset)
+    {
+        log_warn("A4988: Driver is in reset !!!");
+    }
+    else
+    {
+        for(int i = 0; i < steps; i++)
+        {
+            digitalWrite(driver.step_pin, HIGH);
+            delayMicroseconds(delay);
+            digitalWrite(driver.step_pin, LOW);
+            delayMicroseconds(delay);
+        }
+    }
 }
