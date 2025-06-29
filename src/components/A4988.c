@@ -1,5 +1,6 @@
 #include <wiringPi.h>
 #include <log_c/log.h>
+#include <stdlib.h>
 
 
 #include "A4988.h"
@@ -29,27 +30,40 @@ void A4988_Setup(A4988_Stepper driver)
 
 void A4988_Step(A4988_Stepper driver, int steps, int delay, enum A4988_Directions step_dirs)
 {
-    digitalWrite(driver.enable_pin, LOW); // Enable driver (LOW = enabled)
-    if(step_dirs == FORWARD)
+    if(delay <= 500)
     {
-        digitalWrite(driver.dir_pin, HIGH); // Set direction
-        log_info("A4988: %d steps forward", steps);
+        log_warn("Low delay speed !!!! This can affect the stepper motor performance. Please set the speed delay higher or enable microstep levels.");
     }
-    else if(step_dirs == BACKWARDS)
+    if(delay <= 400)
     {
-        digitalWrite(driver.dir_pin, LOW); // Set direction
-        log_info("A4988: %d steps backwards", steps);
+        log_error("Delay speed is too low !!!");
+        exit(1);
     }
-
-    for(int i = 0; i < steps; i++)
+    else
     {
-        digitalWrite(driver.step_pin, HIGH);
-        delayMicroseconds(delay);
-        digitalWrite(driver.step_pin, LOW);
-        delayMicroseconds(delay);
+        digitalWrite(driver.enable_pin, LOW); // Enable driver (LOW = enabled)
+        if(step_dirs == FORWARD)
+        {
+            digitalWrite(driver.dir_pin, HIGH); // Set direction
+            log_info("A4988: %d steps forward", steps);
+        }
+        else if(step_dirs == BACKWARDS)
+        {
+            digitalWrite(driver.dir_pin, LOW); // Set direction
+            log_info("A4988: %d steps backwards", steps);
+        }
+        
+        
+        for(int i = 0; i < steps; i++)
+        {
+            digitalWrite(driver.step_pin, HIGH);
+            delayMicroseconds(delay);
+            digitalWrite(driver.step_pin, LOW);
+            delayMicroseconds(delay);
+        }
+        
+        digitalWrite(driver.enable_pin, HIGH); // Disable driver (optional)
     }
-
-    digitalWrite(driver.enable_pin, HIGH); // Disable driver (optional)
 }
 
 void A4988Full_Setup(A4988_FullStepper driver)

@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <errno.h>
+#include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -25,6 +26,7 @@
 #include "components/keypad.h"
 #include "components/TTP229.h"
 #include "components/A4988.h"
+#include "components/PCA9685.h"
 
 //#define SERVO_PIN GPIO_26
 #define	PIN	28
@@ -55,6 +57,32 @@ int angleToPWM(int angle) {
 }
 
 int scale [8] = { 262, 294, 330, 349, 392, 440, 494, 525 } ;
+
+#define PRESCALE 0xFE
+
+
+void setPWMFreq(int fd, float freq) {
+    float prescaleval = 25000000.0;
+    prescaleval /= 4096.0;
+    prescaleval /= freq;
+    prescaleval -= 1.0;
+    int prescale = (int)(prescaleval + 0.5);
+
+    int oldmode = wiringPiI2CReadReg8(fd, MODE1);
+    int newmode = (oldmode & 0x7F) | 0x10; // sleep
+    wiringPiI2CWriteReg8(fd, MODE1, newmode);
+    wiringPiI2CWriteReg8(fd, PRESCALE, prescale);
+    wiringPiI2CWriteReg8(fd, MODE1, oldmode);
+    usleep(5000);
+    wiringPiI2CWriteReg8(fd, MODE1, oldmode | 0x80);
+}
+
+void setPWM(int fd, int channel, int on, int off) {
+    wiringPiI2CWriteReg8(fd, LED0_ON_L + 4*channel, on & 0xFF);
+    wiringPiI2CWriteReg8(fd, LED0_ON_L + 4*channel + 1, on >> 8);
+    wiringPiI2CWriteReg8(fd, LED0_ON_L + 4*channel + 2, off & 0xFF);
+    wiringPiI2CWriteReg8(fd, LED0_ON_L + 4*channel + 3, off >> 8);
+}
 
 
 void Dev_Test(int argc, char *argv[])
@@ -383,6 +411,7 @@ while (1) {
 */
 
 //tempTest();
+/*
     A4988_Stepper stepper_test =
     {
         .dir_pin = GPIO_26,
@@ -394,7 +423,59 @@ while (1) {
     
     while(1)
     {
+        // prev speed delay: 850
         A4988_Step(stepper_test, 2000, 850, FORWARD);
         A4988_Step(stepper_test, 2000, 850, BACKWARDS);
     }
+    
+    //Todo: test the manual controll of A4988
+    */
+    
+
+    int pca_fd;
+    pca_fd = PCA9685_Setup();
+    
+    for(int i = 0; i < 16; i++)
+    {
+        PCA9685_SetPWM(pca_fd, i, 0, 307);
+        //sleep(1);
+        delay(1000);
+        PCA9685_SetPWM(pca_fd, i, 0, 205);
+        //sleep(1);
+        delay(1000);
+        PCA9685_SetPWM(pca_fd, i, 0, 510);
+        //sleep(1);
+        delay(1000);
+    }
+
+
+/*
+int fd = wiringPiI2CSetup(PCA9685_ADDR);
+if (fd < 0) {
+    printf("Failed to init I2C communication.\n");
+}
+setPWMFreq(fd, 50); // 50Hz for servos
+
+// Typical servo pulse: 1ms (min), 1.5ms (center), 2ms (max)
+// At 50Hz, period = 20ms, so 4096 steps = 20ms
+// 1ms = 205, 1.5ms = 307, 2ms = 410 (approx)
+
+
+for (int i = 0; i < 16; i++)
+{
+    setPWM(fd, i, 0, 307); // Center position
+    
+    printf("Sent center pulse to channel 0\n");
+    sleep(1);
+    
+    setPWM(fd, i, 0, 205); // Min position
+    printf("Sent min pulse to channel 0\n");
+    sleep(1);
+    
+    setPWM(fd, i, 0, 510); // Max position
+    printf("Sent max pulse to channel 0\n");
+    sleep(1);
+}
+*/
+
 }

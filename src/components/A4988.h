@@ -6,6 +6,8 @@
 
 
 /*
+
+Compatible with DRV8825
 !!! INPORTANT PIN Configuration !!!
 
 1: red
