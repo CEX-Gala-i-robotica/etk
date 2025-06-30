@@ -12,7 +12,16 @@
 
 
 
-bool is_dev_init;
+
+#define MPU6050_ADDR 0x68
+
+#define PWR_MGMT_1   0x6B
+#define ACCEL_XOUT_H 0x3B
+#define GYRO_XOUT_H  0x43
+
+
+
+bool is_mpu650_init;
 int fd;
 
 
@@ -35,7 +44,7 @@ void MPU6050_Setup()
         if (fd == -1)
         {
             log_error("Failed to setup wiring Pi I2C!");
-            is_dev_init = false;
+            is_mpu650_init = false;
         }
         else
         {
@@ -43,20 +52,20 @@ void MPU6050_Setup()
             if (fd == -1)
             {
                 log_error("Failed to setup wiring Pi I2C!");
-                is_dev_init = false;
+                is_mpu650_init = false;
             }
             else
             {
                 log_info("MPU6050 successfully connected.\n");
                 wiringPiI2CWriteReg8(fd, PWR_MGMT_1, 0);
-                is_dev_init = true;
+                is_mpu650_init = true;
             }
         }
     }
     else
     {
         log_error("I2C Is Unavailable !!!");
-        is_dev_init = false;
+        is_mpu650_init = false;
     }
 }
 
@@ -64,7 +73,7 @@ MPU6050_fData ReadMPU6050()
 {
     MPU6050_fData out;
     
-    if(!is_dev_init)
+    if(!is_mpu650_init)
     {
         log_error("MPU6050 Not initialized !!!");
     }

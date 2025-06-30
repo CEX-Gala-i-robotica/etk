@@ -7,6 +7,15 @@
 #include "PCA9685.h"
 
 
+#define PCA9685_ADDR 0x40
+
+// Register addresses
+#define MODE1       0x00
+#define MODE2       0x01
+#define PRESCALE    0xFE
+#define LED0_ON_L   0x06
+
+
 void PCA9685_SetPWMFreq(int fd, float freq)
 {
     float prescaleval = 25000000.0;
@@ -40,11 +49,6 @@ int PCA9685_Setup()
     
     return fd;
 }
-
-//void PCA9685_SetMode(int fd, int mode)
-//{
-//    wiringPiI2CWriteReg8(fd, mode, 0x00);
-//}
 
 void PCA9685_SetPWM(int fd, int channel, int on, int off)
 {

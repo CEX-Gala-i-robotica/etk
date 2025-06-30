@@ -6,6 +6,8 @@
 #include <ctype.h>
 #include <string.h>
 
+#include "../log_c/log.h"
+
 extern int wiringPiDebug ;
 
 const char* GetPiRevisionLegacy(char* line, int linelength, unsigned int* revision) {
@@ -30,7 +32,7 @@ const char* GetPiRevisionLegacy(char* line, int linelength, unsigned int* revisi
     *c = 0 ;
 
   if (wiringPiDebug)
-    printf ("GetPiRevisionLegacy: Revision string: %s\n", line) ;
+    log_info("GetPiRevisionLegacy: Revision string: %s", line) ;
 
 // Need to work out if it's using the new or old encoding scheme:
 
@@ -84,7 +86,7 @@ int piGpioLayoutLegacy (void)
     piGpioLayoutOops ("No \"Hardware\" line") ;
 
   if (wiringPiDebug)
-    printf ("piGpioLayout: Hardware: %s\n", line) ;
+    log_info("piGpioLayout: Hardware: %s", line) ;
 
 // See if it's BCM2708 or BCM2709 or the new BCM2835.
 
@@ -144,7 +146,7 @@ int piGpioLayoutLegacy (void)
     *c = 0 ;
 
   if (wiringPiDebug)
-    printf ("piGpioLayout: Revision string: %s\n", line) ;
+    log_info("piGpioLayout: Revision string: %s", line) ;
 
 // Scan to the first character of the revision number
 
@@ -174,7 +176,7 @@ int piGpioLayoutLegacy (void)
   c = c + strlen (c) - 4 ;
 
   if (wiringPiDebug)
-    printf ("piGpioLayout: last4Chars are: \"%s\"\n", c) ;
+    log_info("piGpioLayout: last4Chars are: \"%s\"", c) ;
 
   if ( (strcmp (c, "0002") == 0) || (strcmp (c, "0003") == 0))
     gpioLayout = 1 ;
@@ -182,7 +184,7 @@ int piGpioLayoutLegacy (void)
     gpioLayout = 2 ;	// Covers everything else from the B revision 2 to the B+, the Pi v2, v3, zero and CM's.
 
   if (wiringPiDebug)
-    printf ("piGpioLayout: Returning revision: %d\n", gpioLayout) ;
+    log_info("piGpioLayout: Returning revision: %d", gpioLayout) ;
 
   return gpioLayout ;
 }

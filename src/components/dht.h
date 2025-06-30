@@ -16,5 +16,6 @@ typedef struct
     int valid;
 } dht11_data_t;
 
+void dht11_Setup(int pin);
 dht11_data_t read_dht11();
 #endif

@@ -39,6 +39,10 @@ static char keypad4x3_layout[4][3] =
     { '*', '0', '#' }
 };
 
+/*
+Todo: Add functions to define custom layouts for different sized keypads
+*/
+
 void setupKeypad4x4(Keypad4x4 kp);
 char KeypadScan4x4(Keypad4x4 kp, char kp_layout[KEYPAD_4X4_MAX_ROWS][KEYPAD_4X4_MAX_COLS]);
 

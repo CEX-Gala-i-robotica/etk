@@ -42,12 +42,12 @@ void A4988_Step(A4988_Stepper driver, int steps, int delay, enum A4988_Direction
     else
     {
         digitalWrite(driver.enable_pin, LOW); // Enable driver (LOW = enabled)
-        if(step_dirs == FORWARD)
+        if(step_dirs == A4988_FORWARD)
         {
             digitalWrite(driver.dir_pin, HIGH); // Set direction
             log_info("A4988: %d steps forward", steps);
         }
-        else if(step_dirs == BACKWARDS)
+        else if(step_dirs == A4988_BACKWARDS)
         {
             digitalWrite(driver.dir_pin, LOW); // Set direction
             log_info("A4988: %d steps backwards", steps);
@@ -116,12 +116,12 @@ void A4988_Sleep(A4988_FullStepper driver, bool toggle)
 void A4988Full_SetDirection(A4988_FullStepper driver, enum A4988_Directions step_dirs)
 {
     digitalWrite(driver.enable_pin, LOW);
-    if(step_dirs == FORWARD)
+    if(step_dirs == A4988_FORWARD)
     {
         digitalWrite(driver.dir_pin, HIGH);
         log_info("A4988: Direction changed: forward");
     }
-    else if(step_dirs == BACKWARDS)
+    else if(step_dirs == A4988_BACKWARDS)
     {
         digitalWrite(driver.dir_pin, LOW);
         log_info("A4988: Direction changed: backwards");

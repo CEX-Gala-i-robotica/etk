@@ -12,5 +12,6 @@ enum PWM_Mode
 static int angleToSoftPWM(int angle);
 static int angleToPWM(int angle);
 
-void RunServoTest(enum PWM_Mode pm, int pin);
+void ServoInit(int pwm_pin, enum PWM_Mode pm);
+void ServoSetAngle(int pin, int angle);
 #endif

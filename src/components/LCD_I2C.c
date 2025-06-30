@@ -8,7 +8,24 @@
 #include "LCD_I2C.h"
 
 
+
+
+
+#define LCD_I2C_ADDR 0x27
+
+#define LCD_CHR  1 // Mode - Sending data
+#define LCD_CMD  0 // Mode - Sending command
+
+#define LCD_BACKLIGHT   0x08  // On
+//#define LCD_BACKLIGHT 0x00  // Off
+
+#define ENABLE  0b00000100 // Enable bit
+
+
+
+
 int lcd_fd;
+bool is_lcd_init;
 
 // Low level write to LCD
 void lcd_toggle_enable(int bits)
@@ -32,43 +49,66 @@ void lcd_byte(int bits, int mode)
     lcd_toggle_enable(low);
 }
 
-void lcd_init()
+void LCD_I2C_Init()
 {
-    lcd_byte(0x33, LCD_CMD); // Initialize
-    lcd_byte(0x32, LCD_CMD); // Set to 4-bit mode
-    lcd_byte(0x06, LCD_CMD); // Cursor move direction
-    lcd_byte(0x0C, LCD_CMD); // Turn cursor off
-    lcd_byte(0x28, LCD_CMD); // 2 line display
-    lcd_byte(0x01, LCD_CMD); // Clear display
-    usleep(5000);
-}
-
-void lcd_write_string(const char *str)
-{
-    while(*str)
+    lcd_fd = wiringPiI2CSetup(LCD_I2C_ADDR);
+    if(lcd_fd == -1)
     {
-        lcd_byte(*str++, LCD_CHR);
+        is_lcd_init = false;
+        log_error("Failed to setup wiring Pi I2C!");
+    }
+    else
+    {
+        lcd_byte(0x33, LCD_CMD); // Initialize
+        lcd_byte(0x32, LCD_CMD); // Set to 4-bit mode
+        lcd_byte(0x06, LCD_CMD); // Cursor move direction
+        lcd_byte(0x0C, LCD_CMD); // Turn cursor off
+        lcd_byte(0x28, LCD_CMD); // 2 line display
+        lcd_byte(0x01, LCD_CMD); // Clear display
+        usleep(5000);
+        is_lcd_init = true;
     }
 }
 
-void lcd_set_cursor(int line)
+void LCD_write_string(const char *str)
 {
-    int addr[] = {0x80, 0xC0, 0x94, 0xD4}; // For 4-line displays
-    lcd_byte(addr[line], LCD_CMD);
+    if(!is_lcd_init)
+    {
+        log_error("LCD I2C: Not initialized !!!");
+    }
+    else
+    {
+        while(*str)
+        {
+            lcd_byte(*str++, LCD_CHR);
+        }
+    }
+}
+
+void LCD_set_cursor(int line)
+{
+    if(!is_lcd_init)
+    {
+        log_error("LCD I2C: Not initialized !!!");
+    }
+    else
+    {
+        int addr[] = {0x80, 0xC0, 0x94, 0xD4}; // For 4-line displays
+        lcd_byte(addr[line], LCD_CMD);
+    }
 }
 
 void RunLCD_I2C_Test()
 {
-    lcd_fd = wiringPiI2CSetup(LCD_ADDR);
-    if (lcd_fd == -1)
-    {
-        log_error("Failed to setup wiring Pi I2C!");
-    }
-    lcd_init();
+    LCD_I2C_Init();
 
-    lcd_set_cursor(0); // First line
-    lcd_write_string("Hello, World!");
+    LCD_set_cursor(0); // First line
+    LCD_write_string("Hello, World!");
 
-    lcd_set_cursor(1); // Second line
-    lcd_write_string("LCD via I2C!");
+    LCD_set_cursor(1); // Second line
+    LCD_write_string("LCD via I2C!");
 }
+
+/*
+Todo: Add more advanced LCD testing (Testing each dot from the character blocks)
+*/

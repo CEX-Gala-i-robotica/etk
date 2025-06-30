@@ -46,8 +46,8 @@ typedef struct
 
 enum A4988_Directions
 {
-    FORWARD,
-    BACKWARDS
+    A4988_FORWARD,
+    A4988_BACKWARDS
 };
 
 void A4988_Setup(A4988_Stepper driver);

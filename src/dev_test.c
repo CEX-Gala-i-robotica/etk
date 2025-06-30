@@ -58,7 +58,11 @@ int angleToPWM(int angle) {
 
 int scale [8] = { 262, 294, 330, 349, 392, 440, 494, 525 } ;
 
+
+
+/*
 #define PRESCALE 0xFE
+
 
 
 void setPWMFreq(int fd, float freq) {
@@ -83,6 +87,7 @@ void setPWM(int fd, int channel, int on, int off) {
     wiringPiI2CWriteReg8(fd, LED0_ON_L + 4*channel + 2, off & 0xFF);
     wiringPiI2CWriteReg8(fd, LED0_ON_L + 4*channel + 3, off >> 8);
 }
+*/
 
 
 void Dev_Test(int argc, char *argv[])
