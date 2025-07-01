@@ -505,18 +505,28 @@ Setup_TTP229();
 */
 
 
+LCD_I2C lcd_i2c =
+{
+    .lcd_size  = LCD_16x2,
+    .backlight = true,
+    .unicode   = true,
+    .pre_clear = true
+};
 
-
-LCD_I2C_Init(true);
+LCD_I2C_init(lcd_i2c);
 //LCD_set_cursor(0);
 //LCD_write_string("John Doe fhdsjkfh");
 while(1)
 {
     delay(500);
-    LCD_Clear();
+    //LCD_clear();
     //LCD_scroll_text("Hello here some text scrolling lol", 0, 500);
     LCD_set_cursor(0);
-    LCD_printf("%s", "?></{}[];()!@#$%^&*");
+    LCD_printf(false, "%s", "cvfaf.mid");
+    
+    LCD_set_cursor(1);
+    //LCD_printf(true, "%s", "aBcDefghijklmnopwwehjfg");
+    LCD_write_string("ă");
 }
 
 }
