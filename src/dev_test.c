@@ -437,6 +437,7 @@ while (1) {
     */
     
 
+    /*
     int pca_fd;
     pca_fd = PCA9685_Setup();
     
@@ -452,6 +453,7 @@ while (1) {
         //sleep(1);
         delay(1000);
     }
+    */
 
 
 /*
@@ -482,5 +484,39 @@ for (int i = 0; i < 16; i++)
     sleep(1);
 }
 */
+
+
+/*
+Setup_TTP229();
+
+    printf("TTP229 16-key test. Press keys...\n");
+
+    while (1) {
+       
+        
+        
+        wait_for_key_event(); // Wait for key press
+                uint16_t keys = TTP229_GetPressed();
+                print_keys(keys);
+                wait_for_key_release(); // Wait for key release
+                delay(100); // Debounce
+            
+    }
+*/
+
+
+
+
+LCD_I2C_Init(true);
+//LCD_set_cursor(0);
+//LCD_write_string("John Doe fhdsjkfh");
+while(1)
+{
+    delay(500);
+    LCD_Clear();
+    //LCD_scroll_text("Hello here some text scrolling lol", 0, 500);
+    LCD_set_cursor(0);
+    LCD_printf("%s", "?></{}[];()!@#$%^&*");
+}
 
 }

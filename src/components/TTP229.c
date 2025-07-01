@@ -17,6 +17,19 @@ Maybe this could help: https://github.com/kiryanenko/TTP229/blob/master/TTP229.c
 
 unsigned short keyState = 0;
 
+void wait_for_key_event() {
+    while (digitalRead(GPIO_27) == HIGH) {
+        delay(1); // Wait 1 ms
+    }
+}
+
+// Wait for SDO to go HIGH (ready for next event)
+void wait_for_key_release() {
+    while (digitalRead(GPIO_27) == LOW) {
+        delay(1); // Wait 1 ms
+    }
+}
+
 void Setup_TTP229()
 {
     if (wiringPiSetup() == -1)
@@ -26,37 +39,31 @@ void Setup_TTP229()
     else
     {
         pinMode(GPIO_17, OUTPUT);
-        pinMode(GPIO_18, INPUT);
+        pinMode(GPIO_27, INPUT);
+        digitalWrite(GPIO_17, LOW);
     }
 }
 
-int TTP229_GetPressed()
+uint16_t TTP229_GetPressed()
 {
-    //char key;
-    for(int i = 0; i < 16; i++)
-    {
-        digitalWrite(GPIO_17, LOW);
-        delayMicroseconds(2); // Short delay
-        digitalWrite(GPIO_17, HIGH);
-        delayMicroseconds(2); // Short delay
-        int bit = digitalRead(GPIO_18);
-        // TTP229: 0 = pressed, 1 = not pressed
-        if(bit == 0)
-        {
-            keyState |= (1 << i);
+    uint16_t keys = 0;
+        for (int i = 0; i < 16; i++) {
+            digitalWrite(GPIO_17, HIGH);
+            delayMicroseconds(100);
+            if (digitalRead(GPIO_27) == LOW) {
+                keys |= (1 << i); // Active low: 0 = pressed, so set bit if LOW
+            }
+            digitalWrite(GPIO_17, LOW);
+            delayMicroseconds(100);
         }
+        return keys;
+}
+
+void print_keys(uint16_t keys) {
+    printf("Keys: ");
+    for (int i = 0; i < 16; i++) {
+        if (keys & (1 << i))
+            printf("%2d ", i + 1);
     }
-    
-    // Print pressed keys
-    //printf("Pressed keys: ");
-    for(int i = 0; i < 16; i++)
-    {
-        if(keyState & (1 << i))
-        {
-            //printf("%d ", i+1); // Key numbers 1-16
-            return i+1;
-        }
-    }
-    delay(100); // 100 ms
-    return 0;
+    printf("\n");
 }
