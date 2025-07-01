@@ -123,56 +123,63 @@ void on_button_clicked(GtkWidget *button, gpointer data)
 void on_settings_click(GtkWidget *btn, gpointer data)
 {
     //g_print("Settings clicked !!!\n");
-    GtkWidget *settings_window;
+    static GtkWidget *settings_window = NULL;
     GtkWidget *stack;
     
     
-    settings_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(settings_window), "Setări");
-    gtk_window_set_default_size(GTK_WINDOW(settings_window), 700, 700);
-    gtk_container_set_border_width(GTK_CONTAINER(settings_window), 20);
-    gtk_style_context_add_class(gtk_widget_get_style_context(settings_window), "main-window");
-    
-    GtkWidget *headerbar = gtk_header_bar_new();
-    gtk_header_bar_set_title(GTK_HEADER_BAR(headerbar), "ETK - Setări");
-    gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(headerbar), TRUE);
-    gtk_widget_set_name(headerbar, "window-header");
-    
-    gtk_window_set_titlebar(GTK_WINDOW(settings_window), headerbar);
-    
-    
-    
-    // UI Stuff here
-    
-    GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-    
-    stack = gtk_stack_new();
-    gtk_stack_set_transition_type(GTK_STACK(stack), GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT);
-    gtk_stack_set_transition_duration(GTK_STACK(stack), 500);
-
-    GtkWidget *label1 = gtk_label_new("This is Page 1");
-    GtkWidget *label2 = gtk_label_new("This is Page 2");
-    GtkWidget *label3 = gtk_label_new("sdjfdsjkfhdshfkdsj");
-
-    gtk_stack_add_titled(GTK_STACK(stack), label1, "page1", "Setări Generale");
-    gtk_stack_add_titled(GTK_STACK(stack), label2, "page2", "Unelte Interne");
-    gtk_stack_add_titled(GTK_STACK(stack), label3, "page3", "Date Statistice");
-    
-    GtkWidget *switcher = gtk_stack_switcher_new();
-    gtk_stack_switcher_set_stack(GTK_STACK_SWITCHER(switcher), GTK_STACK(stack));
-    gtk_style_context_add_class(gtk_widget_get_style_context(switcher), "tab-switcher");
-
-    gtk_box_pack_start(GTK_BOX(vbox), switcher, FALSE, FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), stack, TRUE, TRUE, 0);
-
-    gtk_container_add(GTK_CONTAINER(settings_window), vbox);
+    // Make sure no extra setting window can be opened after clicking the setting button again (Only 1 widnow condition)
+    if(settings_window == NULL)
+    {
+        settings_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+        gtk_window_set_title(GTK_WINDOW(settings_window), "Setări");
+        gtk_window_set_default_size(GTK_WINDOW(settings_window), 700, 700);
+        gtk_container_set_border_width(GTK_CONTAINER(settings_window), 20);
+        gtk_style_context_add_class(gtk_widget_get_style_context(settings_window), "main-window");
+        g_signal_connect(settings_window, "destroy", G_CALLBACK(gtk_widget_destroyed), &settings_window);
+        
+        GtkWidget *headerbar = gtk_header_bar_new();
+        gtk_header_bar_set_title(GTK_HEADER_BAR(headerbar), "ETK - Setări");
+        gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(headerbar), TRUE);
+        gtk_widget_set_name(headerbar, "window-header");
+        
+        gtk_window_set_titlebar(GTK_WINDOW(settings_window), headerbar);
     
     
     
-    g_signal_connect(settings_window, "destroy", G_CALLBACK(gtk_widget_destroy), NULL);
-    
-    // Show all widgets
-    gtk_widget_show_all(settings_window);
+        // UI Stuff here
+        
+        GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
+        
+        stack = gtk_stack_new();
+        gtk_stack_set_transition_type(GTK_STACK(stack), GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT);
+        gtk_stack_set_transition_duration(GTK_STACK(stack), 500);
+        
+        GtkWidget *label1 = gtk_label_new("This is Page 1");
+        GtkWidget *label2 = gtk_label_new("This is Page 2");
+        GtkWidget *label3 = gtk_label_new("sdjfdsjkfhdshfkdsj");
+        
+        gtk_stack_add_titled(GTK_STACK(stack), label1, "page1", "Setări Generale");
+        gtk_stack_add_titled(GTK_STACK(stack), label2, "page2", "Unelte Interne");
+        gtk_stack_add_titled(GTK_STACK(stack), label3, "page3", "Date Statistice");
+        
+        GtkWidget *switcher = gtk_stack_switcher_new();
+        gtk_stack_switcher_set_stack(GTK_STACK_SWITCHER(switcher), GTK_STACK(stack));
+        gtk_style_context_add_class(gtk_widget_get_style_context(switcher), "tab-switcher");
+        
+        gtk_box_pack_start(GTK_BOX(vbox), switcher, FALSE, FALSE, 0);
+        gtk_box_pack_start(GTK_BOX(vbox), stack, TRUE, TRUE, 0);
+        
+        gtk_container_add(GTK_CONTAINER(settings_window), vbox);
+        
+        
+        
+        // Show all widgets
+        gtk_widget_show_all(settings_window);
+    } // Only 1 window condition
+    else
+    {
+        gtk_window_present(GTK_WINDOW(settings_window));
+    }
 }
 
 void on_toggle_style(GtkWidget *button, gpointer data)
