@@ -522,11 +522,12 @@ while(1)
     //LCD_clear();
     //LCD_scroll_text("Hello here some text scrolling lol", 0, 500);
     LCD_set_cursor(0);
-    LCD_printf(false, "%s", "cvfaf.mid");
+    LCD_printf(false, "%s", "string test");
     
     LCD_set_cursor(1);
     //LCD_printf(true, "%s", "aBcDefghijklmnopwwehjfg");
-    LCD_write_string("ă");
+    LCD_write_string("î");
+    // Resulted: șȘîÎâÂîțșȘ
 }
 
 }

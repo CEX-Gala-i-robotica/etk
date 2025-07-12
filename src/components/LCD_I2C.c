@@ -13,6 +13,14 @@
 
 
 
+
+/*
+Todo: Remake the entire unicode  mapping and fix the unicode chars...
+*/
+
+
+
+
 #define LCD_I2C_ADDR           0x27
 #define LCD_CHR                1          // Mode - Sending data
 #define LCD_CMD                0          // Mode - Sending command
@@ -39,6 +47,7 @@
 
 uint8_t ă_l_case[8] =
 {
+/*
     0b00100,
     0b00000,
     0b01110,
@@ -47,10 +56,20 @@ uint8_t ă_l_case[8] =
     0b10001,
     0b01111,
     0b00000 
+*/
+    0b01010,
+    0b00100,
+    0b00000,
+    0b01110,
+    0b00001,
+    0b01111,
+    0b10001,
+    0b01111
 };
 
 uint8_t ă_u_case[8] =
 {
+    /*
     0b00100, //   *  
     0b01010, //  * * 
     0b01110, //  *** 
@@ -58,7 +77,16 @@ uint8_t ă_u_case[8] =
     0b11111, // *****
     0b10001, // *   *
     0b10001, // *   *
-    0b00000  //      
+    0b00000  //    
+*/
+    0b01010,
+    0b00100,
+    0b00000,
+    0b01110,
+    0b10001,
+    0b11111,
+    0b10001,
+    0b10001
 };
 
 
@@ -88,6 +116,7 @@ uint8_t â_u_case[8] =
 
 uint8_t î_l_case[8] =
 {
+/*
     0b00100,
     0b01010,
     0b00000,
@@ -96,6 +125,17 @@ uint8_t î_l_case[8] =
     0b00010,
     0b00010,
     0b00111
+*/
+
+0b00100,
+0b01010,
+0b00000,
+0b01100,
+0b00100,
+0b00100,
+0b00100,
+0b01110
+
 };
 
 uint8_t î_u_case[8] =
@@ -267,16 +307,32 @@ void LCD_I2C_init(LCD_I2C settings)
         
         if(settings.unicode)
         {
+/*
             LCD_create_char(0, ă_l_case);
             LCD_create_char(1, ă_u_case);
+            
             LCD_create_char(2, â_l_case);
             LCD_create_char(3, â_u_case);
+            
             LCD_create_char(4, î_l_case);
             LCD_create_char(5, î_u_case);
+            
             LCD_create_char(6, ț_l_case);
             LCD_create_char(7, ț_u_case);
+            
             LCD_create_char(8, ș_l_case);
             LCD_create_char(9, ș_u_case);
+*/
+//LCD_create_char(0, ă_l_case); // ă
+//LCD_create_char(1, ă_u_case); // Ă
+LCD_create_char(2, î_l_case); // î
+//LCD_create_char(3, î_u_case); // Î
+//LCD_create_char(4, â_l_case); // â
+//LCD_create_char(5, â_u_case); // Â
+//LCD_create_char(6, ș_l_case); // ș
+//LCD_create_char(7, ș_u_case); // Ș
+//LCD_create_char(8, ț_l_case);
+//LCD_create_char(9, ț_u_case);
         }
         usleep(5000);
         is_lcd_init = true;
@@ -315,10 +371,19 @@ void LCD_write_string(const char *str)
             if(unicode_chars >= 0)
             {
                 lcd_byte(unicode_chars, LCD_CHR);
+                str += 2;
             }
             else
             {
-                lcd_byte(*str++, LCD_CHR);
+                if((unsigned char)*str >= 0x20 && (unsigned char)*str <= 0x7E)
+                {
+                    lcd_byte(*str, LCD_CHR);
+                }
+                else
+                {
+                    lcd_byte(' ', LCD_CHR); // Replace unknowns with space
+                }
+                str++;
             }
         }
     }

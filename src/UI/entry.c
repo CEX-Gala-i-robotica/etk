@@ -1,5 +1,7 @@
 #include <gtk/gtk.h>
 #include <librsvg/rsvg.h>
+#include <log_c/log.h>
+#include <stdlib.h>
 
 
 
@@ -45,10 +47,10 @@ void load_css_theme()
     
     if (!gtk_css_provider_load_from_file(css_provider,  g_file_new_for_path("assets/etk-gtk.css"), &error))
     {
-        g_warning("Failed to load CSS file: %s", error->message);
+        log_error("Failed to load CSS GTK Theme: %s\nExiting...", error->message);
         g_error_free(error);
         g_object_unref(css_provider);
-        return;
+        exit(1);
     }
     
     gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(css_provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -64,7 +66,7 @@ GdkPixbuf *load_svg_icon(RsvgHandle *svg_handle)
     
     if(!svg_handle)
     {
-        g_printerr("Failed to load svg icon ! msg: %s", err->message);
+        log_error("Failed to load svg icon ! msg: %s", err->message);
         g_error_free(err);
         return NULL;
     }
@@ -80,7 +82,7 @@ GdkPixbuf *load_svg_icon(RsvgHandle *svg_handle)
         GdkPixbuf *temp_pixbuf = rsvg_handle_get_pixbuf_sub(svg_handle, NULL);
         if(!temp_pixbuf)
         {
-            g_printerr("Failed to render SVG to Pixel Buffer !!\n");
+            log_error("Failed to render SVG to Pixel Buffer !!\n");
             g_object_unref(svg_handle);
         }
         else
@@ -99,30 +101,33 @@ void load_assets()
     GError *err = NULL;
     RsvgHandle *i_settings_hnd = rsvg_handle_new_from_file("assets/icons/settings.svg", &err);
     RsvgHandle *i_start_hnd = rsvg_handle_new_from_file("assets/icons/start.svg", &err);
-    RsvgHandle *i_stop_handle = rsvg_handle_new_from_file("assets/icons/stop-solid.svg", &err);
+    RsvgHandle *i_stop_hnd = rsvg_handle_new_from_file("assets/icons/stop-solid.svg", &err);
     
 
     settings_icon = gtk_image_new_from_pixbuf(load_svg_icon(i_settings_hnd));
     start_icon = gtk_image_new_from_pixbuf(load_svg_icon(i_start_hnd));
-    stop_icon = gtk_image_new_from_pixbuf(load_svg_icon(i_stop_handle));
+    stop_icon = gtk_image_new_from_pixbuf(load_svg_icon(i_stop_hnd));
     
     
     g_object_unref(i_settings_hnd);
     g_object_unref(i_start_hnd);
-    g_object_unref(i_stop_handle);
+    g_object_unref(i_stop_hnd);
 }
 
 
 // Button click handlers
-void on_button_clicked(GtkWidget *button, gpointer data)
+void on_run_probe_clicked(GtkWidget *button, gpointer data)
 {
-    const char *label = gtk_button_get_label(GTK_BUTTON(button));
-    g_print("Button clicked: %s\n", label);
+    log_info("Running probe");
+}
+
+void on_stop_probe_clicked(GtkWidget *button, gpointer data)
+{
+    log_info("Probe stopped");
 }
 
 void on_settings_click(GtkWidget *btn, gpointer data)
 {
-    //g_print("Settings clicked !!!\n");
     static GtkWidget *settings_window = NULL;
     GtkWidget *stack;
     
@@ -214,7 +219,7 @@ void on_tree_selection_changed(GtkTreeSelection *selection, gpointer user_data)
             gchar *name = NULL;
             gint value = 0;
             gtk_tree_model_get(model, &iter, 0, &name, 1, &value, -1);
-            g_print("Selected leaf: %s (value: %d)\n", name, value);
+            log_info("Selected leaf: %s (value: %d)\n", name, value);
             g_free(name);
         }
         else
@@ -489,7 +494,7 @@ Run / Stop buttons
     gtk_button_set_image(GTK_BUTTON(btn_run_probe), start_icon);
     gtk_button_set_always_show_image(GTK_BUTTON(btn_run_probe), TRUE);
     gtk_style_context_add_class(gtk_widget_get_style_context(btn_run_probe), "normal-btn");
-    g_signal_connect(btn_run_probe, "clicked", G_CALLBACK(on_button_clicked), NULL);
+    g_signal_connect(btn_run_probe, "clicked", G_CALLBACK(on_run_probe_clicked), NULL);
     gtk_widget_set_tooltip_text(btn_run_probe, "Efectuează test automat");
     gtk_box_pack_start(GTK_BOX(hbox_buttons), btn_run_probe, FALSE, FALSE, 0);
 
@@ -498,7 +503,7 @@ Run / Stop buttons
     gtk_button_set_image(GTK_BUTTON(btn_stop_probe), stop_icon);
     gtk_button_set_always_show_image(GTK_BUTTON(btn_stop_probe), TRUE);
     gtk_style_context_add_class(gtk_widget_get_style_context(btn_stop_probe), "gray-btn");
-    g_signal_connect(btn_stop_probe, "clicked", G_CALLBACK(on_button_clicked), NULL);
+    g_signal_connect(btn_stop_probe, "clicked", G_CALLBACK(on_stop_probe_clicked), NULL);
     gtk_widget_set_tooltip_text(btn_stop_probe, "Oprește testul automat");
     gtk_box_pack_start(GTK_BOX(hbox_buttons), btn_stop_probe, FALSE, FALSE, 0);
 }
@@ -508,13 +513,13 @@ void ui_entry(int ac, char *av[])
     gtk_init(&ac, &av);
     
     main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(main_window), "MPP Box");
+    gtk_window_set_title(GTK_WINDOW(main_window), "dummy");
     gtk_window_set_default_size(GTK_WINDOW(main_window), 800, 500);
     gtk_container_set_border_width(GTK_CONTAINER(main_window), 20);
     gtk_style_context_add_class(gtk_widget_get_style_context(main_window), "main-window");
     
     GtkWidget *headerbar = gtk_header_bar_new();
-    gtk_header_bar_set_title(GTK_HEADER_BAR(headerbar), "ETK"); // plsss I want ETK as official name
+    gtk_header_bar_set_title(GTK_HEADER_BAR(headerbar), "ETK");
     gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(headerbar), TRUE);
     gtk_widget_set_name(headerbar, "window-header");
     
