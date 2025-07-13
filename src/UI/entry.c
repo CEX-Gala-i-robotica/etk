@@ -11,7 +11,7 @@
 #include "entry.h"
 #include "theme.h"
 
-
+#include "../tests.h"
 
 
 
@@ -27,7 +27,8 @@ GtkWidget *settings_icon = NULL;
 GtkWidget *start_icon = NULL;
 GtkWidget *stop_icon = NULL;
 
-int tree_item_index = 1;
+int tree_item_index = 100; // It's now tempoarry
+static int current_tree_index = 1;
 
 /*
 Internal functions
@@ -119,6 +120,13 @@ void load_assets()
 void on_run_probe_clicked(GtkWidget *button, gpointer data)
 {
     log_info("Running probe");
+    if(current_tree_index >= 100)
+    {
+        log_warn("COMPONENT NOT IMPLEMENTED !!!!");
+        return;
+    }
+    //log_info("Current tree index: %d", current_tree_index);
+    RunTest(current_tree_index, MANUAL, false);
 }
 
 void on_stop_probe_clicked(GtkWidget *button, gpointer data)
@@ -219,7 +227,8 @@ void on_tree_selection_changed(GtkTreeSelection *selection, gpointer user_data)
             gchar *name = NULL;
             gint value = 0;
             gtk_tree_model_get(model, &iter, 0, &name, 1, &value, -1);
-            log_info("Selected leaf: %s (value: %d)\n", name, value);
+            current_tree_index = value;
+            log_info("Selected leaf: %s (value: %d)", name, value);
             g_free(name);
         }
         else
@@ -303,118 +312,119 @@ Component list tree view
     gtk_tree_store_append(store, &parent, NULL);
     gtk_tree_store_set(store, &parent, 0, "Microcontrolere & Plarforme", 1, 0, -1);
     
-    // Items
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Arduino UNO", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Arduino Nano", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Arduino Mega", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Arduino Giga", 1, tree_item_index++, -1);
+        // Items
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Arduino UNO", 1, CT_ARDUINO_UNO, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Arduino Nano", 1, CT_ARDUINO_NANO, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Arduino Mega", 1, CT_ARDUINO_MEGA, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Arduino Giga", 1, CT_ARDUINO_GIGA, -1);
     
     
     // Tree 2
     gtk_tree_store_append(store, &parent, NULL);
     gtk_tree_store_set(store, &parent, 0, "Module de extensie (Shield)", 1, 25, -1);
     
-    // Items
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Simple Shield", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &parent, NULL);
-    gtk_tree_store_set(store, &parent, 0, "Display-uri", 1, 25, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "LCD I2C", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "LCD", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "OLED", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "TFT", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "7 Segment Display", 1, tree_item_index++, -1);
-    
+        // Items
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Temporarry stuff", 1, tree_item_index++, -1);
     
     // Tree 3
     gtk_tree_store_append(store, &parent, NULL);
-    gtk_tree_store_set(store, &parent, 0, "Senzori Analogici / Digitali", 1, 25, -1);
+    gtk_tree_store_set(store, &parent, 0, "Display-uri", 1, 25, -1);
     
-    // Items
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Ultrasonic HC06", 1, tree_item_index++, -1);
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "LCD I2C", 1, CT_LCD_I2C, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "LCD", 1, CT_LCD, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "OLED", 1, CT_OLED, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "TFT", 1, CT_TFT, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "7 Segment Display", 1, CT_SEVEN_SEG_DISPLAY, -1);
     
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Receptor Infraroșu", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "DHT", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Detector de gaz", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Detector de fum", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Nivel de apă", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Umiditate Sol", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Senzor de rotații", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Senzor Giroscopic (MPU 6050)", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Senzor de viteză", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Microfon", 1, tree_item_index++, -1);
-
     
     // Tree 4
     gtk_tree_store_append(store, &parent, NULL);
-    gtk_tree_store_set(store, &parent, 0, "Motoare", 1, 25, -1);
+    gtk_tree_store_set(store, &parent, 0, "Senzori Analogici / Digitali", 1, 25, -1);
     
-    // Items
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Servo", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Stepper ULN2003", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Stepper A4988", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Punte H L298N", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Servo PCA9685", 1, tree_item_index++, -1);
- 
+        // Items
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Ultrasonic HC06", 1, CT_ULTRASONIC_HC06, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Receptor Infraroșu", 1, CT_INFRARED, -1); // I have a bit of confusion for this 1 lmao
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "DHT", 1, CT_DHT, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Detector de gaz", 1, CT_GAS_SENSOR, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Detector de fum", 1, CT_SMOKE_DETECTOR, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Nivel de apă", 1, CT_WATER_LEVEL, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Umiditate Sol", 1, CT_SOIL_MOISTURE, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Senzor de rotații", 1, tree_item_index++, -1); // Todo
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Senzor Giroscopic (MPU 6050)", 1, CT_MPU6050, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Senzor de viteză", 1, CT_SPEED_SENSOR, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Microfon", 1, CT_MICROPHONE, -1);
+
     
     // Tree 5
+    gtk_tree_store_append(store, &parent, NULL);
+    gtk_tree_store_set(store, &parent, 0, "Motoare", 1, 25, -1);
+    
+        // Items
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Servo", 1, CT_SERVO, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Stepper ULN2003", 1, CT_STEPPER_MOTOR_ULN2003, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Stepper A4988", 1, CT_A4988_DRIVER, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Punte H L298N", 1, CT_H_BRIDGE_L298N, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Servo PCA9685", 1, CT_PCA9685, -1);
+ 
+    
+    // Tree 6
     gtk_tree_store_append(store, &parent, NULL);
     gtk_tree_store_set(store, &parent, 0, "Alimentare & Control Tensiune", 1, 25, -1);
     
     
-    // Tree 6
+    // Tree 7
     gtk_tree_store_append(store, &parent, NULL);
     gtk_tree_store_set(store, &parent, 0, "Comunicare & Retea", 1, 25, -1);
    
    
-    // Tree 7 
+    // Tree 8
     gtk_tree_store_append(store, &parent, NULL);
     gtk_tree_store_set(store, &parent, 0, "Stocare & Interfete", 1, 25, -1);
     
@@ -424,34 +434,34 @@ Component list tree view
     gtk_tree_store_set(store, &child, 0, "Modul de precizie RTC", 1, tree_item_index++, -1);
    
     
-    // Tree 8
+    // Tree 9
     gtk_tree_store_append(store, &parent, NULL);
     gtk_tree_store_set(store, &parent, 0, "Componente Pasive", 1, 25, -1);
     
-    // Items
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Modul Tastatură", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Potențiometru", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Modul joystick X2", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Senzor Debit Apă", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Fotorezistor", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Sezor Magnetic (Hall)", 1, tree_item_index++, -1);
-    
-    gtk_tree_store_append(store, &child, &parent);
-    gtk_tree_store_set(store, &child, 0, "Buzzer", 1, tree_item_index++, -1);
+        // Items
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Modul Tastatură", 1, tree_item_index++, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Potențiometru", 1, CT_POTENTIOMETER, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Modul joystick X2", 1, CT_JOYSTICK_X2, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Senzor Debit Apă", 1, CT_FLOW_METER, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Fotorezistor", 1, CT_PHOTORESISTOR, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Sezor Magnetic (Hall)", 1, CT_HALL_SENSOR, -1);
+        
+        gtk_tree_store_append(store, &child, &parent);
+        gtk_tree_store_set(store, &child, 0, "Buzzer", 1, tree_item_index++, -1);
 
     
-    // Tree 9
+    // Tree 10
     gtk_tree_store_append(store, &parent, NULL);
     gtk_tree_store_set(store, &parent, 0, "LED-uri & module", 1, 0, -1);
     

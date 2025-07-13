@@ -167,3 +167,11 @@ void A4988Full_Step(A4988_FullStepper driver, int steps, int delay, enum A4988_D
         }
     }
 }
+
+void A4988_ResetCycle(A4988_FullStepper driver)
+{
+    digitalWrite(driver.rst, LOW);
+    delayMicroseconds(100);
+    digitalWrite(driver.rst, HIGH);
+    log_info("A4988: Reset cycle");
+}

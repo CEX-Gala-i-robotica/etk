@@ -60,4 +60,5 @@ void A4988Full_SetDirection(A4988_FullStepper driver, enum A4988_Directions step
 void A4988Full_Step(A4988_FullStepper driver, int steps, int delay, enum A4988_Directions step_dirs);
 void A4988_Sleep(A4988_FullStepper driver, bool toggle);
 void A4988_Reset(A4988_FullStepper driver, bool toggle);
+void A4988_ResetCycle(A4988_FullStepper driver); // Puts the driver in reset mode and gets it out of reset mode after 100 ms
 #endif

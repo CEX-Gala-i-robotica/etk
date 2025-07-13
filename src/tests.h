@@ -4,47 +4,60 @@
 #include <stdbool.h>
 
 
-enum TestType
+enum TestMode
 {
-    Servo,               // yes
-    Stepper,             // ???
-    H_BridgeL298N,       // yes
-    DHT,                 // yes
-    LCD_I2C,             // yes
-    LCD,                 // yes
-    OLED,                // yes
-    TFT,                 // yes
-    Seven_Seg_Display,   // yes
-    MPU6500,             // yes (Giroscopic sensor)
-    UltrasonicHC06,      // yes
-    Keypad2x4,           // Not self contained
-    Keypad4x4,           // Not self contained
-    Keypad3x4,           // Not self contained
-    Infrared,            // yes
-    LED_Matrix,          // todo
-    WaterLevel,          // yes (Analog)
-    SoilMoisture,        // yes (Analogic)
-    SpeedSensor,         // yes
-    GasDetector,         // yes
-    SmokeDetector,       // yes
-    Microphone,          // yes
-    PH_Meter,            // todo
-    HallSensor,          // yes
-    FlowMeter,           // yes
-    Potentiometer,       // yes
-    Photoresistor,       // yes
-    StepperMotorULN2003, // yes
-    RFID_RC522,          // todo
-    JoystickX2,          // yes
-    IR_Remote,           //
-    PCA9685,             // yes
-    A4988_Stepper,       // yes
-    RT_Clock_DS1302,     // Not Self contained
-    RT_Clock_DS3231,     // Not Self contained
-    RT_Clock_DS1307,     // Not Self contained
+    MANUAL,
+    AUTOMATIC
 };
 
-void RunAutomaticTest(enum TestType t, bool loop);
+
+enum ComponentTest
+{
+                              /* on the UI list | Component implemented |*/
+    CT_SERVO = 1,             //      yes       |          yes          |
+    CT_STEPPER,               //      ???       |                       |
+    CT_H_BRIDGE_L298N,        //      yes       |                       |
+    CT_DHT,                   //      yes       |          yes          |
+    CT_LCD_I2C,               //      yes       |          yes          |
+    CT_LCD,                   //      yes       |                       |
+    CT_OLED,                  //      yes       |                       |
+    CT_TFT,                   //      yes       |                       |
+    CT_SEVEN_SEG_DISPLAY,     //      yes       |                       |
+    CT_MPU6050,               //      yes       |          yes          |
+    CT_ULTRASONIC_HC06,       //      yes       |          yes          |
+    CT_KEYPAD_2X4,            //                |          yes          |
+    CT_KEYPAD_4X4,            //                |          yes          |
+    CT_KEYPAD_3X4,            //                |          yes          |
+    CT_INFRARED,              //      yes       |                       |
+    CT_LED_MATRIX,            //      yes       |                       |
+    CT_WATER_LEVEL,           //      yes       |                       |
+    CT_SOIL_MOISTURE,         //      yes       |                       |
+    CT_SPEED_SENSOR,          //      yes       |                       |
+    CT_GAS_SENSOR,            //      yes       |                       |
+    CT_SMOKE_DETECTOR,        //      yes       |                       |
+    CT_MICROPHONE,            //      yes       |                       |
+    CT_PH_METER,              //                |                       |
+    CT_HALL_SENSOR,           //      yes       |                       |
+    CT_FLOW_METER,            //      yes       |                       |
+    CT_POTENTIOMETER,         //      yes       |                       |
+    CT_PHOTORESISTOR,         //      yes       |                       |
+    CT_STEPPER_MOTOR_ULN2003, //      yes       |          yes          |
+    CT_RFID_RC522,            //                |      in progress      |
+    CT_JOYSTICK_X2,           //      yes       |                       |
+    CT_IR_REMOTE,             //      yes       |                       |
+    CT_PCA9685,               //      yes       |          yes          |
+    CT_A4988_DRIVER,          //      yes       |          yes          |
+    CT_RT_CLOCK_DS1302,       //                |                       |
+    CT_RT_CLOCK_DS3231,       //                |                       |
+    CT_RT_CLOCK_DS1307,       //                |                       |
+    CT_TTP229,                //                |                       |
+    CT_ARDUINO_UNO,           //      yes       |                       |
+    CT_ARDUINO_MEGA,          //      yes       |                       |
+    CT_ARDUINO_NANO,          //      yes       |                       |
+    CT_ARDUINO_GIGA,          //      yes       |                       |
+};
+
+void RunTest(enum ComponentTest tt, enum TestMode tm, bool loop);
 void GetRealtimeData();
 void StopLoopTest();
 
