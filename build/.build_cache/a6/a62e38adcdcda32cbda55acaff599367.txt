@@ -1,9 +1,0 @@
-{
-    errdata = "\27[01m\27[Ksrc/components/keypad.c:\27[m\27[K In function ‘\27[01m\27[KsetupKeypad4x3\27[m\27[K’:\
-\27[01m\27[Ksrc/components/keypad.c:98:13:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kiteration 3 invokes undefined behavior [\27[01;35m\27[K-Waggressive-loop-optimizations\27[m\27[K]\
-   98 |             \27[01;35m\27[KpinMode(kp.colPins[i], INPUT)\27[m\27[K;\
-      |             \27[01;35m\27[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~\27[m\27[K\
-\27[01m\27[Ksrc/components/keypad.c:96:22:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kwithin this loop\
-   96 |         for(i = 0; i < KEYPAD_4X3_MAX_ROWS; i++)\
-"
-}
