@@ -9,6 +9,8 @@
 
 #include "tests.h"
 
+#include "gpio_utils.h"
+
 #include "components/servo.h"
 #include "components/stepper_uln2003.h"
 #include "components/dht.h"
@@ -18,6 +20,8 @@
 #include "components/universal_sensors.h"
 #include "components/keypad.h"
 #include "components/TTP229.h"
+#include "components/A4988.h"
+#include "components/PCA9685.h"
 
 
 
