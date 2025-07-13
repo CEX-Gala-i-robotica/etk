@@ -1,0 +1,10 @@
+# Xmake cache
+.xmake/
+build/
+src/.cache/clangd/index
+src/compile_commands.json
+src/.ignore
+
+
+# MacOS Cache
+.DS_Store
