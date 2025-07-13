@@ -1,0 +1,6 @@
+{
+    errdata = "\27[01m\27[Kext_deps/log_c/log.c:53:2:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[K#warning \"LOGC__STDOUT_COLOR is defined\" [\27[01;35m\27[K-Wcpp\27[m\27[K]\
+   53 | #\27[01;35m\27[Kwarning\27[m\27[K \"LOGC__STDOUT_COLOR is defined\"\
+      |  \27[01;35m\27[K^~~~~~~\27[m\27[K\
+"
+}

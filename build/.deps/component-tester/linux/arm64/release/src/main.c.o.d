@@ -1,0 +1,57 @@
+{
+    depfiles_format = "gcc",
+    files = {
+        "src/main.c"
+    },
+    depfiles = "main.o: src/main.c\
+",
+    values = {
+        "/usr/bin/gcc",
+        {
+            "-fvisibility=hidden",
+            "-O3",
+            "-isystem",
+            "/usr/include/gtk-3.0",
+            "-isystem",
+            "/usr/include/pango-1.0",
+            "-isystem",
+            "/usr/include/glib-2.0",
+            "-isystem",
+            "/usr/lib/aarch64-linux-gnu/glib-2.0/include",
+            "-isystem",
+            "/usr/include/harfbuzz",
+            "-isystem",
+            "/usr/include/freetype2",
+            "-isystem",
+            "/usr/include/libpng16",
+            "-isystem",
+            "/usr/include/libmount",
+            "-isystem",
+            "/usr/include/blkid",
+            "-isystem",
+            "/usr/include/fribidi",
+            "-isystem",
+            "/usr/include/cairo",
+            "-isystem",
+            "/usr/include/pixman-1",
+            "-isystem",
+            "/usr/include/gdk-pixbuf-2.0",
+            "-isystem",
+            "/usr/include/aarch64-linux-gnu",
+            "-isystem",
+            "/usr/include/gio-unix-2.0",
+            "-isystem",
+            "/usr/include/atk-1.0",
+            "-isystem",
+            "/usr/include/at-spi2-atk/2.0",
+            "-isystem",
+            "/usr/include/at-spi-2.0",
+            "-isystem",
+            "/usr/include/dbus-1.0",
+            "-isystem",
+            "/usr/lib/aarch64-linux-gnu/dbus-1.0/include",
+            "-pthread",
+            "-DNDEBUG"
+        }
+    }
+}

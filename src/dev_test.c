@@ -14,6 +14,10 @@
 #include <log_c/log.h>
 
 
+
+#include "config_utils.h"
+
+
 #include "dev_test.h"
 #include "gpio_utils.h"
 #include "components/servo.h"
@@ -505,6 +509,7 @@ Setup_TTP229();
 */
 
 
+/*
 LCD_I2C lcd_i2c =
 {
     .lcd_size  = LCD_16x2,
@@ -529,5 +534,8 @@ while(1)
     LCD_write_string("î");
     // Resulted: șȘîÎâÂîțșȘ
 }
+*/
+
+configuration_setup();
 
 }

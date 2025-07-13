@@ -11,6 +11,8 @@
 #include "entry.h"
 #include "theme.h"
 
+
+#include "../config_utils.h"
 #include "../tests.h"
 
 
@@ -21,6 +23,8 @@
 
 
 GtkWidget *main_window;
+Configuration live_config;
+Configuration parsed_config;
 
 
 GtkWidget *settings_icon = NULL;
@@ -29,6 +33,7 @@ GtkWidget *stop_icon = NULL;
 
 int tree_item_index = 100; // It's now tempoarry
 static int current_tree_index = 1;
+static bool loop_mode;
 
 /*
 Internal functions
@@ -245,8 +250,31 @@ void on_treeview_row_activated(GtkTreeView *treeview, GtkTreePath *path, GtkTree
         gtk_tree_view_expand_row(treeview, path, FALSE);
 }
 
+void on_loop_mode_clicked(GtkButton *button, gpointer user_data)
+{
+    GtkCheckButton *check_button = GTK_CHECK_BUTTON(user_data);
+    gboolean is_checked = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(check_button));
+    loop_mode = is_checked;
+    live_config.loop_mode = is_checked;
+    save_config(live_config);
+}
+
 void ui_structure()
 {
+    char filepath[MAX_PATH];
+    
+    
+    snprintf(filepath, MAX_PATH, "%s/%s", getenv("HOME"), CFG_FILE_PATH);
+    
+    if(isFileExistsAccess(filepath))
+    {
+        parsed_config = load_config();
+    }
+    else
+        log_warn("Settings not found");
+    
+    //loop_mode = parsed_config.loop_mode;
+    
     GtkWidget *vbox;
     GtkWidget *listbox;
     GtkWidget *hbox;
@@ -256,6 +284,7 @@ void ui_structure()
     GtkWidget *btn_run_probe;
     GtkWidget *btn_stop_probe;
     GtkWidget *btn_settings;
+    GtkWidget *check_btn_loop_probe;
     GtkWidget *scrolled_window;
     int i;
     
@@ -498,6 +527,12 @@ Run / Stop buttons
     // Horizontal box for buttons
     hbox_buttons = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
     gtk_box_pack_start(GTK_BOX(vbox), hbox_buttons, FALSE, FALSE, 0);
+    
+    check_btn_loop_probe = gtk_check_button_new_with_label("Continuitate test");
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check_btn_loop_probe), parsed_config.loop_mode);
+    g_signal_connect(check_btn_loop_probe, "clicked", G_CALLBACK(on_loop_mode_clicked), check_btn_loop_probe);
+    //gtk_style_context_add_class(gtk_widget_get_style_context(check_btn_loop_probe), "normal-btn");
+    gtk_box_pack_start(GTK_BOX(vbox), check_btn_loop_probe, FALSE, FALSE, 0);
     
     // Run Probe button
     btn_run_probe = gtk_button_new_with_label("");
