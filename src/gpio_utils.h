@@ -45,6 +45,7 @@
 bool isI2C_available();
 bool isPWM_available(int pin);
 void gpioInit();
-void gpioCleanup(int pin);
-void onExit(int s);
+void gpio_cleanup(int pin);
+void gpio_cleanup_all();
+void on_exit_signal(int s);
 #endif

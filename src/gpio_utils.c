@@ -12,17 +12,33 @@
 #include "gpio_utils.h"
 
 
-void gpioCleanup(int pin)
+void gpio_cleanup(int pin)
 {
     digitalWrite(pin, LOW);
     pinMode(pin, INPUT);
     log_info("gpio cleanup: %d\n", pin);
 }
 
-void onExit(int s)
+void gpio_cleanup_all()
+{
+    for(int i = 0; i < 16; i++)
+    {
+        gpio_cleanup(i);
+    }
+    
+    for(int i = 24; i < 4; i++)
+    {
+        gpio_cleanup(i);
+    }
+    
+    digitalWrite(GPIO_6, LOW);
+    pinMode(GPIO_6, INPUT);
+}
+
+void on_exit_signal(int s)
 {
     printf("Forced exit\n");
-    //gpioCleanup(current_gpio_pin);
+    gpio_cleanup_all();
 }
 
 bool isPWM_available(int pin)

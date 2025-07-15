@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 #else
     configuration_setup();
     ui_entry(argc, argv);
-    signal(SIGINT, onExit);
+    signal(SIGINT, on_exit_signal);
 #endif
 
     return 0;

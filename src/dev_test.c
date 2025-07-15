@@ -90,7 +90,7 @@ void SomeOsciloscope()
     sscale = slope_xyscale_new();
     slope_chart_add_scale(SLOPE_CHART(chart), sscale);
   
-    series = slope_xyseries_new_filled("Wave", x, y, n, "b-");
+    series = slope_xyseries_new_filled("Some wave oscilation", x, y, n, "b-");
     slope_scale_add_item(sscale, series);
   
     g_timeout_add(10, (GSourceFunc) timer_callback, (gpointer) chart);

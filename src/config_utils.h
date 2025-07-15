@@ -20,6 +20,8 @@ typedef struct
     bool logs_2_file;
     bool internal_buzzer;
     bool show_power_status;
+    bool save_ui_state;
+    bool always_clear_gpio_on_exit;
 }Configuration;
 
 
