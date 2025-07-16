@@ -22,12 +22,13 @@ typedef struct
     bool show_power_status;
     bool save_ui_state;
     bool always_clear_gpio_on_exit;
+    bool virtual_osc;
 }Configuration;
 
 
 
-extern Configuration live_config;
-extern Configuration parsed_config;
+//extern Configuration live_config;
+//extern Configuration parsed_config;
 
 int isFileExistsAccess(const char *path);
 int isDirectoryExists(const char *path);

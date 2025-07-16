@@ -101,11 +101,17 @@ Configuration load_config()
         }
         else
         {
-            const cJSON *loop_probe = cJSON_GetObjectItemCaseSensitive(root, "loopProbe");
+            const cJSON *cfg_loop_probe = cJSON_GetObjectItemCaseSensitive(root, "loopProbe");
+            const cJSON *cfg_virtual_osc = cJSON_GetObjectItemCaseSensitive(root, "virtualOscilloscope");
             
-            if(cJSON_IsBool(loop_probe))
+            if(cJSON_IsBool(cfg_loop_probe))
             {
-              out_cfg.loop_mode = loop_probe->valueint;
+              out_cfg.loop_mode = cfg_loop_probe->valueint;
+            }
+            
+            if(cJSON_IsBool(cfg_virtual_osc))
+            {
+              out_cfg.virtual_osc = cfg_virtual_osc->valueint;
             }
             
             cJSON_Delete(root);
@@ -121,6 +127,7 @@ void save_config(Configuration cfg)
     char filepath[MAX_PATH];
     
     cJSON_AddBoolToObject(root, "loopProbe", cfg.loop_mode);
+    cJSON_AddBoolToObject(root, "virtualOscilloscope", cfg.virtual_osc);
     
     
     char *json_string = cJSON_Print(root);
@@ -133,8 +140,11 @@ void save_config(Configuration cfg)
     if(out_file)
     {
         fputs(json_string, out_file);
+        puts(json_string);
         fclose(out_file);
     }
     else
         log_error("Failed to open '%s' for writing !!!", filepath);
+    
+    cJSON_free(json_string);
 }

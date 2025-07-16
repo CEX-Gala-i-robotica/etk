@@ -23,8 +23,10 @@
 
 
 GtkWidget *main_window;
-Configuration live_config;
-Configuration parsed_config;
+static Configuration live_config;
+static Configuration parsed_config;
+
+
 
 
 GtkWidget *settings_icon = NULL;
@@ -34,6 +36,7 @@ GtkWidget *stop_icon = NULL;
 int tree_item_index = 100; // It's now tempoarry
 static int current_tree_index = 1;
 static bool loop_mode;
+static bool virtual_osc;
 
 /*
 Internal functions
@@ -255,8 +258,19 @@ void on_loop_mode_clicked(GtkButton *button, gpointer user_data)
     GtkCheckButton *check_button = GTK_CHECK_BUTTON(user_data);
     gboolean is_checked = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(check_button));
     loop_mode = is_checked;
+    log_trace("Loop mode: %d", is_checked);
     live_config.loop_mode = is_checked;
-    save_config(live_config);
+    //save_config(live_config);
+}
+
+void on_virtual_osc_clicked(GtkButton *button, gpointer user_data)
+{
+    GtkCheckButton *check_button = GTK_CHECK_BUTTON(user_data);
+    gboolean is_checked = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(check_button));
+    virtual_osc = is_checked;
+    log_trace("Virtual osciloscope: %d", is_checked);
+    live_config.virtual_osc = is_checked;
+    //save_config(live_config);
 }
 
 void ui_structure()
@@ -273,7 +287,13 @@ void ui_structure()
     else
         log_warn("Settings not found");
     
-    //loop_mode = parsed_config.loop_mode;
+    
+    
+    
+    live_config.loop_mode = false;
+    live_config.virtual_osc = true;
+    
+
     
     GtkWidget *vbox;
     GtkWidget *listbox;
@@ -285,8 +305,9 @@ void ui_structure()
     GtkWidget *btn_stop_probe;
     GtkWidget *btn_settings;
     GtkWidget *check_btn_loop_probe;
+    GtkWidget *check_btn_virtual_osc;
     GtkWidget *scrolled_window;
-    int i;
+
     
     const int LISTBOX_WIDTH = 350;
     const int BUTTON_WIDTH = 100;
@@ -534,6 +555,12 @@ Run / Stop buttons
     //gtk_style_context_add_class(gtk_widget_get_style_context(check_btn_loop_probe), "normal-btn");
     gtk_box_pack_start(GTK_BOX(vbox), check_btn_loop_probe, FALSE, FALSE, 0);
     
+    check_btn_virtual_osc = gtk_check_button_new_with_label("Oscilator virtual");
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check_btn_virtual_osc), parsed_config.virtual_osc);
+    g_signal_connect(check_btn_virtual_osc, "clicked", G_CALLBACK(on_virtual_osc_clicked), check_btn_virtual_osc);
+    //gtk_style_context_add_class(gtk_widget_get_style_context(check_btn_virtual_osc), "normal-btn");
+    gtk_box_pack_start(GTK_BOX(vbox), check_btn_virtual_osc, FALSE, FALSE, 0);
+    
     // Run Probe button
     btn_run_probe = gtk_button_new_with_label("");
     gtk_button_set_image(GTK_BUTTON(btn_run_probe), start_icon);
@@ -579,7 +606,7 @@ void ui_entry(int ac, char *av[])
     
     
     // Connect window destroy signal
-    g_signal_connect(main_window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect(main_window, "destroy", G_CALLBACK(app_cleanup), NULL);
     
     // Show all widgets
     gtk_widget_show_all(main_window);
@@ -594,4 +621,12 @@ void ui_entry(int ac, char *av[])
     //g_object_unref(settings_icon);
     //g_object_unref(start_icon);
     //g_object_unref(stop_icon);
+}
+
+static void app_cleanup(GtkWidget *widget, gpointer data)
+{
+    printf("Exiting...\n");
+    printf("before json: loop mode: %d | virtual oscilloscope: %d\n", live_config.loop_mode, live_config.virtual_osc);
+    save_config(live_config);
+    gtk_main_quit();
 }

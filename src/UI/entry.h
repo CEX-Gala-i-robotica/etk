@@ -19,4 +19,5 @@ extern GtkWidget *main_window;
 
 void load_assets();
 void ui_entry(int ac, char *av[]);
+static void app_cleanup(GtkWidget *widget, gpointer data);
 #endif

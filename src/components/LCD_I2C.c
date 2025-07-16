@@ -45,158 +45,7 @@ Todo: Remake the entire unicode  mapping and fix the unicode chars...
 
 
 
-uint8_t ă_l_case[8] =
-{
-/*
-    0b00100,
-    0b00000,
-    0b01110,
-    0b00001,
-    0b01111,
-    0b10001,
-    0b01111,
-    0b00000 
-*/
-    0b01010,
-    0b00100,
-    0b00000,
-    0b01110,
-    0b00001,
-    0b01111,
-    0b10001,
-    0b01111
-};
 
-uint8_t ă_u_case[8] =
-{
-    /*
-    0b00100, //   *  
-    0b01010, //  * * 
-    0b01110, //  *** 
-    0b10001, // *   *
-    0b11111, // *****
-    0b10001, // *   *
-    0b10001, // *   *
-    0b00000  //    
-*/
-    0b01010,
-    0b00100,
-    0b00000,
-    0b01110,
-    0b10001,
-    0b11111,
-    0b10001,
-    0b10001
-};
-
-
-uint8_t â_l_case[8] =
-{
-    0b00100,
-    0b01010,
-    0b00000,
-    0b01110,
-    0b00001,
-    0b01111,
-    0b10001,
-    0b01111
-};
-
-uint8_t â_u_case[8] =
-{
-    0b00100,
-    0b01010,
-    0b01110,
-    0b10001,
-    0b11111,
-    0b10001,
-    0b10001,
-    0b00000
-};
-
-uint8_t î_l_case[8] =
-{
-/*
-    0b00100,
-    0b01010,
-    0b00000,
-    0b00110,
-    0b00010,
-    0b00010,
-    0b00010,
-    0b00111
-*/
-
-0b00100,
-0b01010,
-0b00000,
-0b01100,
-0b00100,
-0b00100,
-0b00100,
-0b01110
-
-};
-
-uint8_t î_u_case[8] =
-{
-    0b00100,
-    0b01010,
-    0b01110,
-    0b00100,
-    0b00100,
-    0b00100,
-    0b01110,
-    0b00000
-};
-
-uint8_t ț_l_case[8] =
-{
-    0b00100,
-    0b01010,
-    0b00000,
-    0b00110,
-    0b00010,
-    0b00010,
-    0b00010,
-    0b00111
-};
-
-uint8_t ț_u_case[8] =
-{
-    0b00010,
-    0b01111,
-    0b00010,
-    0b00010,
-    0b00010,
-    0b10010,
-    0b01100,
-    0b00100
-};
-
-uint8_t ș_l_case[8] =
-{
-    0b00000,
-    0b01110,
-    0b10000,
-    0b01110,
-    0b00001,
-    0b01110,
-    0b00100,
-    0b01000
-};
-
-uint8_t ș_u_case[8] =
-{
-    0b01110,
-    0b10001,
-    0b10000,
-    0b01110,
-    0b00001,
-    0b10001,
-    0b01110,
-    0b01000
-};
 
 LCD_I2C defaults =
 {
@@ -216,7 +65,7 @@ enum LCD_I2C_Size current_lcd_size;
 
 
 
-
+// That's ugly af
 int utf8_to_custom(const char *s)
 {
     // ă (U+0103) in UTF-8: 0xC4 0x83
@@ -307,32 +156,10 @@ void LCD_I2C_init(LCD_I2C settings)
         
         if(settings.unicode)
         {
-/*
-            LCD_create_char(0, ă_l_case);
-            LCD_create_char(1, ă_u_case);
-            
-            LCD_create_char(2, â_l_case);
-            LCD_create_char(3, â_u_case);
-            
-            LCD_create_char(4, î_l_case);
-            LCD_create_char(5, î_u_case);
-            
-            LCD_create_char(6, ț_l_case);
-            LCD_create_char(7, ț_u_case);
-            
-            LCD_create_char(8, ș_l_case);
-            LCD_create_char(9, ș_u_case);
-*/
-//LCD_create_char(0, ă_l_case); // ă
-//LCD_create_char(1, ă_u_case); // Ă
-LCD_create_char(2, î_l_case); // î
-//LCD_create_char(3, î_u_case); // Î
-//LCD_create_char(4, â_l_case); // â
-//LCD_create_char(5, â_u_case); // Â
-//LCD_create_char(6, ș_l_case); // ș
-//LCD_create_char(7, ș_u_case); // Ș
-//LCD_create_char(8, ț_l_case);
-//LCD_create_char(9, ț_u_case);
+            /*
+            Todo: Implement proper unicode handling
+            */
+            log_info("Todo...");
         }
         usleep(5000);
         is_lcd_init = true;
