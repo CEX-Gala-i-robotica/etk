@@ -15,30 +15,24 @@ The entire UI will get a full redesign using Nuklear due to some GTK related iss
 #include <unistd.h>
 #include <time.h>
 #include <stddef.h>
-
-
+#include <stdbool.h>
 
 #include <log_c/log.h>
 
 
-//#define NK_INCLUDE_FIXED_TYPES
-//#define NK_INCLUDE_STANDARD_IO
-//#define NK_INCLUDE_STANDARD_VARARGS
-//#define NK_INCLUDE_DEFAULT_ALLOCATOR
-//#define NK_IMPLEMENTATION
-//#define NK_INCLUDE_FIXED_TYPES
-//#define NK_INCLUDE_STANDARD_IO
-//#define NK_INCLUDE_STANDARD_VARARGS
-//#define NK_INCLUDE_DEFAULT_ALLOCATOR
-//#define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
-//#define NK_INCLUDE_FONT_BAKING
-//#define NK_INCLUDE_DEFAULT_FONT
-//#define NK_INCLUDE_STYLE
-//#define NK_INCLUDE_STANDARD_BOOL
-//#define NK_INCLUDE_COMMAND_USERDATA
-//#define NK_INCLUDE_STRING
-//#define NK_INCLUDE_COLOR
-//#define NK_IMPLEMENTATION
+
+
+
+#define UI_DEVEL
+#define DEFAULT_UI_FONT "assets/fonts/Rambla-Bold.ttf"
+
+
+#include "ui_main.h"
+
+
+
+
+
 
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_STANDARD_IO
@@ -53,14 +47,16 @@ The entire UI will get a full redesign using Nuklear due to some GTK related iss
 
 
 #include "extra_components/style.c"
-#include "extra_components/overview.c"
-#include "extra_components/style_configurator.c"
-#include "extra_components/node_editor.c"
-#include "extra_components/canvas.c"
+#ifdef UI_DEVEL
+    #include "extra_components/overview.c"
+    #include "extra_components/style_configurator.c"
+    #include "extra_components/node_editor.c"
+    #include "extra_components/canvas.c"
+#endif
+
+#include "main_window.h"
 
 
-
-#include "ui_main.h"
 #include "default_theme.h"
 
 
@@ -70,26 +66,17 @@ The entire UI will get a full redesign using Nuklear due to some GTK related iss
 
 
 
-
-
-//struct nk_xcb_context *xcb_ctx;
-//struct nk_color background;
-//struct nk_cairo_context *cairo_ctx;
-//struct nk_user_font *font;
-//struct nk_context* ctx;
-
+struct nk_xcb_context *xcb_ctx;
+struct nk_color background;
+struct nk_cairo_context *cairo_ctx;
+struct nk_user_font *font;
+struct nk_context* ctx;
 
 
 /*
 Internal functions
 ....
 */
-
-struct nk_xcb_context *xcb_ctx;
-struct nk_color background;
-struct nk_cairo_context *cairo_ctx;
-struct nk_user_font *font;
-struct nk_context* ctx;
 
 
 void load_assets()
@@ -103,31 +90,24 @@ void load_assets()
 
 void ui_init()
 {
+    log_info("UI Init");
     background = nk_rgb(0, 0, 0);
     
-    xcb_ctx = nk_xcb_init("ETK", 20, 20, 600, 800);
+    xcb_ctx = nk_xcb_init("ETK", 20, 20, 1500, 950);
     cairo_ctx = nk_cairo_init(&background, NULL, 0, nk_xcb_create_cairo_surface(xcb_ctx));
-    cairo_ctx = nk_cairo_init(&background, "assets/fonts/Rambla-Bold.ttf", 18, nk_xcb_create_cairo_surface(xcb_ctx));
+    cairo_ctx = nk_cairo_init(&background, DEFAULT_UI_FONT, 18, nk_xcb_create_cairo_surface(xcb_ctx));
     font = nk_cairo_default_font(cairo_ctx);
     ctx = malloc(sizeof(struct nk_context));
     nk_init_default(ctx, font);
     
-    
+    // Set default theme
     set_style(ctx, THEME_DRACULA);
 }
 
 
 void ui_main(int ac, char *av[])
 {
-    log_info("Do stuff here lol");
-    
-    //background = nk_rgb(0, 0, 0);
-    
-    //struct nk_xcb_context *xcb_ctx;
-    //struct nk_color background = nk_rgb(0, 0, 0);
-    //struct nk_cairo_context *cairo_ctx;
-    //struct nk_user_font *font;
-    //struct nk_context* ctx;
+    log_info("UI Main");
     
     int running = 1;
     int events;
@@ -140,7 +120,8 @@ void ui_main(int ac, char *av[])
     ui_init();
 
     
-    
+    /* UI Mainloop */
+    log_info("UI loop");
     while(1)
     {
         /* Events */
@@ -153,13 +134,14 @@ void ui_main(int ac, char *av[])
         {
             nk_cairo_damage(cairo_ctx);
         }
-        if (events & NK_XCB_EVENT_RESIZED)
+        if(events & NK_XCB_EVENT_RESIZED)
         {
             nk_xcb_resize_cairo_surface(xcb_ctx, nk_cairo_surface(cairo_ctx));
         }
 
-        /* GUI */
-        if(nk_begin(ctx, "Demo", nk_rect(50, 50, 200, 200), NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_CLOSABLE|NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
+        /* Small demo */
+#ifdef UI_DEVEL
+        if(nk_begin(ctx, "[Dev] - Demo", nk_rect(50, 50, 200, 200), NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_CLOSABLE|NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
         {
             enum {EASY, HARD};
             static int op = EASY;
@@ -175,27 +157,27 @@ void ui_main(int ac, char *av[])
             nk_property_int(ctx, "Compression:", 0, &property, 100, 10, 1);
         }
         nk_end(ctx);
-        if (nk_window_is_hidden(ctx, "Demo"))
+        if(nk_window_is_hidden(ctx, "[Dev] - Demo"))
         {
             break;
         }
+#endif
 
-        /* -------------- EXAMPLES ---------------- */
-        //#ifdef INCLUDE_CALCULATOR
-        //calculator(ctx);
-        //#endif
-        //#ifdef INCLUDE_OVERVIEW
+        /* -------------- Predefined examples from nuklear ---------------- */
+        
+#ifdef UI_DEVEL
         overview(ctx);
-        //#endif
-        //#ifdef INCLUDE_CONFIGURATOR
-          style_configurator(ctx, color_table);
-        #//endif
-        //#ifdef INCLUDE_NODE_EDITOR
+        style_configurator(ctx, color_table);
         node_editor(ctx);
-        //#endif
-        //#ifdef INCLUDE_CANVAS
         canvas(ctx);
-        //#endif
+#endif
+        render_main_window(ctx);
+        
+        if(is_main_window_exit)
+        {
+            break;
+        }
+       
         /* ----------------------------------------- */
 
         /* Render */
@@ -204,10 +186,10 @@ void ui_main(int ac, char *av[])
         nk_clear(ctx);
     }
 
+    log_info("UI Mainloop broken");
     nk_free(ctx);
     free(ctx);
     nk_cairo_free(cairo_ctx);
     nk_xcb_free(xcb_ctx);
 
-    //return EXIT_SUCCESS;
 }

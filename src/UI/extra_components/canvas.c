@@ -1,6 +1,5 @@
 /* nuklear - v1.05 - public domain */
 
-//#include <nuklear.h>
 
 struct nk_canvas {
     struct nk_command_buffer *painter;
@@ -24,7 +23,7 @@ canvas_begin(struct nk_context *ctx, struct nk_canvas *canvas, nk_flags flags,
     ctx->style.window.fixed_background = nk_style_item_color(background_color);
 
     /* create/update window and set position + size */
-    if (!nk_begin(ctx, "Canvas", nk_rect(x, y, width, height), NK_WINDOW_NO_SCROLLBAR|flags))
+    if (!nk_begin(ctx, "[Dev] - Canvas", nk_rect(x, y, width, height), NK_WINDOW_NO_SCROLLBAR|flags))
         return nk_false;
 
     /* allocate the complete window space for drawing */

@@ -6,9 +6,6 @@
  manually set those after calling the function by accessing ctx->style->*?
 */
 
-//#include <nuklear.h>
-#include <math.h>
-#include <stddef.h>
 
 static const char* symbols[NK_SYMBOL_MAX] =
 {
@@ -704,7 +701,7 @@ style_configurator(struct nk_context *ctx, struct nk_color color_table[NK_COLOR_
 
 	style = &ctx->style;
 
-	if (nk_begin(ctx, "Configurator", nk_rect(10, 10, 400, 600), window_flags))
+	if (nk_begin(ctx, "[Dev] - Configurator", nk_rect(10, 10, 400, 600), window_flags))
 	{
 		if (nk_tree_push(ctx, NK_TREE_TAB, "Global Colors", NK_MINIMIZED)) {
 			style_global_colors(ctx, color_table);

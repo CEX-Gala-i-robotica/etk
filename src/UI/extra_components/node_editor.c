@@ -11,12 +11,6 @@
  * moment since it is based on a simple fixed array. If this is to be converted
  * into something more serious it is probably best to extend it.*/
 
-#include <stddef.h>
-#include <stdio.h>
-#include <string.h>
-//#include <nuklear.h>
-#include <math.h>
-
 
 
 struct node {
@@ -168,7 +162,7 @@ node_editor(struct nk_context *ctx)
         nodeEditor.initialized = 1;
     }
 
-    if (nk_begin(ctx, "NodeEdit", nk_rect(0, 0, 800, 600),
+    if (nk_begin(ctx, "[Dev] - NodeEdit", nk_rect(0, 0, 800, 600),
         NK_WINDOW_BORDER|NK_WINDOW_NO_SCROLLBAR|NK_WINDOW_MOVABLE|NK_WINDOW_CLOSABLE))
     {
         /* allocate complete window space */

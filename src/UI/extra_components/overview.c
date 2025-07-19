@@ -1,5 +1,4 @@
-#include <limits.h> /* INT_MAX */
-#include <time.h> /* struct tm, localtime */
+
 
 static int
 overview(struct nk_context *ctx)
@@ -29,7 +28,7 @@ overview(struct nk_context *ctx)
     actual_window_flags = window_flags;
     if (!(actual_window_flags & NK_WINDOW_TITLE))
         actual_window_flags &= ~(NK_WINDOW_MINIMIZABLE|NK_WINDOW_CLOSABLE);
-    if (nk_begin(ctx, "Overview", nk_rect(10, 10, 400, 600), actual_window_flags))
+    if (nk_begin(ctx, "[Dev] - Overview", nk_rect(10, 10, 400, 600), actual_window_flags))
     {
         if (show_menu)
         {
@@ -132,7 +131,7 @@ overview(struct nk_context *ctx)
             } else show_app_about = nk_false;
         }
 
-//#ifdef INCLUDE_STYLE
+
         /* style selector */
         nk_layout_row_dynamic(ctx, 0, 2);
         {
@@ -144,7 +143,7 @@ overview(struct nk_context *ctx)
                 set_style(ctx, current_theme);
             }
         }
-//#endif
+
 
         /* window flags */
         if (nk_tree_push(ctx, NK_TREE_TAB, "Window", NK_MINIMIZED)) {
