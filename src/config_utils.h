@@ -27,8 +27,8 @@ typedef struct
 
 
 
-//extern Configuration live_config;
-//extern Configuration parsed_config;
+extern Configuration live_config;
+extern Configuration parsed_config;
 
 int isFileExistsAccess(const char *path);
 int isDirectoryExists(const char *path);

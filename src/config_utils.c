@@ -140,7 +140,7 @@ void save_config(Configuration cfg)
     if(out_file)
     {
         fputs(json_string, out_file);
-        puts(json_string);
+        //puts(json_string);
         fclose(out_file);
     }
     else

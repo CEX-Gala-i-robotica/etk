@@ -1,13 +1,13 @@
-#include <gtk/gtk.h>
+//#include <gtk/gtk.h>
 
-
+#include <signal.h>
 
 //#define DEV_TEST
 
 #ifdef DEV_TEST
     #include "dev_test.h"
 #else
-    #include "UI/entry.h"
+    #include "UI/ui_main.h"
     #include "gpio_utils.h"
     #include "config_utils.h"
 #endif
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     Dev_Test(argc,argv);
 #else
     configuration_setup();
-    ui_entry(argc, argv);
+    ui_main(argc, argv);
     signal(SIGINT, on_exit_signal);
 #endif
 
