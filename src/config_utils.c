@@ -103,6 +103,7 @@ Configuration load_config()
         {
             const cJSON *cfg_loop_probe = cJSON_GetObjectItemCaseSensitive(root, "loopProbe");
             const cJSON *cfg_virtual_osc = cJSON_GetObjectItemCaseSensitive(root, "virtualOscilloscope");
+            const cJSON *cfg_color_theme = cJSON_GetObjectItemCaseSensitive(root, "colorTheme");
             
             if(cJSON_IsBool(cfg_loop_probe))
             {
@@ -114,10 +115,16 @@ Configuration load_config()
               out_cfg.virtual_osc = cfg_virtual_osc->valueint;
             }
             
+            if(cJSON_IsNumber(cfg_color_theme))
+            {
+              out_cfg.color_theme = cfg_color_theme->valueint;
+            }
+            
             cJSON_Delete(root);
             free(in_conf_str);
         }
     }
+    log_info("Configuration loaded");
     return out_cfg;
 }
 
@@ -128,6 +135,7 @@ void save_config(Configuration cfg)
     
     cJSON_AddBoolToObject(root, "loopProbe", cfg.loop_mode);
     cJSON_AddBoolToObject(root, "virtualOscilloscope", cfg.virtual_osc);
+    cJSON_AddNumberToObject(root, "colorTheme", cfg.color_theme);
     
     
     char *json_string = cJSON_Print(root);
@@ -142,6 +150,7 @@ void save_config(Configuration cfg)
         fputs(json_string, out_file);
         //puts(json_string);
         fclose(out_file);
+        log_info("Configuration saved");
     }
     else
         log_error("Failed to open '%s' for writing !!!", filepath);

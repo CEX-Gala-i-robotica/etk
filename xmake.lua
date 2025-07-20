@@ -6,17 +6,16 @@ add_requires("xcb-util", {system = true})
 add_requires("xcb-keysyms", {system = true})
 add_requires("xkbcommon", {system = true})
 add_requires("xkbcommon-x11", {system = true})
+add_requires("freetype2", {system = true})
 
 target("etk")
     set_kind("binary")
     add_defines("LOGC__USER_SETTINGS")
-    --add_defines("NK_IMPLEMENTATION", "NK_INCLUDE_STANDARD_VARARGS")
     add_includedirs(
         "ext_deps/",
         "ext_deps/wiringpi",
         "ext_deps/nuklear",
-        "ext_deps/nuklear/backends/xcb_cairo",
-        "ext_deps/nuklear/extra_components"
+        "ext_deps/nuklear/backends/xcb_cairo"
     )
     add_syslinks("m", "crypt", "rt", "pthread")
     add_files(
@@ -28,7 +27,7 @@ target("etk")
         "src/UI/*.c",
         "src/components/*.c"
     )
-    add_packages("libxcb", "cairo", "xcb", "xcb-util", "xcb-keysyms", "xkbcommon", "xkbcommon-x11")
+    add_packages("libxcb", "cairo", "xcb", "xcb-util", "xcb-keysyms", "xkbcommon", "xkbcommon-x11", "freetype2")
     after_build(function (target)
         -- Copy the assets and the css theme next to the build directory
         os.cp("src/assets", target:targetdir())

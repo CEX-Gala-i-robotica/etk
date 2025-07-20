@@ -24,7 +24,6 @@ The entire UI will get a full redesign using Nuklear due to some GTK related iss
 
 
 #define UI_DEVEL
-#define DEFAULT_UI_FONT "assets/fonts/Rambla-Bold.ttf"
 
 
 #include "ui_main.h"
@@ -47,6 +46,7 @@ The entire UI will get a full redesign using Nuklear due to some GTK related iss
 
 
 #include "extra_components/style.c"
+// Here are some predefined components that can be helpful for UI development
 #ifdef UI_DEVEL
     #include "extra_components/overview.c"
     #include "extra_components/style_configurator.c"
@@ -73,6 +73,10 @@ struct nk_user_font *font;
 struct nk_context* ctx;
 
 
+Configuration live_config;
+//static Configuration parsed_config;
+
+
 /*
 Internal functions
 ....
@@ -93,15 +97,16 @@ void ui_init()
     log_info("UI Init");
     background = nk_rgb(0, 0, 0);
     
-    xcb_ctx = nk_xcb_init("ETK", 20, 20, 1500, 950);
-    cairo_ctx = nk_cairo_init(&background, NULL, 0, nk_xcb_create_cairo_surface(xcb_ctx));
+    xcb_ctx = nk_xcb_init("ETK", 20, 20, 1500, 950); //Create a rendering window with cairo via xcb
+    
+    // Create rendering surface using a custom font (DEFAULT_UI_FONT)
     cairo_ctx = nk_cairo_init(&background, DEFAULT_UI_FONT, 18, nk_xcb_create_cairo_surface(xcb_ctx));
-    font = nk_cairo_default_font(cairo_ctx);
+    font = nk_cairo_default_font(cairo_ctx); // Set the loaded font
     ctx = malloc(sizeof(struct nk_context));
-    nk_init_default(ctx, font);
+    nk_init_default(ctx, font); // Initialize the nuklear context with the font
     
     // Set default theme
-    set_style(ctx, THEME_DRACULA);
+    set_style(ctx, parsed_config.color_theme);
 }
 
 
@@ -109,9 +114,15 @@ void ui_main(int ac, char *av[])
 {
     log_info("UI Main");
     
-    int running = 1;
+    parsed_config = load_config();
+    
+    
+    //Todo: implement default settings
+    current_theme = parsed_config.color_theme;
+    
     int events;
     
+    // This is required for switching in between multiple color themes (defined in style.c)
     static struct nk_color color_table[NK_COLOR_COUNT];
     memcpy(color_table, nk_default_color_style, sizeof(color_table));
     
@@ -132,14 +143,16 @@ void ui_main(int ac, char *av[])
         }
         if(events & NK_XCB_EVENT_PAINT)
         {
+            // Not sure but I think this is resposnable for clearing the previous frame...
             nk_cairo_damage(cairo_ctx);
         }
         if(events & NK_XCB_EVENT_RESIZED)
         {
+            // Always keep the rendering surface sized as the window
             nk_xcb_resize_cairo_surface(xcb_ctx, nk_cairo_surface(cairo_ctx));
         }
 
-        /* Small demo */
+        // This is just a small GUI demo using nuklear
 #ifdef UI_DEVEL
         if(nk_begin(ctx, "[Dev] - Demo", nk_rect(50, 50, 200, 200), NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_CLOSABLE|NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
         {
@@ -161,18 +174,27 @@ void ui_main(int ac, char *av[])
         {
             break;
         }
+        
+        if(nk_begin(ctx, "[Dev] - unicodes", nk_rect(50, 50, 100, 100), NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_CLOSABLE|NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
+        {
+            if (nk_button_label(ctx, "ă Ă î Î â Â ș Ș ț Ț"))
+                fprintf(stdout, "unicode button pressed\n");
+        }
+        nk_end(ctx);
 #endif
 
         /* -------------- Predefined examples from nuklear ---------------- */
-        
+  
+// Here are more examples      
 #ifdef UI_DEVEL
-        overview(ctx);
-        style_configurator(ctx, color_table);
+        overview(ctx); // All widgets of nuklear
+        style_configurator(ctx, color_table); // Allows full customization of every UI element
         node_editor(ctx);
-        canvas(ctx);
+        canvas(ctx); // Uses the builtin canvas from nuklear
 #endif
         render_main_window(ctx);
         
+        // Checks if the closing button of the main window was clicked => loop broken -> program exit
         if(is_main_window_exit)
         {
             break;
