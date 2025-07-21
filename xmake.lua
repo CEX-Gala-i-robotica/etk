@@ -8,6 +8,9 @@ add_requires("xkbcommon", {system = true})
 add_requires("xkbcommon-x11", {system = true})
 add_requires("freetype2", {system = true})
 
+
+set_config("export.compile_commands", true)
+
 target("etk")
     set_kind("binary")
     add_defines("LOGC__USER_SETTINGS")

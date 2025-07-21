@@ -7,6 +7,7 @@
 
 #define MAX_PATH 450
 #define CFG_FILE_PATH ".config/etk/settings.json"
+#define CFG_DIR_PATH ".config/etk"
 
 
 
@@ -34,6 +35,10 @@ static Configuration parsed_config;
 int isFileExistsAccess(const char *path);
 int isDirectoryExists(const char *path);
 int createDir(const char *path);
+
+bool config_exists();
+char *get_config_dir_path();
+char *get_config_file_path();
 
 void configuration_setup();
 Configuration load_config();

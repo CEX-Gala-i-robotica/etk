@@ -74,6 +74,10 @@ struct nk_context* ctx;
 
 
 Configuration live_config;
+
+Configuration default_config;
+
+
 //static Configuration parsed_config;
 
 
@@ -95,7 +99,9 @@ void load_assets()
 void ui_init()
 {
     log_info("UI Init");
-    background = nk_rgb(0, 0, 0);
+    
+    
+    background = nk_rgb(0, 0, 0); // Background color of the x11 window
     
     xcb_ctx = nk_xcb_init("ETK", 20, 20, 1500, 950); //Create a rendering window with cairo via xcb
     
@@ -114,7 +120,32 @@ void ui_main(int ac, char *av[])
 {
     log_info("UI Main");
     
-    parsed_config = load_config();
+    
+    // Set default settings
+    
+    // Maybe not all this is necessary...
+    default_config.loop_mode                 = true;
+    default_config.always_show_plots         = true;
+    default_config.autosave_csv              = true;
+    default_config.logs_2_file               = false;
+    default_config.internal_buzzer           = true;
+    default_config.show_power_status         = true;
+    default_config.save_ui_state             = false;
+    default_config.always_clear_gpio_on_exit = true;
+    default_config.virtual_osc               = false;
+    default_config.color_theme               = 5;
+    
+    if(!config_exists())
+    {
+        log_warn("No config was found. Using defaults");
+        save_config(default_config); // Most importantly save the deafult confuguration to json to prevent cJSON parsing errors which result in exit errors...
+        live_config = default_config; // even If I already assigned the default config to the continusly changing configuration
+    }
+    else
+    {
+        parsed_config = load_config();
+        live_config = parsed_config;
+    }
     
     
     //Todo: implement default settings
@@ -175,12 +206,17 @@ void ui_main(int ac, char *av[])
             break;
         }
         
-        if(nk_begin(ctx, "[Dev] - unicodes", nk_rect(50, 50, 100, 100), NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_CLOSABLE|NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
+        if(nk_begin(ctx, "[Dev] - unicodes", nk_rect(230, 230, 230, 95), NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_CLOSABLE|NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
         {
+            nk_layout_row_static(ctx, 30, 80, 1);
             if (nk_button_label(ctx, "ă Ă î Î â Â ș Ș ț Ț"))
                 fprintf(stdout, "unicode button pressed\n");
         }
         nk_end(ctx);
+        if(nk_window_is_hidden(ctx, "[Dev] - unicodes"))
+        {
+            break;
+        }
 #endif
 
         /* -------------- Predefined examples from nuklear ---------------- */

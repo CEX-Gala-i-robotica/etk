@@ -185,23 +185,110 @@ void render_main_window(struct nk_context *ctx)
         }
         else if(current_tab == 1)
         {
-            nk_label(ctx, "This is Tab 2", NK_TEXT_LEFT);
+            //nk_label(ctx, "This is Tab 2", NK_TEXT_LEFT);
+            // Copied the builtin demo but that's not enough...
+            float id = 0;
+            static int col_index = -1;
+            static int line_index = -1;
+            static nk_bool show_markers = nk_true;
+            float step = (2*3.141592654f) / 32;
+
+            int i;
+            int index = -1;
+
+            /* line chart */
+            id = 0;
+            index = -1;
+            nk_layout_row_dynamic(ctx, 27, 1);
+            nk_checkbox_label(ctx, "Show markers", &show_markers);
+            nk_layout_row_dynamic(ctx, 100, 1);
+            ctx->style.chart.show_markers = show_markers;
+            if(nk_chart_begin(ctx, NK_CHART_LINES, 32, -1.0f, 1.0f))
+            {
+                for(i = 0; i < 32; ++i)
+                {
+                    nk_flags res = nk_chart_push(ctx, (float)cos(id));
+                    if(res & NK_CHART_HOVERING)
+                        index = (int)i;
+                    if(res & NK_CHART_CLICKED)
+                        line_index = (int)i;
+                    id += step;
+                }
+                nk_chart_end(ctx);
+            }
+
+            if(index != -1)
+                nk_tooltipf(ctx, "Value: %.2f", (float)cos((float)index*step));
+            if(line_index != -1)
+            {
+                nk_layout_row_dynamic(ctx, 20, 1);
+                nk_labelf(ctx, NK_TEXT_LEFT, "Selected value: %.2f", (float)cos((float)index*step));
+            }
+
+            /* column chart */
+            nk_layout_row_dynamic(ctx, 100, 1);
+            if(nk_chart_begin(ctx, NK_CHART_COLUMN, 32, 0.0f, 1.0f))
+            {
+                for(i = 0; i < 32; ++i)
+                {
+                    nk_flags res = nk_chart_push(ctx, (float)fabs(sin(id)));
+                    if(res & NK_CHART_HOVERING)
+                        index = (int)i;
+                    if(res & NK_CHART_CLICKED)
+                        col_index = (int)i;
+                    id += step;
+                }
+                nk_chart_end(ctx);
+            }
+            if(index != -1)
+                nk_tooltipf(ctx, "Value: %.2f", (float)fabs(sin(step * (float)index)));
+            if(col_index != -1)
+            {
+                nk_layout_row_dynamic(ctx, 20, 1);
+                nk_labelf(ctx, NK_TEXT_LEFT, "Selected value: %.2f", (float)fabs(sin(step * (float)col_index)));
+            }
+
+            /* mixed chart */
+            nk_layout_row_dynamic(ctx, 100, 1);
+            if(nk_chart_begin(ctx, NK_CHART_COLUMN, 32, 0.0f, 1.0f))
+            {
+                nk_chart_add_slot(ctx, NK_CHART_LINES, 32, -1.0f, 1.0f);
+                nk_chart_add_slot(ctx, NK_CHART_LINES, 32, -1.0f, 1.0f);
+                for(id = 0, i = 0; i < 32; ++i)
+                {
+                    nk_chart_push_slot(ctx, (float)fabs(sin(id)), 0);
+                    nk_chart_push_slot(ctx, (float)cos(id), 1);
+                    nk_chart_push_slot(ctx, (float)sin(id), 2);
+                    id += step;
+                }
+            }
+            nk_chart_end(ctx);
+
+            /* mixed colored chart */
+            nk_layout_row_dynamic(ctx, 100, 1);
+            if(nk_chart_begin_colored(ctx, NK_CHART_LINES, nk_rgb(255,0,0), nk_rgb(150,0,0), 32, 0.0f, 1.0f))
+            {
+                nk_chart_add_slot_colored(ctx, NK_CHART_LINES, nk_rgb(0,0,255), nk_rgb(0,0,150),32, -1.0f, 1.0f);
+                nk_chart_add_slot_colored(ctx, NK_CHART_LINES, nk_rgb(0,255,0), nk_rgb(0,150,0), 32, -1.0f, 1.0f);
+                for(id = 0, i = 0; i < 32; ++i)
+                {
+                    nk_chart_push_slot(ctx, (float)fabs(sin(id)), 0);
+                    nk_chart_push_slot(ctx, (float)cos(id), 1);
+                    nk_chart_push_slot(ctx, (float)sin(id), 2);
+                    id += step;
+                }
+            }
+            nk_chart_end(ctx);
         }
         else if(current_tab == 2)
         {
-            
-            
-            //nk_layout_row_dynamic(ctx, 0, 4);
             nk_layout_row_static(ctx, 40, 150, 10);
             int new_theme;
             nk_label(ctx, "Temă de culori:", NK_TEXT_LEFT);
             new_theme = nk_combo(ctx, themes, NK_LEN(themes), current_theme, 35, nk_vec2(260, 200));
-            //current_theme = parsed_config.color_theme;
             if(new_theme != current_theme)
             {
                 current_theme = new_theme;
-                //current_theme = parsed_config.color_theme;
-                log_info("Fall back");
                 set_style(ctx, current_theme);
                 live_config.color_theme = current_theme;
                 save_config(live_config);

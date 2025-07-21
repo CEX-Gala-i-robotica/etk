@@ -47,17 +47,36 @@ int createDir(const char *path)
     return check;
 }
 
+char *get_config_dir_path()
+{
+    char *path = malloc(MAX_PATH);
+    snprintf(path, MAX_PATH, "%s/%s", getenv("HOME"), CFG_DIR_PATH);
+    return path;
+}
+
+char *get_config_file_path()
+{
+    char *path = malloc(MAX_PATH);
+    snprintf(path, MAX_PATH, "%s/%s", getenv("HOME"), CFG_FILE_PATH);
+    return path;
+}
+
+bool config_exists()
+{
+    if(isFileExistsAccess(get_config_file_path()))
+    {
+        return true;
+    }
+    return false;
+}
+
 
 void configuration_setup()
 {
-    char filepath[MAX_PATH];
-    
-    
-    snprintf(filepath, MAX_PATH, "%s/%s", getenv("HOME"), ".config/etk");
-    if(!isDirectoryExists(filepath))
+    if(!isDirectoryExists(get_config_dir_path()))
     {
         log_warn("etk dir not found in .config");
-        createDir(filepath);
+        createDir(get_config_dir_path());
     }
     else
     {
@@ -69,16 +88,12 @@ void configuration_setup()
 Configuration load_config()
 {
     Configuration out_cfg;
-    char filepath[MAX_PATH];
     
-    
-    snprintf(filepath, MAX_PATH, "%s/%s", getenv("HOME"), CFG_FILE_PATH);
-    
-    FILE * in_file = fopen(filepath, "r");
+    FILE * in_file = fopen(get_config_file_path(), "r");
       
     if(!in_file)
     {
-        log_error("Failed to open '%s' !!!", filepath);
+        log_error("Failed to open '%s' !!!", get_config_file_path());
     }
     else
     {
@@ -131,7 +146,6 @@ Configuration load_config()
 void save_config(Configuration cfg)
 {
     cJSON *root = cJSON_CreateObject();
-    char filepath[MAX_PATH];
     
     cJSON_AddBoolToObject(root, "loopProbe", cfg.loop_mode);
     cJSON_AddBoolToObject(root, "virtualOscilloscope", cfg.virtual_osc);
@@ -140,10 +154,7 @@ void save_config(Configuration cfg)
     
     char *json_string = cJSON_Print(root);
     
-    
-    snprintf(filepath, MAX_PATH, "%s/%s", getenv("HOME"), CFG_FILE_PATH);
-    
-    FILE *out_file = fopen(filepath, "w");
+    FILE *out_file = fopen(get_config_file_path(), "w");
       
     if(out_file)
     {
@@ -153,7 +164,7 @@ void save_config(Configuration cfg)
         log_info("Configuration saved");
     }
     else
-        log_error("Failed to open '%s' for writing !!!", filepath);
+        log_error("Failed to open '%s' for writing !!!", get_config_file_path());
     
     cJSON_free(json_string);
 }
