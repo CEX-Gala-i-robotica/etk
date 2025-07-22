@@ -13,8 +13,11 @@
 bool is_main_window_exit = false;
 static int current_tab = 0;
 
-static int selected_index = -1;
+static int selected_component = CT_ARDUINO_UNO;
 int is_selected;
+
+int group_heights = 660;
+int component_widget_group = 880;
 
 
 
@@ -41,7 +44,6 @@ void tab_button(struct nk_context *ctx, const char *label, int id, int *current_
     struct nk_color btn_normal = ctx->style.button.normal.data.color;
     struct nk_color btn_hover  = ctx->style.button.hover.data.color;
     struct nk_color btn_active = ctx->style.button.active.data.color;
-
     
 
     if(*current_tab == id)
@@ -63,36 +65,38 @@ void tab_button(struct nk_context *ctx, const char *label, int id, int *current_
 
 void add_tree_item(struct nk_context *ctx, const char *label, int id)
 {
-    is_selected = (selected_index == id);
+    is_selected = (selected_component == id);
     if(nk_selectable_label(ctx, label, NK_TEXT_LEFT, &is_selected))
     {
-        selected_index = id;
+        selected_component = id;
     }
 }
 
+
+
+
+// The UI ain't good enough ;(
 void render_main_window(struct nk_context *ctx)
 {
-    
-    
-    //set_style(ctx, current_theme);
-    //log_info("cfg theme: %d", parsed_config.color_theme);
-    
-    if(nk_begin(ctx, "Panou de Control", nk_rect(350, 80, 800, 800), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
+    if(nk_begin(ctx, "Panou de Control", nk_rect(48, 80, 1400, 800), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
     {
-        nk_layout_row_dynamic(ctx, 30, 3); // Three tab buttons side by side
+        nk_layout_row_dynamic(ctx, 30, 3);
             
         tab_button(ctx, "Teste", 0, &current_tab);
         tab_button(ctx, "Date în timp real", 1, &current_tab);
         tab_button(ctx, "Setări", 2, &current_tab);
         // ----------------------------------
-        nk_layout_row_dynamic(ctx, 10, 1); // Main tab content
+        nk_layout_row_dynamic(ctx, 10, 1);
         if(current_tab == 0)
         {
-            nk_layout_row_static(ctx, 400, 400, 10);
-            if(nk_group_begin(ctx, "Group", NK_WINDOW_BORDER))
+            nk_layout_space_begin(ctx, NK_STATIC, group_heights, 2);
+            nk_layout_space_push(ctx, nk_rect(0, 0, 450, group_heights));
+            if(nk_group_begin(ctx, "Component Group", NK_WINDOW_BORDER))
             {
-                if(nk_tree_push(ctx, NK_TREE_NODE, "Microcontrolere și platforme", NK_MINIMIZED))
+                if(nk_tree_push(ctx, NK_TREE_NODE, "Microcontrolere și platforme ", NK_MINIMIZED))
                 {
+                    
+                    nk_layout_row_push(ctx, 900);
                     add_tree_item(ctx, "Arduino Uno",  CT_ARDUINO_UNO);
                     add_tree_item(ctx, "Arduino Nano", CT_ARDUINO_NANO);
                     add_tree_item(ctx, "Arduino Mega", CT_ARDUINO_MEGA);
@@ -147,7 +151,7 @@ void render_main_window(struct nk_context *ctx)
                     nk_tree_pop(ctx);
                 }
                 
-                if(nk_tree_push(ctx, NK_TREE_NODE, "Alimentare și control tensiune sau voltaj", NK_MINIMIZED))
+                if(nk_tree_push(ctx, NK_TREE_NODE, "Alimentare și control tensiune / voltaj", NK_MINIMIZED))
                 {
                     add_tree_item(ctx, "Temp", 502);
                     
@@ -181,6 +185,151 @@ void render_main_window(struct nk_context *ctx)
                     nk_tree_pop(ctx);
                 }
                 nk_group_end(ctx);
+            }
+            nk_layout_space_push(ctx, nk_rect(470, 0, 908, group_heights));
+            if(nk_group_begin(ctx, "Component widgets", NK_WINDOW_BORDER))
+            {
+                if(selected_component == CT_ARDUINO_UNO)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 1", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_ARDUINO_NANO)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 2", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_ARDUINO_MEGA)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 3", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_ARDUINO_GIGA)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 4", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_LCD_I2C)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 5", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_LCD)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 6", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_OLED)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 7", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_TFT)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 8", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_ULTRASONIC_HC06)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 9", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_INFRARED)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 10", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_DHT)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 11", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_GAS_SENSOR)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 12", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_SMOKE_DETECTOR)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 13", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_WATER_LEVEL)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 14", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_SOIL_MOISTURE)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 15", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_SPEED_SENSOR)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 16", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_MPU6050)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 17", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_MICROPHONE)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 18", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_SERVO)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 19", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_STEPPER_MOTOR_ULN2003)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 20", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_A4988_DRIVER)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 21", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_H_BRIDGE_L298N)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 22", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_PCA9685)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 23", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_POTENTIOMETER)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 24", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_JOYSTICK_X2)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 25", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_FLOW_METER)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 26", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_PHOTORESISTOR)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 27", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_HALL_SENSOR)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 28", NK_TEXT_LEFT);
+                }
+            nk_group_end(ctx);
             }
         }
         else if(current_tab == 1)
@@ -293,7 +442,6 @@ void render_main_window(struct nk_context *ctx)
                 live_config.color_theme = current_theme;
                 save_config(live_config);
             }
-            
         }
          
         nk_end(ctx);

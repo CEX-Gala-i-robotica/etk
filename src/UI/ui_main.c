@@ -45,13 +45,13 @@ The entire UI will get a full redesign using Nuklear due to some GTK related iss
 
 
 
-#include "extra_components/style.c"
+#include "components/dev_demos/style.c"
 // Here are some predefined components that can be helpful for UI development
 #ifdef UI_DEVEL
-    #include "extra_components/overview.c"
-    #include "extra_components/style_configurator.c"
-    #include "extra_components/node_editor.c"
-    #include "extra_components/canvas.c"
+    #include "components/dev_demos/overview.c"
+    #include "components/dev_demos/style_configurator.c"
+    #include "components/dev_demos/node_editor.c"
+    #include "components/dev_demos/canvas.c"
 #endif
 
 #include "main_window.h"
