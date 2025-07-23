@@ -13,12 +13,13 @@ set_config("export.compile_commands", true)
 
 target("etk")
     set_kind("binary")
-    add_defines("LOGC__USER_SETTINGS")
+    add_defines("LOGC__USER_SETTINGS", "HAVE_CONFIG_H")
     add_includedirs(
         "ext_deps/",
         "ext_deps/wiringpi",
         "ext_deps/nuklear",
-        "ext_deps/nuklear/backends/xcb_cairo"
+        "ext_deps/nuklear/backends/xcb_cairo",
+        "ext_deps/libqrencode"
     )
     add_syslinks("m", "crypt", "rt", "pthread")
     add_files(
@@ -26,6 +27,7 @@ target("etk")
         "ext_deps/cJSON/*.c",
         "ext_deps/csv/*.c",
         "ext_deps/log_c/*.c",
+        "ext_deps/libqrencode/*.c",
         "src/*.c",
         "src/UI/*.c",
         "src/components/*.c"

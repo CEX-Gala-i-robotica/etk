@@ -4,6 +4,8 @@
 #include "../tests.h"
 #include "../config_utils.h"
 
+#include <qrencode.h>
+
 
 
 
@@ -495,6 +497,55 @@ void render_main_window(struct nk_context *ctx)
         log_info("Closing Main Window");
         is_main_window_exit = true; // triggers mainloop breaking (Do NOT call exit functions here)
     }
+}
+
+
+void draw_qr_code(struct nk_command_buffer *canvas, int x, int y, int size, const char *text) {
+    QRcode *qrcode = QRcode_encodeString(text, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+    if (!qrcode) return;
+
+    int qr_width = qrcode->width;
+    int pixel_size = size / qr_width;
+    unsigned char *data = qrcode->data;
+
+    for (int row = 0; row < qr_width; ++row) {
+        for (int col = 0; col < qr_width; ++col) {
+            int offset = row * qr_width + col;
+            if (data[offset] & 0x01) { // black module
+                nk_fill_rect(canvas,
+                    nk_rect(x + col * pixel_size, y + row * pixel_size,
+                            pixel_size, pixel_size),
+                    0.0f, nk_rgb(0, 0, 0));
+            }
+        }
+    }
+
+    QRcode_free(qrcode);
+}
+
+void nk_qr_demo(struct nk_context *ctx)
+{
+    if(nk_begin(ctx, "QR Demo", nk_rect(48, 80, 500, 500), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
+    {
+        nk_layout_row_dynamic(ctx, 30, 1);
+            static char text[256] = "https://github.com/CEX-Gala-i-robotica/etk/tree/nuklear-gui";
+            nk_edit_string_zero_terminated(ctx, NK_EDIT_FIELD, text, sizeof(text), nk_filter_default);
+        
+            nk_layout_row_dynamic(ctx, 30, 1);
+            if (nk_button_label(ctx, "Generate QR")) {
+                // You could do something here if needed
+            }
+        
+            // Draw custom QR code inside canvas region
+            struct nk_command_buffer *canvas = nk_window_get_canvas(ctx);
+        
+            int qr_x = 100;
+            int qr_y = 100;
+            int qr_size = 200;
+        
+            draw_qr_code(canvas, qr_x, qr_y, qr_size, text);
+    }
+    nk_end(ctx);
 }
 
 #endif

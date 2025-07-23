@@ -232,6 +232,8 @@ void ui_main(int ac, char *av[])
         style_configurator(ctx, color_table); // Allows full customization of every UI element
         node_editor(ctx);
         canvas(ctx); // Uses the builtin canvas from nuklear
+        
+        nk_qr_demo(ctx); // Just a simple QR encoding and display to nuklear canvas
 #endif
         render_main_window(ctx);
         
