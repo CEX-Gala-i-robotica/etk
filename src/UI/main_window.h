@@ -500,50 +500,52 @@ void render_main_window(struct nk_context *ctx)
 }
 
 
-void draw_qr_code(struct nk_command_buffer *canvas, int x, int y, int size, const char *text) {
+void draw_qr_code(struct nk_command_buffer *canvas, struct nk_rect origin, int size, const char *text)
+{
+    // It works but it's not so good...
     QRcode *qrcode = QRcode_encodeString(text, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
     if (!qrcode) return;
+    
+    log_info("Drawing QR"); // Spamming in the terminal lmaoo
 
     int qr_width = qrcode->width;
     int pixel_size = size / qr_width;
     unsigned char *data = qrcode->data;
 
-    for (int row = 0; row < qr_width; ++row) {
-        for (int col = 0; col < qr_width; ++col) {
+    // white background
+    nk_fill_rect(canvas, nk_rect(origin.x, origin.y, size, size), 0.0f, nk_rgb(255, 255, 255));
+
+    for(int row = 0; row < qr_width; ++row)
+    {
+        for(int col = 0; col < qr_width; ++col)
+        {
             int offset = row * qr_width + col;
-            if (data[offset] & 0x01) { // black module
-                nk_fill_rect(canvas,
-                    nk_rect(x + col * pixel_size, y + row * pixel_size,
-                            pixel_size, pixel_size),
-                    0.0f, nk_rgb(0, 0, 0));
+            if(data[offset] & 0x01)
+            {
+                nk_fill_rect(canvas, nk_rect(origin.x + col * pixel_size, origin.y + row * pixel_size, pixel_size, pixel_size), 0.0f, nk_rgb(0, 0, 0));
             }
         }
     }
-
     QRcode_free(qrcode);
 }
 
+
 void nk_qr_demo(struct nk_context *ctx)
 {
-    if(nk_begin(ctx, "QR Demo", nk_rect(48, 80, 500, 500), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
+    if(nk_begin(ctx, "[Dev] - QR Demo", nk_rect(48, 80, 500, 500), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
     {
+        static char text[256] = "https://github.com/CEX-Gala-i-robotica/etk/tree/nuklear-gui";
         nk_layout_row_dynamic(ctx, 30, 1);
-            static char text[256] = "https://github.com/CEX-Gala-i-robotica/etk/tree/nuklear-gui";
-            nk_edit_string_zero_terminated(ctx, NK_EDIT_FIELD, text, sizeof(text), nk_filter_default);
+    
+        struct nk_command_buffer *canvas = nk_window_get_canvas(ctx);
+        struct nk_rect bounds = nk_window_get_bounds(ctx);  // Get window position
+    
+        // Offset inside the window
+        int padding = 50;
+        int qr_size = 200;
+        struct nk_rect qr_pos = nk_rect(bounds.x + padding, bounds.y + padding, qr_size, qr_size);
         
-            nk_layout_row_dynamic(ctx, 30, 1);
-            if (nk_button_label(ctx, "Generate QR")) {
-                // You could do something here if needed
-            }
-        
-            // Draw custom QR code inside canvas region
-            struct nk_command_buffer *canvas = nk_window_get_canvas(ctx);
-        
-            int qr_x = 100;
-            int qr_y = 100;
-            int qr_size = 200;
-        
-            draw_qr_code(canvas, qr_x, qr_y, qr_size, text);
+        draw_qr_code(canvas, qr_pos, qr_size, text);
     }
     nk_end(ctx);
 }

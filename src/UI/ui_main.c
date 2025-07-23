@@ -116,7 +116,7 @@ void ui_init()
 }
 
 
-void ui_main(int ac, char *av[])
+void ui_main()
 {
     log_info("UI Main");
     
@@ -233,7 +233,8 @@ void ui_main(int ac, char *av[])
         node_editor(ctx);
         canvas(ctx); // Uses the builtin canvas from nuklear
         
-        nk_qr_demo(ctx); // Just a simple QR encoding and display to nuklear canvas
+        //nk_qr_demo(ctx); // Just a simple QR encoding and display to nuklear canvas
+        // Temporarly disabled to prevent CPU overloading
 #endif
         render_main_window(ctx);
         
@@ -257,5 +258,4 @@ void ui_main(int ac, char *av[])
     free(ctx);
     nk_cairo_free(cairo_ctx);
     nk_xcb_free(xcb_ctx);
-
 }

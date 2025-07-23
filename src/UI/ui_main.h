@@ -17,6 +17,6 @@
 // This was implemented back when I used GTK3 (loading the GTK CSS Theme and the svg icons)
 void load_assets();
 void ui_init(); // Initializes the required rendering backed for nuklear (xcb_cairo for now. In the future: adding backed support for raw framebuffer)
-void ui_main(int ac, char *av[]); // The main entry point of GUI
+void ui_main(); // The main entry point of GUI
 
 #endif
