@@ -134,6 +134,7 @@ void ui_main(int ac, char *av[])
     default_config.always_clear_gpio_on_exit = true;
     default_config.virtual_osc               = false;
     default_config.color_theme               = 5;
+    default_config.manual_ctrl               = false;
     
     if(!config_exists())
     {
@@ -150,6 +151,10 @@ void ui_main(int ac, char *av[])
     
     //Todo: implement default settings
     current_theme = parsed_config.color_theme;
+    
+    
+    cb_loop_test = live_config.loop_mode;
+    cb_manual_ctrl = live_config.manual_ctrl;
     
     int events;
     
@@ -208,7 +213,7 @@ void ui_main(int ac, char *av[])
         
         if(nk_begin(ctx, "[Dev] - unicodes", nk_rect(230, 230, 230, 95), NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_CLOSABLE|NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
         {
-            nk_layout_row_static(ctx, 30, 80, 1);
+            nk_layout_row_static(ctx, 30, 170, 1);
             if (nk_button_label(ctx, "ă Ă î Î â Â ș Ș ț Ț"))
                 fprintf(stdout, "unicode button pressed\n");
         }
@@ -233,6 +238,7 @@ void ui_main(int ac, char *av[])
         // Checks if the closing button of the main window was clicked => loop broken -> program exit
         if(is_main_window_exit)
         {
+            save_config(live_config); // Always make sure to save the config on exit (Helpful in cases where saving checkboxes state is needed)
             break;
         }
        

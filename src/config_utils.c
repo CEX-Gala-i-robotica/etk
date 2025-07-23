@@ -119,6 +119,7 @@ Configuration load_config()
             const cJSON *cfg_loop_probe = cJSON_GetObjectItemCaseSensitive(root, "loopProbe");
             const cJSON *cfg_virtual_osc = cJSON_GetObjectItemCaseSensitive(root, "virtualOscilloscope");
             const cJSON *cfg_color_theme = cJSON_GetObjectItemCaseSensitive(root, "colorTheme");
+            const cJSON *cfg_manual_ctrl = cJSON_GetObjectItemCaseSensitive(root, "manualControl");
             
             if(cJSON_IsBool(cfg_loop_probe))
             {
@@ -133,6 +134,11 @@ Configuration load_config()
             if(cJSON_IsNumber(cfg_color_theme))
             {
               out_cfg.color_theme = cfg_color_theme->valueint;
+            }
+            
+            if(cJSON_IsBool(cfg_manual_ctrl))
+            {
+                out_cfg.manual_ctrl = cfg_manual_ctrl->valueint;
             }
             
             cJSON_Delete(root);
@@ -150,6 +156,7 @@ void save_config(Configuration cfg)
     cJSON_AddBoolToObject(root, "loopProbe", cfg.loop_mode);
     cJSON_AddBoolToObject(root, "virtualOscilloscope", cfg.virtual_osc);
     cJSON_AddNumberToObject(root, "colorTheme", cfg.color_theme);
+    cJSON_AddBoolToObject(root, "manualControl", cfg.manual_ctrl);
     
     
     char *json_string = cJSON_Print(root);

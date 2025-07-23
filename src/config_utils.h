@@ -16,6 +16,7 @@
 typedef struct
 {
     bool loop_mode;
+    bool manual_ctrl;
     bool always_show_plots;
     bool autosave_csv;
     bool logs_2_file;

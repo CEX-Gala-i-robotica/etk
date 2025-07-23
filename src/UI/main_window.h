@@ -19,6 +19,9 @@ int is_selected;
 int group_heights = 660;
 int component_widget_group = 880;
 
+static nk_bool cb_loop_test;
+static nk_bool cb_manual_ctrl;
+
 
 
 static int current_theme = 5;
@@ -72,13 +75,28 @@ void add_tree_item(struct nk_context *ctx, const char *label, int id)
     }
 }
 
+void start_test()
+{
+    log_info("Start testing ...");
+    // Do testing stuff here
+}
+
+void stop_loop_test()
+{
+    log_info("Stop loop testing...");
+    
+    // Stop the loop test if loop_mode is true
+}
+
 
 
 
 // The UI ain't good enough ;(
 void render_main_window(struct nk_context *ctx)
 {
-    if(nk_begin(ctx, "Panou de Control", nk_rect(48, 80, 1400, 800), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
+    
+    
+    if(nk_begin(ctx, "Panou de Control", nk_rect(48, 80, 1400, 810), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
     {
         nk_layout_row_dynamic(ctx, 30, 3);
             
@@ -87,12 +105,15 @@ void render_main_window(struct nk_context *ctx)
         tab_button(ctx, "Setări", 2, &current_tab);
         // ----------------------------------
         nk_layout_row_dynamic(ctx, 10, 1);
+        
+        // Handle tab selection
         if(current_tab == 0)
         {
             nk_layout_space_begin(ctx, NK_STATIC, group_heights, 2);
             nk_layout_space_push(ctx, nk_rect(0, 0, 450, group_heights));
             if(nk_group_begin(ctx, "Component Group", NK_WINDOW_BORDER))
             {
+                // Add all the component items under its own category
                 if(nk_tree_push(ctx, NK_TREE_NODE, "Microcontrolere și platforme ", NK_MINIMIZED))
                 {
                     
@@ -189,6 +210,7 @@ void render_main_window(struct nk_context *ctx)
             nk_layout_space_push(ctx, nk_rect(470, 0, 908, group_heights));
             if(nk_group_begin(ctx, "Component widgets", NK_WINDOW_BORDER))
             {
+                // Wooohh so many pages and those are just few of the common components
                 if(selected_component == CT_ARDUINO_UNO)
                 {
                     nk_layout_row_static(ctx, 30, component_widget_group, 1);
@@ -329,10 +351,30 @@ void render_main_window(struct nk_context *ctx)
                     nk_layout_row_static(ctx, 30, component_widget_group, 1);
                     nk_label(ctx, "Page 28", NK_TEXT_LEFT);
                 }
-            nk_group_end(ctx);
+                nk_group_end(ctx);
             }
+            
+            float widths[] = {32, 32, 150, 180}; // Set custom widths for each column inside the row so everything fits nicely
+            nk_layout_row(ctx, NK_STATIC, 32, 4, widths);
+            if(nk_button_symbol(ctx, NK_SYMBOL_TRIANGLE_RIGHT))
+                start_test();
+                
+            if(!cb_loop_test)
+            {
+                nk_widget_disable_begin(ctx); // Disable the stop test button if loop_mode is false because the automatic test runs for few seconds / minutes (Depending on the component being tested)
+            }
+            if(nk_button_symbol(ctx, NK_SYMBOL_RECT_SOLID))
+                stop_loop_test();
+                
+            nk_widget_disable_end(ctx);
+            
+            nk_checkbox_label(ctx, "Continuitate", &cb_loop_test);
+            nk_checkbox_label(ctx, "Control Manual", &cb_manual_ctrl);
+            
+            live_config.loop_mode = cb_loop_test;
+            live_config.manual_ctrl = cb_manual_ctrl;
         }
-        else if(current_tab == 1)
+        else if(current_tab == 1) // Handle tab selection
         {
             //nk_label(ctx, "This is Tab 2", NK_TEXT_LEFT);
             // Copied the builtin demo but that's not enough...
@@ -429,7 +471,7 @@ void render_main_window(struct nk_context *ctx)
             }
             nk_chart_end(ctx);
         }
-        else if(current_tab == 2)
+        else if(current_tab == 2) // Handle tab selection
         {
             nk_layout_row_static(ctx, 40, 150, 10);
             int new_theme;
