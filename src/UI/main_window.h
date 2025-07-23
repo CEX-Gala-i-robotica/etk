@@ -24,7 +24,14 @@ int component_widget_group = 880;
 static nk_bool cb_loop_test;
 static nk_bool cb_manual_ctrl;
 
-
+static nk_bool cb_A4988_ms1;
+static nk_bool cb_A4988_ms2;
+static nk_bool cb_A4988_ms3;
+static nk_bool cb_A4988_sleep;
+static nk_bool cb_A4988_enable;
+static int A4988_step_count[100];
+static char A4988_step_count_text[9][64];
+static int A4988_speed_delay = 850;
 
 static int current_theme = 5;
 static const char* themes[] = 
@@ -39,6 +46,13 @@ static const char* themes[] =
     "Catppucin Frappe", 
     "Catppucin Macchiato", 
     "Catppucin Mocha"
+};
+
+int A4988_current_connection_type = 0;
+static const char* A4988_connection_types[] =
+{
+    "Manual",
+    "Shield Imprimantă 3D"
 };
 
 
@@ -315,8 +329,58 @@ void render_main_window(struct nk_context *ctx)
                 }
                 else if(selected_component == CT_A4988_DRIVER)
                 {
-                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
-                    nk_label(ctx, "Page 21", NK_TEXT_LEFT);
+                    int new_connection;
+                    nk_layout_row_static(ctx, 30, 140, 2);
+                    nk_label(ctx, "Conectivitate: ", NK_TEXT_LEFT);
+                    new_connection = nk_combo(ctx, A4988_connection_types, NK_LEN(A4988_connection_types), A4988_current_connection_type, 35, nk_vec2(230, 200));
+                    
+                    if(new_connection != current_theme)
+                    {
+                        A4988_current_connection_type = new_connection;
+                        //set_style(ctx, A4988_current_connection_type);
+                        //live_config.color_theme = A4988_current_connection_type;
+                        //save_config(live_config);
+                    }
+                    
+                    nk_layout_row_dynamic(ctx, 9, 1);
+                    nk_rule_horizontal(ctx, nk_white, nk_true);
+                    
+                    if(A4988_current_connection_type == 0)
+                    {
+                        nk_layout_row_static(ctx, 30, 155, 1);
+                        nk_label(ctx, "Trepte Microstep", NK_TEXT_LEFT);
+                        
+                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_checkbox_label(ctx, "Microstep 1", &cb_A4988_ms1);
+                        
+                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_checkbox_label(ctx, "Microstep 2", &cb_A4988_ms2);
+                        
+                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_checkbox_label(ctx, "Microstep 3", &cb_A4988_ms3);
+                        
+                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_checkbox_label(ctx, "Oprire", &cb_A4988_sleep);
+                        
+                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_checkbox_label(ctx, "Activare", &cb_A4988_enable);
+                        
+                        nk_layout_row_static(ctx, 30, 140, 1);
+                        if(nk_button_label(ctx, "Resetare"))
+                        {
+                            log_info("A4988 reset event");
+                        }
+                        
+                        nk_layout_row_static(ctx, 30, 140, 2);
+                        nk_label(ctx, "Număr de pași: ", NK_TEXT_LEFT);
+                        nk_edit_string(ctx, NK_EDIT_SIMPLE, A4988_step_count_text[1], &A4988_step_count[1], 64, nk_filter_decimal);
+                        
+                        nk_layout_row_static(ctx, 30, 250, 2);
+                        nk_property_int(ctx, "Viteză de rotație: ", 400, &A4988_speed_delay, 900, 1, 1);
+                        nk_slider_int(ctx, 400, &A4988_speed_delay, 900, 1);
+                        
+                        
+                    }
                 }
                 else if(selected_component == CT_H_BRIDGE_L298N)
                 {
