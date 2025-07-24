@@ -11,11 +11,28 @@ A language support component using cJSON for defining custom languages
 //#define TRS_EXIT_ON_UNSET_LANG
 
 
-// Load all available language packs (as .json files) with this file naming pattern "trs_<lang>.json"
-char **trs_get_available_translations(const char *lang_pack_dir);
-void trs_set_translation(const char *translation_name);
-char trs_get(const char *str); // Get a translated string from the current translation set
-char **trs_get_required(); // Get all string names that require translation
+typedef struct
+{
+    char *author;
+    char *name;
+    char *version;
+}trs_info;
+
+
+// Get basic information about a translation
+trs_info trs_get_translation_info(const char *fname);
+
+// Load and store the keys and translated strings into memory
+void trs_set_translation(const char *fname);
+
+// Get a translated string from the current translation set
+char *trs_get(const char *key_str);
+
+// Get a translated string from the current translation set
+void trs_gen_sample_strings();
+
+// Get a translated string from the current translation set
+void trs_free();
 
 
 

@@ -30,10 +30,12 @@ target("etk")
         "ext_deps/libqrencode/*.c",
         "src/*.c",
         "src/UI/*.c",
+        "src/UI/components/trs/*.c",
         "src/components/*.c"
     )
     add_packages("libxcb", "cairo", "xcb", "xcb-util", "xcb-keysyms", "xkbcommon", "xkbcommon-x11", "freetype2")
     after_build(function (target)
         -- Copy the assets and the css theme next to the build directory
         os.cp("src/assets", target:targetdir())
+        os.cp("src/trs_sample.json", target:targetdir())
     end)

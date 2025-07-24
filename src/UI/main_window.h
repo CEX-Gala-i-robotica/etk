@@ -3,6 +3,7 @@
 
 #include "../tests.h"
 #include "../config_utils.h"
+#include "components/trs/trs.h"
 
 #include <qrencode.h>
 
@@ -610,6 +611,19 @@ void nk_qr_demo(struct nk_context *ctx)
         struct nk_rect qr_pos = nk_rect(bounds.x + padding, bounds.y + padding, qr_size, qr_size);
         
         draw_qr_code(canvas, qr_pos, qr_size, text);
+    }
+    nk_end(ctx);
+}
+
+void translation_demo(struct nk_context *ctx)
+{
+    if(nk_begin(ctx, "[Dev] - Translation demo", nk_rect(48, 80, 500, 500), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
+    {
+        nk_layout_row_dynamic(ctx, 30, 1);
+        nk_label(ctx, trs_get("This is a translated string"), NK_TEXT_LEFT);
+        
+        nk_layout_row_dynamic(ctx, 30, 1);
+        nk_label(ctx, trs_get("A string translated into japanise"), NK_TEXT_LEFT); // This does not work with the current available font
     }
     nk_end(ctx);
 }

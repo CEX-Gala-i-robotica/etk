@@ -148,6 +148,8 @@ void ui_main()
         live_config = parsed_config;
     }
     
+    trs_set_translation("trs_sample.json");
+    
     
     //Todo: implement default settings
     current_theme = parsed_config.color_theme;
@@ -235,6 +237,7 @@ void ui_main()
         
         //nk_qr_demo(ctx); // Just a simple QR encoding and display to nuklear canvas
         // Temporarly disabled to prevent CPU overloading
+        translation_demo(ctx);
 #endif
         render_main_window(ctx);
         
@@ -254,6 +257,7 @@ void ui_main()
     }
 
     log_info("UI Mainloop broken");
+    trs_free();
     nk_free(ctx);
     free(ctx);
     nk_cairo_free(cairo_ctx);

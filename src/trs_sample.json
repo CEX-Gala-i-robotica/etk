@@ -1,0 +1,9 @@
+{
+    "name": "Lang name",
+    "Author": "Author name",
+    "Version": "1.0.0",
+    "strings": {
+        "This is a translated string": "Șir de caractere tradus în limba română",
+        "A string translated into japanise": "日本語に翻訳された文字列"
+    }
+}
