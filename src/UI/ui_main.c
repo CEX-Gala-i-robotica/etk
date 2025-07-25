@@ -148,7 +148,21 @@ void ui_main()
         live_config = parsed_config;
     }
     
+    trs_features trs_settings = {
+       .allow_sample_gen = true,
+    };
+    
+    trs_set_features(trs_settings);
+    
+    trs_info test;
     trs_set_translation("trs_sample.json");
+    test = trs_get_translation_info("trs_sample.json");
+    
+    printf("Translation info: name: %s | author: %s | version: %s\n", test.lang_name, test.author, test.version);
+    
+    trs_free_info(test);
+    
+    
     
     
     //Todo: implement default settings
@@ -255,6 +269,14 @@ void ui_main()
         nk_xcb_render(xcb_ctx);
         nk_clear(ctx);
     }
+    
+    trs_info lang_sample =
+    {
+        .lang_name = "Romanian",
+        .author = "Me",
+        .version = "2.5.3"
+    };
+    trs_gen_sample_strings(lang_sample, "sample_ro.json");
 
     log_info("UI Mainloop broken");
     trs_free();

@@ -624,6 +624,9 @@ void translation_demo(struct nk_context *ctx)
         
         nk_layout_row_dynamic(ctx, 30, 1);
         nk_label(ctx, trs_get("A string translated into japanise"), NK_TEXT_LEFT); // This does not work with the current available font
+        
+        nk_layout_row_dynamic(ctx, 30, 1);
+        nk_label(ctx, trs_get("Something is failing..."), NK_TEXT_LEFT); // This does not work with the current available font
     }
     nk_end(ctx);
 }

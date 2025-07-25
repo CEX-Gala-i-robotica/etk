@@ -35,6 +35,8 @@
 #include "components/A4988.h"
 #include "components/PCA9685.h"
 
+#include "UI/components/trs/trs.h"
+
 
 
 
@@ -577,8 +579,26 @@ while(1)
 
 //configuration_setup();
 //SomeOsciloscope();
+trs_features trs_settings = {
+   .allow_sample_gen = true,
+};
+
+trs_set_features(trs_settings);
+
+trs_get("This is a translated string");
+trs_get("another str");
+trs_get("why only 1 is added ????");
+trs_get("This is a translated string");
+
+trs_info lang_sample =
+{
+    .lang_name = "Romanian",
+    .author = "Me",
+    .version = "2.5.3"
+};
+trs_gen_sample_strings(lang_sample, "sample_ro.json");
 
 
-
+trs_free();
 
 }
