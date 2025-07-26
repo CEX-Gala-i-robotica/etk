@@ -34,7 +34,7 @@ void A4988_Step(A4988_Stepper driver, int steps, int delay, enum A4988_Direction
     {
         log_warn("Low delay speed !!!! This can affect the stepper motor performance. Please set the speed delay higher or enable microstep levels.");
     }
-    if(delay <= 400)
+    if(delay <= 300)
     {
         log_error("Delay speed is too low !!!");
         exit(1);
@@ -89,6 +89,7 @@ void A4988_Enable(A4988_FullStepper driver, bool toggle)
 {
     if(toggle)
     {
+        log_trace("Disabled");
         digitalWrite(driver.enable_pin, LOW);
         is_driver_enabled = true;
     }

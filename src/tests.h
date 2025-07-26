@@ -55,9 +55,12 @@ enum ComponentTest
     CT_ARDUINO_MEGA,          //      yes       |                       |
     CT_ARDUINO_NANO,          //      yes       |                       |
     CT_ARDUINO_GIGA,          //      yes       |                       |
+    CT_RESISTOR
 };
 
-void RunTest(enum ComponentTest tt, enum TestMode tm, bool loop);
+
+void SetupTest(enum ComponentTest tt);
+void RunTest(enum ComponentTest tt, enum TestMode tm);
 void GetRealtimeData();
 void StopLoopTest();
 

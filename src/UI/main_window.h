@@ -1,15 +1,47 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
 
+#include <pthread.h>
+
+
 #include "../tests.h"
 #include "../config_utils.h"
 #include "components/trs/trs.h"
+
+#include "../gpio_utils.h"
+
+#include "../components/servo.h"
+#include "../components/stepper_uln2003.h"
+#include "../components/dht.h"
+#include "../components/ultrasonic.h"
+#include "../components/mpu6050.h"
+#include "../components/LCD_I2C.h"
+#include "../components/universal_sensors.h"
+#include "../components/keypad.h"
+#include "../components/TTP229.h"
+#include "../components/A4988.h"
+#include "../components/PCA9685.h"
 
 #include <qrencode.h>
 
 
 
+pthread_t ct_thread;
+static bool running_test = false;
 
+
+/* - - - - Test components - - - - */
+A4988_Stepper stepper_test =
+{
+    .dir_pin = GPIO_26,
+    .step_pin = GPIO_21,
+    .enable_pin = GPIO_16
+};
+
+A4988_FullStepper full_stepper_test =
+{
+    .enable_pin = GPIO_16
+};
 
 
 
@@ -29,7 +61,7 @@ static nk_bool cb_A4988_ms1;
 static nk_bool cb_A4988_ms2;
 static nk_bool cb_A4988_ms3;
 static nk_bool cb_A4988_sleep;
-static nk_bool cb_A4988_enable;
+static nk_bool cb_A4988_enable = true;
 static int A4988_step_count[100];
 static char A4988_step_count_text[9][64];
 static int A4988_speed_delay = 850;
@@ -37,24 +69,236 @@ static int A4988_speed_delay = 850;
 static int current_theme = 5;
 static const char* themes[] = 
 {
-    "Black", 
-    "White", 
-    "Red", 
-    "Blue", 
-    "Dark", 
-    "Dracula", 
-    "Catppucin Latte", 
-    "Catppucin Frappe", 
-    "Catppucin Macchiato", 
+    "Black",
+    "White",
+    "Red",
+    "Blue",
+    "Dark",
+    "Dracula",
+    "Catppucin Latte",
+    "Catppucin Frappe",
+    "Catppucin Macchiato",
     "Catppucin Mocha"
 };
 
-int A4988_current_connection_type = 0;
+static int A4988_current_connection_type = 0;
 static const char* A4988_connection_types[] =
 {
     "Manual",
     "Shield Imprimantă 3D"
 };
+
+static int A4988_current_direction = 0;
+static const char* A4988_directions[] =
+{
+    "Înainte",
+    "Înapoi"
+};
+
+
+void *run_threaded_test(void * arg)
+{
+    //if(cb_loop_test)
+    //{
+    //    while(1)
+    //    {
+    //        RunTest(selected_component, MANUAL);
+    //    }
+    //}
+    if(selected_component == CT_SERVO)
+    {
+        log_info("Running servo test");
+    }
+    else if(selected_component == CT_STEPPER)
+    {
+        log_info("Running stepper test");
+    }
+    else if(selected_component == CT_H_BRIDGE_L298N)
+    {
+        log_info("Running H-Bridge L298N test");
+    }
+    else if(selected_component == CT_DHT)
+    {
+        log_info("Running DHT test");
+    }
+    else if(selected_component == CT_LCD_I2C)
+    {
+        log_info("Running LCD_I2C test");
+    }
+    else if(selected_component == CT_LCD)
+    {
+        log_info("Running LCD test");
+    }
+    else if(selected_component == CT_OLED)
+    {
+        log_info("Running OLED test");
+    }
+    else if(selected_component == CT_TFT)
+    {
+        log_info("Running TFT test");
+    }
+    else if(selected_component == CT_SEVEN_SEG_DISPLAY)
+    {
+        log_info("Running seven segment display test");
+    }
+    else if(selected_component == CT_MPU6050)
+    {
+        log_info("Running MPU6050 test");
+    }
+    else if(selected_component == CT_ULTRASONIC_HC06)
+    {
+        log_info("Running ultrasonic HC06 test");
+    }
+    else if(selected_component == CT_KEYPAD_2X4)
+    {
+        log_info("Running keypad 2x4 test");
+    }
+    else if(selected_component == CT_KEYPAD_4X4)
+    {
+        log_info("Running keypad 4x4 test");
+    }
+    else if(selected_component == CT_KEYPAD_3X4)
+    {
+        log_info("Running keypad 3x4 test");
+    }
+    else if(selected_component == CT_INFRARED)
+    {
+        log_info("Running infrared test");
+    }
+    else if(selected_component == CT_LED_MATRIX)
+    {
+        log_info("Running LED matrix test");
+    }
+    else if(selected_component == CT_WATER_LEVEL)
+    {
+        log_info("Running water level test");
+    }
+    else if(selected_component == CT_SOIL_MOISTURE)
+    {
+        log_info("Running soil moisture test");
+    }
+    else if(selected_component == CT_SPEED_SENSOR)
+    {
+        log_info("Running speed sensor test");
+    }
+    else if(selected_component == CT_GAS_SENSOR)
+    {
+        log_info("Running gas sensor test");
+    }
+    else if(selected_component == CT_SMOKE_DETECTOR)
+    {
+        log_info("Running smoke detector test");
+    }
+    else if(selected_component == CT_MICROPHONE)
+    {
+        log_info("Running microphone test");
+    }
+    else if(selected_component == CT_PH_METER)
+    {
+        log_info("Running pH meter test");
+    }
+    else if(selected_component == CT_HALL_SENSOR)
+    {
+        log_info("Running hall sensor test");
+    }
+    else if(selected_component == CT_FLOW_METER)
+    {
+        log_info("Running flow meter test");
+    }
+    else if(selected_component == CT_POTENTIOMETER)
+    {
+        log_info("Running potentiometer test");
+    }
+    else if(selected_component == CT_PHOTORESISTOR)
+    {
+        log_info("Running photoresistor test");
+    }
+    else if(selected_component == CT_STEPPER_MOTOR_ULN2003)
+    {
+        log_info("Running stepper motor ULN2003 test");
+    }
+    else if(selected_component == CT_RFID_RC522)
+    {
+        log_info("Running RFID RC522 test");
+    }
+    else if(selected_component == CT_JOYSTICK_X2)
+    {
+        log_info("Running joystick X2 test");
+    }
+    else if(selected_component == CT_IR_REMOTE)
+    {
+        log_info("Running IR remote test");
+    }
+    else if(selected_component == CT_PCA9685)
+    {
+        log_info("Running PCA9685 test");
+    }
+    else if(selected_component == CT_A4988_DRIVER)
+    {
+        log_info("Running A4988 driver test");
+        
+        A4988_Setup(stepper_test);
+        
+        if(cb_loop_test)
+        {
+            while(running_test)
+            {
+                //if(stop_test)
+                //{
+                //    stop_test = false;
+                //    break;
+                //}
+                if(A4988_current_direction == 0)
+                    A4988_Step(stepper_test, atoi(A4988_step_count_text[1]), A4988_speed_delay, A4988_FORWARD);
+                else if(A4988_current_direction == 1)
+                    A4988_Step(stepper_test, atoi(A4988_step_count_text[1]), A4988_speed_delay, A4988_BACKWARDS);
+            }
+            log_trace("Out test loop");
+            A4988_Enable(full_stepper_test, false);
+        }
+        else
+        {
+            if(A4988_current_direction == 0)
+                A4988_Step(stepper_test, atoi(A4988_step_count_text[1]), A4988_speed_delay, A4988_FORWARD);
+            else if(A4988_current_direction == 1)
+                A4988_Step(stepper_test, atoi(A4988_step_count_text[1]), A4988_speed_delay, A4988_BACKWARDS);
+        }
+        
+        //if(A4988_current_direction == 0)
+        //    A4988_Step(stepper_test, 2000, A4988_speed_delay, A4988_FORWARD);
+        //else if(A4988_current_direction == 1)
+        //    A4988_Step(stepper_test, 2000, A4988_speed_delay, A4988_BACKWARDS);
+    }
+    else if(selected_component == CT_RT_CLOCK_DS1302)
+    {
+        log_info("Running RTC DS1302 test");
+    }
+    else if(selected_component == CT_RT_CLOCK_DS3231)
+    {
+        log_info("Running RTC DS3231 test");
+    }
+    else if(selected_component == CT_RT_CLOCK_DS1307)
+    {
+        log_info("Running RTC DS1307 test");
+    }
+    else if(selected_component == CT_ARDUINO_UNO)
+    {
+        log_info("Running Arduino Uno test");
+    }
+    else if(selected_component == CT_ARDUINO_MEGA)
+    {
+        log_info("Running Arduino Mega test");
+    }
+    else if(selected_component == CT_ARDUINO_NANO)
+    {
+        log_info("Running Arduino Nano test");
+    }
+    else if(selected_component == CT_ARDUINO_GIGA)
+    {
+        log_info("Running Arduino Giga test");
+    }
+    return NULL;
+}
 
 
 void tab_button(struct nk_context *ctx, const char *label, int id, int *current_tab)
@@ -95,12 +339,19 @@ void add_tree_item(struct nk_context *ctx, const char *label, int id)
 void start_test()
 {
     log_info("Start testing ...");
+    
+    running_test = true;
+    pthread_create(&ct_thread, NULL, run_threaded_test, NULL);
     // Do testing stuff here
 }
 
 void stop_loop_test()
-{
-    log_info("Stop loop testing...");
+{    log_info("Stop loop testing...");
+    
+    running_test = false;
+    
+    pthread_cancel(ct_thread);
+    pthread_join(ct_thread, NULL);
     
     // Stop the loop test if loop_mode is true
 }
@@ -331,6 +582,7 @@ void render_main_window(struct nk_context *ctx)
                 else if(selected_component == CT_A4988_DRIVER)
                 {
                     int new_connection;
+                    int new_direction;
                     nk_layout_row_static(ctx, 30, 140, 2);
                     nk_label(ctx, "Conectivitate: ", NK_TEXT_LEFT);
                     new_connection = nk_combo(ctx, A4988_connection_types, NK_LEN(A4988_connection_types), A4988_current_connection_type, 35, nk_vec2(230, 200));
@@ -338,9 +590,6 @@ void render_main_window(struct nk_context *ctx)
                     if(new_connection != current_theme)
                     {
                         A4988_current_connection_type = new_connection;
-                        //set_style(ctx, A4988_current_connection_type);
-                        //live_config.color_theme = A4988_current_connection_type;
-                        //save_config(live_config);
                     }
                     
                     nk_layout_row_dynamic(ctx, 9, 1);
@@ -364,24 +613,47 @@ void render_main_window(struct nk_context *ctx)
                         nk_checkbox_label(ctx, "Oprire", &cb_A4988_sleep);
                         
                         nk_layout_row_static(ctx, 30, 140, 1);
-                        nk_checkbox_label(ctx, "Activare", &cb_A4988_enable);
-                        
-                        nk_layout_row_static(ctx, 30, 140, 1);
                         if(nk_button_label(ctx, "Resetare"))
                         {
                             log_info("A4988 reset event");
                         }
-                        
-                        nk_layout_row_static(ctx, 30, 140, 2);
-                        nk_label(ctx, "Număr de pași: ", NK_TEXT_LEFT);
-                        nk_edit_string(ctx, NK_EDIT_SIMPLE, A4988_step_count_text[1], &A4988_step_count[1], 64, nk_filter_decimal);
-                        
-                        nk_layout_row_static(ctx, 30, 250, 2);
-                        nk_property_int(ctx, "Viteză de rotație: ", 400, &A4988_speed_delay, 900, 1, 1);
-                        nk_slider_int(ctx, 400, &A4988_speed_delay, 900, 1);
-                        
-                        
+                        nk_layout_row_dynamic(ctx, 9, 1);
+                        nk_rule_horizontal(ctx, nk_white, nk_true);
                     }
+                    
+                    nk_layout_row_static(ctx, 30, 140, 2);
+                    nk_label(ctx, "Număr de pași: ", NK_TEXT_LEFT);
+                    nk_edit_string(ctx, NK_EDIT_SIMPLE, A4988_step_count_text[1], &A4988_step_count[1], 64, nk_filter_decimal);
+                    
+                    if (A4988_step_count_text[1][0] == '\0') {
+                        // Empty string (user deleted everything)
+                        A4988_step_count[1] = 0; // or special value if you want to detect "unset"
+                    } else {
+                        char *endptr = NULL;
+                        long val = strtol(A4988_step_count_text[1], &endptr, 10);
+                    
+                        if (endptr != A4988_step_count_text[1]) {
+                            A4988_step_count[1] = (int)val;
+                        }
+                        // else: ignore invalid input like "-"
+                    }
+                    
+                    nk_layout_row_static(ctx, 30, 250, 2);
+                    nk_property_int(ctx, "Viteză de rotație: ", 400, &A4988_speed_delay, 900, 1, 1);
+                    nk_slider_int(ctx, 400, &A4988_speed_delay, 900, 1);
+                    
+                    nk_layout_row_static(ctx, 30, 140, 1);
+                    nk_checkbox_label(ctx, "Activare", &cb_A4988_enable);
+                    
+                    nk_label(ctx, "Direcție: ", NK_TEXT_LEFT);
+                    new_direction = nk_combo(ctx, A4988_directions, NK_LEN(A4988_directions), A4988_current_direction, 35, nk_vec2(140, 200));
+                    
+                    if(new_direction != A4988_current_direction)
+                    {
+                        A4988_current_direction = new_direction;
+                    }
+                    
+                    
                 }
                 else if(selected_component == CT_H_BRIDGE_L298N)
                 {

@@ -461,7 +461,7 @@ while (1) {
 */
 
 //tempTest();
-/*
+
     A4988_Stepper stepper_test =
     {
         .dir_pin = GPIO_26,
@@ -474,12 +474,12 @@ while (1) {
     while(1)
     {
         // prev speed delay: 850
-        A4988_Step(stepper_test, 2000, 850, FORWARD);
-        A4988_Step(stepper_test, 2000, 850, BACKWARDS);
+        A4988_Step(stepper_test, 2000, 850, A4988_FORWARD);
+        A4988_Step(stepper_test, 2000, 850, A4988_BACKWARDS);
     }
     
     //Todo: test the manual controll of A4988
-    */
+    
     
 
     /*
@@ -579,6 +579,7 @@ while(1)
 
 //configuration_setup();
 //SomeOsciloscope();
+/*
 trs_features trs_settings = {
    .allow_sample_gen = true,
 };
@@ -600,5 +601,6 @@ trs_gen_sample_strings(lang_sample, "sample_ro.json");
 
 
 trs_free();
+*/
 
 }
