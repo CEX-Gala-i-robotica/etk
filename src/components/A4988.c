@@ -12,7 +12,15 @@
 bool is_driver_enabled = false;
 bool is_driver_in_sleep;
 bool is_driver_reset;
+bool is_stepping_interrupt = false;
 
+
+
+
+void A4988_StepInterrupt()
+{
+    is_stepping_interrupt = true;
+}
 
 void A4988_Setup(A4988_Stepper driver)
 {
@@ -56,6 +64,8 @@ void A4988_Step(A4988_Stepper driver, int steps, int delay, enum A4988_Direction
         
         for(int i = 0; i < steps; i++)
         {
+            if(is_stepping_interrupt)
+                break;
             digitalWrite(driver.step_pin, HIGH);
             delayMicroseconds(delay);
             digitalWrite(driver.step_pin, LOW);
@@ -161,6 +171,8 @@ void A4988Full_Step(A4988_FullStepper driver, int steps, int delay, enum A4988_D
     {
         for(int i = 0; i < steps; i++)
         {
+            if(is_stepping_interrupt)
+                break;
             digitalWrite(driver.step_pin, HIGH);
             delayMicroseconds(delay);
             digitalWrite(driver.step_pin, LOW);

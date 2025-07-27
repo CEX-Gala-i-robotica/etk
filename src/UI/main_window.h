@@ -2,7 +2,9 @@
 #define MAIN_WINDOW_H
 
 #include <pthread.h>
-
+#include <signal.h>
+#include <stdatomic.h>
+#include <unistd.h>
 
 #include "../tests.h"
 #include "../config_utils.h"
@@ -27,7 +29,9 @@
 
 
 pthread_t ct_thread;
-static bool running_test = false;
+static bool running_test = true;
+
+atomic_int is_loop_test = 1;
 
 
 /* - - - - Test components - - - - */
@@ -66,6 +70,10 @@ static int A4988_step_count[100];
 static char A4988_step_count_text[9][64];
 static int A4988_speed_delay = 850;
 
+static char input_buf[64] = "1500";
+static int buf_len = 4;
+static int number = 1500;
+
 static int current_theme = 5;
 static const char* themes[] = 
 {
@@ -96,8 +104,14 @@ static const char* A4988_directions[] =
 };
 
 
+void test_handler(int sig)
+{
+    log_trace("Thread received signal %d\n", sig);
+}
+
 void *run_threaded_test(void * arg)
 {
+    //signal(SIGUSR1, test_handler);
     //if(cb_loop_test)
     //{
     //    while(1)
@@ -241,27 +255,33 @@ void *run_threaded_test(void * arg)
         
         if(cb_loop_test)
         {
-            while(running_test)
+            while(atomic_load(&is_loop_test))
             {
-                //if(stop_test)
+                //if(running_test)
                 //{
-                //    stop_test = false;
+                //    //running_test = false;
                 //    break;
                 //}
                 if(A4988_current_direction == 0)
-                    A4988_Step(stepper_test, atoi(A4988_step_count_text[1]), A4988_speed_delay, A4988_FORWARD);
+                    A4988_Step(stepper_test, number, A4988_speed_delay, A4988_FORWARD);
                 else if(A4988_current_direction == 1)
-                    A4988_Step(stepper_test, atoi(A4988_step_count_text[1]), A4988_speed_delay, A4988_BACKWARDS);
+                    A4988_Step(stepper_test, number, A4988_speed_delay, A4988_BACKWARDS);
+                    
+                usleep(50000);
+                    
+                
             }
+            //atomic_store(&is_loop_test, 1);
             log_trace("Out test loop");
+            A4988_StepInterrupt();
             A4988_Enable(full_stepper_test, false);
         }
         else
         {
             if(A4988_current_direction == 0)
-                A4988_Step(stepper_test, atoi(A4988_step_count_text[1]), A4988_speed_delay, A4988_FORWARD);
+                A4988_Step(stepper_test, number, A4988_speed_delay, A4988_FORWARD);
             else if(A4988_current_direction == 1)
-                A4988_Step(stepper_test, atoi(A4988_step_count_text[1]), A4988_speed_delay, A4988_BACKWARDS);
+                A4988_Step(stepper_test, number, A4988_speed_delay, A4988_BACKWARDS);
         }
         
         //if(A4988_current_direction == 0)
@@ -339,18 +359,28 @@ void add_tree_item(struct nk_context *ctx, const char *label, int id)
 void start_test()
 {
     log_info("Start testing ...");
-    
-    running_test = true;
+    //running_test = false;
+    atomic_store(&is_loop_test, 1);
     pthread_create(&ct_thread, NULL, run_threaded_test, NULL);
+    //is_loop_test = 1;
+    //atomic_store(&is_loop_test, 1);
     // Do testing stuff here
 }
 
 void stop_loop_test()
-{    log_info("Stop loop testing...");
+{
+    log_info("Stop loop testing...");
+    //running_test = true;
     
-    running_test = false;
+    //is_loop_test = 0;
+    atomic_store(&is_loop_test, 0);
     
-    pthread_cancel(ct_thread);
+    A4988_StepInterrupt();
+    
+    log_trace("volatile int loop test: %d", is_loop_test);
+    
+    //pthread_kill(ct_thread, SIGUSR1);
+    //pthread_cancel(ct_thread);
     pthread_join(ct_thread, NULL);
     
     // Stop the loop test if loop_mode is true
@@ -623,19 +653,17 @@ void render_main_window(struct nk_context *ctx)
                     
                     nk_layout_row_static(ctx, 30, 140, 2);
                     nk_label(ctx, "Număr de pași: ", NK_TEXT_LEFT);
-                    nk_edit_string(ctx, NK_EDIT_SIMPLE, A4988_step_count_text[1], &A4988_step_count[1], 64, nk_filter_decimal);
+                    //nk_edit_string(ctx, NK_EDIT_SIMPLE, A4988_step_count_text[1], &A4988_step_count[1], 64, nk_filter_decimal);
                     
-                    if (A4988_step_count_text[1][0] == '\0') {
-                        // Empty string (user deleted everything)
-                        A4988_step_count[1] = 0; // or special value if you want to detect "unset"
-                    } else {
-                        char *endptr = NULL;
-                        long val = strtol(A4988_step_count_text[1], &endptr, 10);
-                    
-                        if (endptr != A4988_step_count_text[1]) {
-                            A4988_step_count[1] = (int)val;
+                    if(nk_edit_string(ctx, NK_EDIT_FIELD | NK_EDIT_SIG_ENTER, input_buf, &buf_len, 64, nk_filter_decimal))
+                    {
+                        input_buf[buf_len] = '\0'; // Ensure null-termination
+                        char *end;
+                        long temp = strtol(input_buf, &end, 10);
+                        if(end != input_buf && *end == '\0')
+                        {
+                            number = (int)temp;
                         }
-                        // else: ignore invalid input like "-"
                     }
                     
                     nk_layout_row_static(ctx, 30, 250, 2);
@@ -703,7 +731,10 @@ void render_main_window(struct nk_context *ctx)
                 nk_widget_disable_begin(ctx); // Disable the stop test button if loop_mode is false because the automatic test runs for few seconds / minutes (Depending on the component being tested)
             }
             if(nk_button_symbol(ctx, NK_SYMBOL_RECT_SOLID))
+            {
+                //A4988_StepInterrupt();
                 stop_loop_test();
+            }
                 
             nk_widget_disable_end(ctx);
             

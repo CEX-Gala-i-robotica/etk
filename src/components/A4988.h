@@ -56,6 +56,7 @@ void A4988_Step(A4988_Stepper driver, int steps, int delay, enum A4988_Direction
 // Support on full controll
 void A4988Full_Setup(A4988_FullStepper driver);
 void A4988_Enable(A4988_FullStepper driver, bool toggle);
+void A4988_StepInterrupt();
 void A4988Full_SetDirection(A4988_FullStepper driver, enum A4988_Directions step_dirs);
 void A4988Full_Step(A4988_FullStepper driver, int steps, int delay, enum A4988_Directions step_dirs);
 void A4988_Sleep(A4988_FullStepper driver, bool toggle);
