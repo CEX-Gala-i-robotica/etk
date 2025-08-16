@@ -1,9 +1,0 @@
-{
-    errdata = "\27[01m\27[Ksrc/UI/extra_components/node_editor.c:\27[m\27[K In function ‘\27[01m\27[Knode_editor_add\27[m\27[K’:\
-\27[01m\27[Ksrc/UI/extra_components/node_editor.c:71:5:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[KNK_ASSERT\27[m\27[K’ [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
-   71 |     \27[01;35m\27[KNK_ASSERT\27[m\27[K((nk_size)editor->node_count < NK_LEN(editor->node_buf));\
-      |     \27[01;35m\27[K^~~~~~~~~\27[m\27[K\
-At top level:\
-\27[01m\27[Kcc1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kunrecognized command-line option ‘\27[01m\27[K-Wno-gnu-line-marker\27[m\27[K’ may have been intended to silence earlier diagnostics\
-"
-}
