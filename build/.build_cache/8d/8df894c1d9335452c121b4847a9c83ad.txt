@@ -1,0 +1,11 @@
+{
+    errdata = "In file included from \27[01m\27[Ksrc/UI/ui_main.c:57\27[m\27[K:\
+\27[01m\27[Ksrc/UI/main_window.h:\27[m\27[K In function ‘\27[01m\27[Krender_main_window\27[m\27[K’:\
+\27[01m\27[Ksrc/UI/main_window.h:187:13:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Knk_layout_col_dynamic\27[m\27[K’; did you mean ‘\27[01m\27[Knk_layout_row_dynamic\27[m\27[K’? [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+  187 |             \27[01;35m\27[Knk_layout_col_dynamic\27[m\27[K(ctx, 300, 2);\
+      |             \27[01;35m\27[K^~~~~~~~~~~~~~~~~~~~~\27[m\27[K\
+      |             \27[32m\27[Knk_layout_row_dynamic\27[m\27[K\
+At top level:\
+\27[01m\27[Kcc1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kunrecognized command-line option ‘\27[01m\27[K-Wno-gnu-line-marker\27[m\27[K’ may have been intended to silence earlier diagnostics\
+"
+}

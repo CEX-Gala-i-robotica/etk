@@ -1,0 +1,38 @@
+{
+    errdata = "\27[01m\27[Ksrc/UI/extra_components/node_editor.c:\27[m\27[K In function ‘\27[01m\27[Knode_editor_add\27[m\27[K’:\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:76:5:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Kstrcpy\27[m\27[K’ [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+   76 |     \27[01;35m\27[Kstrcpy\27[m\27[K(node->name, name);\
+      |     \27[01;35m\27[K^~~~~~\27[m\27[K\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:17:1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<string.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Kstrcpy\27[m\27[K’\
+   16 | #include \"node_editor.h\"\
+  +++ |+\27[32m\27[K#include <string.h>\27[m\27[K\
+   17 | \
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:76:5:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kincompatible implicit declaration of built-in function ‘\27[01m\27[Kstrcpy\27[m\27[K’ [\27[01;35m\27[K-Wbuiltin-declaration-mismatch\27[m\27[K]\
+   76 |     \27[01;35m\27[Kstrcpy\27[m\27[K(node->name, name);\
+      |     \27[01;35m\27[K^~~~~~\27[m\27[K\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:76:5:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<string.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Kstrcpy\27[m\27[K’\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:\27[m\27[K In function ‘\27[01m\27[Knode_editor_init\27[m\27[K’:\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:93:5:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Kmemset\27[m\27[K’ [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+   93 |     \27[01;35m\27[Kmemset\27[m\27[K(editor, 0, sizeof(*editor));\
+      |     \27[01;35m\27[K^~~~~~\27[m\27[K\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:93:5:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<string.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Kmemset\27[m\27[K’\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:93:5:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kincompatible implicit declaration of built-in function ‘\27[01m\27[Kmemset\27[m\27[K’ [\27[01;35m\27[K-Wbuiltin-declaration-mismatch\27[m\27[K]\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:93:5:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<string.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Kmemset\27[m\27[K’\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:\27[m\27[K In function ‘\27[01m\27[Knode_editor\27[m\27[K’:\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:135:33:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Kfmod\27[m\27[K’ [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+  135 |                 for (x = (float)\27[01;35m\27[Kfmod\27[m\27[K(size.x - nodedit->scrolling.x, grid_size); x < size.w; x += grid_size)\
+      |                                 \27[01;35m\27[K^~~~\27[m\27[K\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:17:1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<math.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Kfmod\27[m\27[K’\
+   16 | #include \"node_editor.h\"\
+  +++ |+\27[32m\27[K#include <math.h>\27[m\27[K\
+   17 | \
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:135:33:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kincompatible implicit declaration of built-in function ‘\27[01m\27[Kfmod\27[m\27[K’ [\27[01;35m\27[K-Wbuiltin-declaration-mismatch\27[m\27[K]\
+  135 |                 for (x = (float)\27[01;35m\27[Kfmod\27[m\27[K(size.x - nodedit->scrolling.x, grid_size); x < size.w; x += grid_size)\
+      |                                 \27[01;35m\27[K^~~~\27[m\27[K\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:135:33:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<math.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Kfmod\27[m\27[K’\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:137:33:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kincompatible implicit declaration of built-in function ‘\27[01m\27[Kfmod\27[m\27[K’ [\27[01;35m\27[K-Wbuiltin-declaration-mismatch\27[m\27[K]\
+  137 |                 for (y = (float)\27[01;35m\27[Kfmod\27[m\27[K(size.y - nodedit->scrolling.y, grid_size); y < size.h; y += grid_size)\
+      |                                 \27[01;35m\27[K^~~~\27[m\27[K\
+\27[01m\27[Ksrc/UI/extra_components/node_editor.c:137:33:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<math.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Kfmod\27[m\27[K’\
+"
+}

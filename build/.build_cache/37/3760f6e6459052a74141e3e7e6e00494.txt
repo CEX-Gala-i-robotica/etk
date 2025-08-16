@@ -1,0 +1,12 @@
+{
+    errdata = "\27[01m\27[Ksrc/components/keypad.c:\27[m\27[K In function ‘\27[01m\27[KsetupKeypad4x3\27[m\27[K’:\
+\27[01m\27[Ksrc/components/keypad.c:86:13:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kiteration 3 invokes undefined behavior [\27[01;35m\27[K-Waggressive-loop-optimizations\27[m\27[K]\
+   86 |             \27[01;35m\27[KpinMode(kp.colPins[i], IN\27[m\27[KPUT);\
+      |             \27[01;35m\27[K^~~~~~~~~~~~~~~~~~~~~~~~~\27[m\27[K\
+\27[01m\27[Ksrc/components/keypad.c:84:22:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kwithin this loop\
+   84 |         for(i = 0; \27[01;36m\27[Ki < K\27[m\27[KEYPAD_4X3_MAX_ROWS; i++)\
+      |                    \27[01;36m\27[K~~^~~\27[m\27[K\
+At top level:\
+\27[01m\27[Kcc1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kunrecognized command-line option ‘\27[01m\27[K-Wno-gnu-line-marker\27[m\27[K’ may have been intended to silence earlier diagnostics\
+"
+}

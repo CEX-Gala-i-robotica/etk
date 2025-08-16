@@ -1,0 +1,356 @@
+[
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/ads1115.c.o", "ext_deps/wiringpi/ads1115.c"],
+  "file": "ext_deps/wiringpi/ads1115.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/wiringPiSPI.c.o", "ext_deps/wiringpi/wiringPiSPI.c"],
+  "file": "ext_deps/wiringpi/wiringPiSPI.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/daemonise.c.o", "ext_deps/wiringpi/daemonise.c"],
+  "file": "ext_deps/wiringpi/daemonise.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/wiringShift.c.o", "ext_deps/wiringpi/wiringShift.c"],
+  "file": "ext_deps/wiringpi/wiringShift.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/mcp23017.c.o", "ext_deps/wiringpi/mcp23017.c"],
+  "file": "ext_deps/wiringpi/mcp23017.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/drcNet.c.o", "ext_deps/wiringpi/drcNet.c"],
+  "file": "ext_deps/wiringpi/drcNet.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/sn3218.c.o", "ext_deps/wiringpi/sn3218.c"],
+  "file": "ext_deps/wiringpi/sn3218.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/softServo.c.o", "ext_deps/wiringpi/softServo.c"],
+  "file": "ext_deps/wiringpi/softServo.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/drcSerial.c.o", "ext_deps/wiringpi/drcSerial.c"],
+  "file": "ext_deps/wiringpi/drcSerial.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/max5322.c.o", "ext_deps/wiringpi/max5322.c"],
+  "file": "ext_deps/wiringpi/max5322.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/bmp180.c.o", "ext_deps/wiringpi/bmp180.c"],
+  "file": "ext_deps/wiringpi/bmp180.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/ds18b20.c.o", "ext_deps/wiringpi/ds18b20.c"],
+  "file": "ext_deps/wiringpi/ds18b20.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/wiringPiI2C.c.o", "ext_deps/wiringpi/wiringPiI2C.c"],
+  "file": "ext_deps/wiringpi/wiringPiI2C.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/mcp23s17.c.o", "ext_deps/wiringpi/mcp23s17.c"],
+  "file": "ext_deps/wiringpi/mcp23s17.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/softTone.c.o", "ext_deps/wiringpi/softTone.c"],
+  "file": "ext_deps/wiringpi/softTone.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/piThread.c.o", "ext_deps/wiringpi/piThread.c"],
+  "file": "ext_deps/wiringpi/piThread.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/mcp3004.c.o", "ext_deps/wiringpi/mcp3004.c"],
+  "file": "ext_deps/wiringpi/mcp3004.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/pcf8574.c.o", "ext_deps/wiringpi/pcf8574.c"],
+  "file": "ext_deps/wiringpi/pcf8574.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/htu21d.c.o", "ext_deps/wiringpi/htu21d.c"],
+  "file": "ext_deps/wiringpi/htu21d.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/mcp23008.c.o", "ext_deps/wiringpi/mcp23008.c"],
+  "file": "ext_deps/wiringpi/mcp23008.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/softPwm.c.o", "ext_deps/wiringpi/softPwm.c"],
+  "file": "ext_deps/wiringpi/softPwm.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/network.c.o", "ext_deps/wiringpi/network.c"],
+  "file": "ext_deps/wiringpi/network.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/mcp3422.c.o", "ext_deps/wiringpi/mcp3422.c"],
+  "file": "ext_deps/wiringpi/mcp3422.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/mcp23016.c.o", "ext_deps/wiringpi/mcp23016.c"],
+  "file": "ext_deps/wiringpi/mcp23016.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/rht03.c.o", "ext_deps/wiringpi/rht03.c"],
+  "file": "ext_deps/wiringpi/rht03.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/mcp23s08.c.o", "ext_deps/wiringpi/mcp23s08.c"],
+  "file": "ext_deps/wiringpi/mcp23s08.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/runRemote.c.o", "ext_deps/wiringpi/runRemote.c"],
+  "file": "ext_deps/wiringpi/runRemote.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/pseudoPins.c.o", "ext_deps/wiringpi/pseudoPins.c"],
+  "file": "ext_deps/wiringpi/pseudoPins.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/wiringPi.c.o", "ext_deps/wiringpi/wiringPi.c"],
+  "file": "ext_deps/wiringpi/wiringPi.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/pcf8591.c.o", "ext_deps/wiringpi/pcf8591.c"],
+  "file": "ext_deps/wiringpi/pcf8591.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/wiringPiLegacy.c.o", "ext_deps/wiringpi/wiringPiLegacy.c"],
+  "file": "ext_deps/wiringpi/wiringPiLegacy.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/max31855.c.o", "ext_deps/wiringpi/max31855.c"],
+  "file": "ext_deps/wiringpi/max31855.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/sr595.c.o", "ext_deps/wiringpi/sr595.c"],
+  "file": "ext_deps/wiringpi/sr595.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/piHiPri.c.o", "ext_deps/wiringpi/piHiPri.c"],
+  "file": "ext_deps/wiringpi/piHiPri.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/mcp3002.c.o", "ext_deps/wiringpi/mcp3002.c"],
+  "file": "ext_deps/wiringpi/mcp3002.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/wiringSerial.c.o", "ext_deps/wiringpi/wiringSerial.c"],
+  "file": "ext_deps/wiringpi/wiringSerial.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/mcp4802.c.o", "ext_deps/wiringpi/mcp4802.c"],
+  "file": "ext_deps/wiringpi/mcp4802.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/wiringpi/wpiExtensions.c.o", "ext_deps/wiringpi/wpiExtensions.c"],
+  "file": "ext_deps/wiringpi/wpiExtensions.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/cJSON/cJSON.c.o", "ext_deps/cJSON/cJSON.c"],
+  "file": "ext_deps/cJSON/cJSON.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/cJSON/cJSON_Utils.c.o", "ext_deps/cJSON/cJSON_Utils.c"],
+  "file": "ext_deps/cJSON/cJSON_Utils.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/csv/libcsv.c.o", "ext_deps/csv/libcsv.c"],
+  "file": "ext_deps/csv/libcsv.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/log_c/log.c.o", "ext_deps/log_c/log.c"],
+  "file": "ext_deps/log_c/log.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/libqrencode/mqrspec.c.o", "ext_deps/libqrencode/mqrspec.c"],
+  "file": "ext_deps/libqrencode/mqrspec.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/libqrencode/rsecc.c.o", "ext_deps/libqrencode/rsecc.c"],
+  "file": "ext_deps/libqrencode/rsecc.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/libqrencode/qrencode.c.o", "ext_deps/libqrencode/qrencode.c"],
+  "file": "ext_deps/libqrencode/qrencode.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/libqrencode/mask.c.o", "ext_deps/libqrencode/mask.c"],
+  "file": "ext_deps/libqrencode/mask.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/libqrencode/bitstream.c.o", "ext_deps/libqrencode/bitstream.c"],
+  "file": "ext_deps/libqrencode/bitstream.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/libqrencode/qrspec.c.o", "ext_deps/libqrencode/qrspec.c"],
+  "file": "ext_deps/libqrencode/qrspec.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/libqrencode/mmask.c.o", "ext_deps/libqrencode/mmask.c"],
+  "file": "ext_deps/libqrencode/mmask.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/libqrencode/split.c.o", "ext_deps/libqrencode/split.c"],
+  "file": "ext_deps/libqrencode/split.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ext_deps/libqrencode/qrinput.c.o", "ext_deps/libqrencode/qrinput.c"],
+  "file": "ext_deps/libqrencode/qrinput.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/gpio_utils.c.o", "src/gpio_utils.c"],
+  "file": "src/gpio_utils.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/config_utils.c.o", "src/config_utils.c"],
+  "file": "src/config_utils.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/dev_test.c.o", "src/dev_test.c"],
+  "file": "src/dev_test.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/main.c.o", "src/main.c"],
+  "file": "src/main.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/tests.c.o", "src/tests.c"],
+  "file": "src/tests.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/UI/ui_main.c.o", "src/UI/ui_main.c"],
+  "file": "src/UI/ui_main.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/UI/display_backends.c.o", "src/UI/display_backends.c"],
+  "file": "src/UI/display_backends.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/UI/components/trs/trs.c.o", "src/UI/components/trs/trs.c"],
+  "file": "src/UI/components/trs/trs.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/servo.c.o", "src/components/servo.c"],
+  "file": "src/components/servo.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/mpu6050.c.o", "src/components/mpu6050.c"],
+  "file": "src/components/mpu6050.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/keypad.c.o", "src/components/keypad.c"],
+  "file": "src/components/keypad.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/stepper_uln2003.c.o", "src/components/stepper_uln2003.c"],
+  "file": "src/components/stepper_uln2003.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/A4988.c.o", "src/components/A4988.c"],
+  "file": "src/components/A4988.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/dht.c.o", "src/components/dht.c"],
+  "file": "src/components/dht.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/RFID.c.o", "src/components/RFID.c"],
+  "file": "src/components/RFID.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/LCD_I2C.c.o", "src/components/LCD_I2C.c"],
+  "file": "src/components/LCD_I2C.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/PCA9685.c.o", "src/components/PCA9685.c"],
+  "file": "src/components/PCA9685.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/universal_sensors.c.o", "src/components/universal_sensors.c"],
+  "file": "src/components/universal_sensors.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/TTP229.c.o", "src/components/TTP229.c"],
+  "file": "src/components/TTP229.c"
+},
+{
+  "directory": "/home/rpi5/etk",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-Iext_deps", "-Iext_deps/wiringpi", "-Iext_deps/nuklear", "-Iext_deps/nuklear/backends/xcb_cairo", "-Iext_deps/libqrencode", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-I", "/usr/include/cairo", "-I", "/usr/include/glib-2.0", "-I", "/usr/lib/aarch64-linux-gnu/glib-2.0/include", "-I", "/usr/include/pixman-1", "-I", "/usr/include/X11/dri", "-I", "/usr/include/freetype2", "-I", "/usr/include/libpng16", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/src/components/ultrasonic.c.o", "src/components/ultrasonic.c"],
+  "file": "src/components/ultrasonic.c"
+}]

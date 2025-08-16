@@ -1,0 +1,14 @@
+{
+    errdata = "\27[01m\27[Ksrc/UI/extra_components/overview.c:\27[m\27[K In function ‘\27[01m\27[Koverview\27[m\27[K’:\
+\27[01m\27[Ksrc/UI/extra_components/overview.c:271:17:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Knk_labelf\27[m\27[K’; did you mean ‘\27[01m\27[Knk_label\27[m\27[K’? [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+  271 |                 \27[01;35m\27[Knk_labelf\27[m\27[K(ctx, NK_TEXT_LEFT, \"Slider int\");\
+      |                 \27[01;35m\27[K^~~~~~~~~\27[m\27[K\
+      |                 \27[32m\27[Knk_label\27[m\27[K\
+\27[01m\27[Ksrc/UI/extra_components/overview.c:710:17:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Knk_tooltipf\27[m\27[K’; did you mean ‘\27[01m\27[Knk_tooltip\27[m\27[K’? [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+  710 |                 \27[01;35m\27[Knk_tooltipf\27[m\27[K(ctx, \"Value: %.2f\", (float)cos((float)index*step));\
+      |                 \27[01;35m\27[K^~~~~~~~~~~\27[m\27[K\
+      |                 \27[32m\27[Knk_tooltip\27[m\27[K\
+At top level:\
+\27[01m\27[Kcc1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kunrecognized command-line option ‘\27[01m\27[K-Wno-gnu-line-marker\27[m\27[K’ may have been intended to silence earlier diagnostics\
+"
+}

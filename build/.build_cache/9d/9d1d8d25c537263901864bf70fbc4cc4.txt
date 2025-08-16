@@ -1,0 +1,40 @@
+{
+    errdata = "In file included from \27[01m\27[Ksrc/UI/ui_main.c:57\27[m\27[K:\
+\27[01m\27[Ksrc/UI/main_window.h:\27[m\27[K In function ‘\27[01m\27[Krun_threaded_test\27[m\27[K’:\
+\27[01m\27[Ksrc/UI/main_window.h:241:51:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kpassing argument 1 of ‘\27[01m\27[Katoi\27[m\27[K’ from incompatible pointer type [\27[01;35m\27[K-Wincompatible-pointer-types\27[m\27[K]\
+  241 |                     A4988_Step(stepper_test, atoi(\27[01;35m\27[KA4988_step_count_text\27[m\27[K), A4988_speed_delay, A4988_FORWARD);\
+      |                                                   \27[01;35m\27[K^~~~~~~~~~~~~~~~~~~~~\27[m\27[K\
+      |                                                   \27[01;35m\27[K|\27[m\27[K\
+      |                                                   \27[01;35m\27[Kchar (*)[64]\27[m\27[K\
+In file included from \27[01m\27[Ksrc/UI/ui_main.c:9\27[m\27[K:\
+\27[01m\27[K/usr/include/stdlib.h:362:60:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kexpected ‘\27[01m\27[Kconst char *\27[m\27[K’ but argument is of type ‘\27[01m\27[Kchar (*)[64]\27[m\27[K’\
+  362 | __NTH (atoi (const char *__nptr))\
+      |                                                            \27[01;36m\27[K^\27[m\27[K     \
+\27[01m\27[Ksrc/UI/main_window.h:243:51:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kpassing argument 1 of ‘\27[01m\27[Katoi\27[m\27[K’ from incompatible pointer type [\27[01;35m\27[K-Wincompatible-pointer-types\27[m\27[K]\
+  243 |                     A4988_Step(stepper_test, atoi(\27[01;35m\27[KA4988_step_count_text\27[m\27[K), A4988_speed_delay, A4988_BACKWARDS);\
+      |                                                   \27[01;35m\27[K^~~~~~~~~~~~~~~~~~~~~\27[m\27[K\
+      |                                                   \27[01;35m\27[K|\27[m\27[K\
+      |                                                   \27[01;35m\27[Kchar (*)[64]\27[m\27[K\
+\27[01m\27[K/usr/include/stdlib.h:362:60:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kexpected ‘\27[01m\27[Kconst char *\27[m\27[K’ but argument is of type ‘\27[01m\27[Kchar (*)[64]\27[m\27[K’\
+  362 | __NTH (atoi (const char *__nptr))\
+      |                                                            \27[01;36m\27[K^\27[m\27[K     \
+\27[01m\27[Ksrc/UI/main_window.h:249:47:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kpassing argument 1 of ‘\27[01m\27[Katoi\27[m\27[K’ from incompatible pointer type [\27[01;35m\27[K-Wincompatible-pointer-types\27[m\27[K]\
+  249 |                 A4988_Step(stepper_test, atoi(\27[01;35m\27[KA4988_step_count_text\27[m\27[K), A4988_speed_delay, A4988_FORWARD);\
+      |                                               \27[01;35m\27[K^~~~~~~~~~~~~~~~~~~~~\27[m\27[K\
+      |                                               \27[01;35m\27[K|\27[m\27[K\
+      |                                               \27[01;35m\27[Kchar (*)[64]\27[m\27[K\
+\27[01m\27[K/usr/include/stdlib.h:362:60:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kexpected ‘\27[01m\27[Kconst char *\27[m\27[K’ but argument is of type ‘\27[01m\27[Kchar (*)[64]\27[m\27[K’\
+  362 | __NTH (atoi (const char *__nptr))\
+      |                                                            \27[01;36m\27[K^\27[m\27[K     \
+\27[01m\27[Ksrc/UI/main_window.h:251:47:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kpassing argument 1 of ‘\27[01m\27[Katoi\27[m\27[K’ from incompatible pointer type [\27[01;35m\27[K-Wincompatible-pointer-types\27[m\27[K]\
+  251 |                 A4988_Step(stepper_test, atoi(\27[01;35m\27[KA4988_step_count_text\27[m\27[K), A4988_speed_delay, A4988_BACKWARDS);\
+      |                                               \27[01;35m\27[K^~~~~~~~~~~~~~~~~~~~~\27[m\27[K\
+      |                                               \27[01;35m\27[K|\27[m\27[K\
+      |                                               \27[01;35m\27[Kchar (*)[64]\27[m\27[K\
+\27[01m\27[K/usr/include/stdlib.h:362:60:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kexpected ‘\27[01m\27[Kconst char *\27[m\27[K’ but argument is of type ‘\27[01m\27[Kchar (*)[64]\27[m\27[K’\
+  362 | __NTH (atoi (const char *__nptr))\
+      |                                                            \27[01;36m\27[K^\27[m\27[K     \
+At top level:\
+\27[01m\27[Kcc1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kunrecognized command-line option ‘\27[01m\27[K-Wno-gnu-line-marker\27[m\27[K’ may have been intended to silence earlier diagnostics\
+"
+}

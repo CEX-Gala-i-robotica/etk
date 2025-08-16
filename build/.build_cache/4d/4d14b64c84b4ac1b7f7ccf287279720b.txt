@@ -1,0 +1,18 @@
+{
+    errdata = "\27[01m\27[Ksrc/main.c:\27[m\27[K In function ‘\27[01m\27[Kmain\27[m\27[K’:\
+\27[01m\27[Ksrc/main.c:40:3:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[K‘\27[01m\27[KG_APPLICATION_FLAGS_NONE\27[m\27[K’ is deprecated: Use 'G_APPLICATION_DEFAULT_FLAGS' instead [\27[01;35m\27[K-Wdeprecated-declarations\27[m\27[K]\
+   40 |   \27[01;35m\27[Kapp\27[m\27[K = gtk_application_new (\"org.gtk.example\", G_APPLICATION_FLAGS_NONE);\
+      |   \27[01;35m\27[K^~~\27[m\27[K\
+In file included from \27[01m\27[K/usr/include/glib-2.0/gio/giotypes.h:30\27[m\27[K,\
+                 from \27[01m\27[K/usr/include/glib-2.0/gio/gio.h:28\27[m\27[K,\
+                 from \27[01m\27[K/usr/include/gtk-3.0/gdk/gdkapplaunchcontext.h:28\27[m\27[K,\
+                 from \27[01m\27[K/usr/include/gtk-3.0/gdk/gdk.h:32\27[m\27[K,\
+                 from \27[01m\27[K/usr/include/gtk-3.0/gtk/gtk.h:30\27[m\27[K,\
+                 from \27[01m\27[Ksrc/main.c:1\27[m\27[K:\
+\27[01m\27[K/usr/include/glib-2.0/gio/gioenums.h:1536:3:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kdeclared here\
+ 1536 |   \27[01;36m\27[KG_APPLICATION_FLAGS_NONE\27[m\27[K GLIB_DEPRECATED_ENUMERATOR_IN_2_74_FOR(G_APPLICATION_DEFAULT_FLAGS),\
+      |   \27[01;36m\27[K^~~~~~~~~~~~~~~~~~~~~~~~\27[m\27[K\
+At top level:\
+\27[01m\27[Kcc1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kunrecognized command-line option ‘\27[01m\27[K-Wno-gnu-line-marker\27[m\27[K’ may have been intended to silence earlier diagnostics\
+"
+}

@@ -55,8 +55,9 @@ static int current_tab = 0;
 static int selected_component = CT_ARDUINO_UNO;
 int is_selected;
 
-int group_heights = 660;
-int component_widget_group = 880;
+int group_heights = 814;
+int component_list_width = 550;
+int component_widget_group = 980;
 
 static nk_bool cb_loop_test;
 static nk_bool cb_manual_ctrl;
@@ -349,6 +350,7 @@ void tab_button(struct nk_context *ctx, const char *label, int id, int *current_
 
 void add_tree_item(struct nk_context *ctx, const char *label, int id)
 {
+    nk_layout_row_static(ctx, 55, component_widget_group, 1);
     is_selected = (selected_component == id);
     if(nk_selectable_label(ctx, label, NK_TEXT_LEFT, &is_selected))
     {
@@ -394,28 +396,28 @@ void render_main_window(struct nk_context *ctx)
 {
     
     
-    if(nk_begin(ctx, "Panou de Control", nk_rect(48, 80, 1400, 810), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
+    if(nk_begin(ctx, "Panou de Control", nk_rect(1, 1, 1918, 1016), NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_SCALABLE | NK_WINDOW_CLOSABLE | NK_WINDOW_MINIMIZABLE | NK_WINDOW_TITLE))
     {
-        nk_layout_row_dynamic(ctx, 30, 3);
+        nk_layout_row_dynamic(ctx, 55, 3);
             
         tab_button(ctx, "Teste", 0, &current_tab);
         tab_button(ctx, "Date în timp real", 1, &current_tab);
         tab_button(ctx, "Setări", 2, &current_tab);
         // ----------------------------------
-        nk_layout_row_dynamic(ctx, 10, 1);
+        nk_layout_row_dynamic(ctx, 5, 1);
         
         // Handle tab selection
         if(current_tab == 0)
         {
             nk_layout_space_begin(ctx, NK_STATIC, group_heights, 2);
-            nk_layout_space_push(ctx, nk_rect(0, 0, 450, group_heights));
+            nk_layout_space_push(ctx, nk_rect(0, 0, component_list_width, group_heights));
             if(nk_group_begin(ctx, "Component Group", NK_WINDOW_BORDER))
             {
                 // Add all the component items under its own category
                 if(nk_tree_push(ctx, NK_TREE_NODE, "Microcontrolere și platforme ", NK_MINIMIZED))
                 {
                     
-                    nk_layout_row_push(ctx, 900);
+                    //nk_layout_row_push(ctx, 100);
                     add_tree_item(ctx, "Arduino Uno",  CT_ARDUINO_UNO);
                     add_tree_item(ctx, "Arduino Nano", CT_ARDUINO_NANO);
                     add_tree_item(ctx, "Arduino Mega", CT_ARDUINO_MEGA);
@@ -505,7 +507,7 @@ void render_main_window(struct nk_context *ctx)
                 }
                 nk_group_end(ctx);
             }
-            nk_layout_space_push(ctx, nk_rect(470, 0, 908, group_heights));
+            nk_layout_space_push(ctx, nk_rect(component_list_width+20, 0, 1320, group_heights));
             if(nk_group_begin(ctx, "Component widgets", NK_WINDOW_BORDER))
             {
                 // Wooohh so many pages and those are just few of the common components
@@ -613,9 +615,11 @@ void render_main_window(struct nk_context *ctx)
                 {
                     int new_connection;
                     int new_direction;
-                    nk_layout_row_static(ctx, 30, 140, 2);
+                    
+                    float ct_widths[] = {180, 320};
+                    nk_layout_row(ctx, NK_STATIC, 50, 2, ct_widths);
                     nk_label(ctx, "Conectivitate: ", NK_TEXT_LEFT);
-                    new_connection = nk_combo(ctx, A4988_connection_types, NK_LEN(A4988_connection_types), A4988_current_connection_type, 35, nk_vec2(230, 200));
+                    new_connection = nk_combo(ctx, A4988_connection_types, NK_LEN(A4988_connection_types), A4988_current_connection_type, 55, nk_vec2(380, 200));
                     
                     if(new_connection != current_theme)
                     {
@@ -627,22 +631,22 @@ void render_main_window(struct nk_context *ctx)
                     
                     if(A4988_current_connection_type == 0)
                     {
-                        nk_layout_row_static(ctx, 30, 155, 1);
+                        nk_layout_row_static(ctx, 50, 255, 1);
                         nk_label(ctx, "Trepte Microstep", NK_TEXT_LEFT);
                         
-                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_layout_row_static(ctx, 50, 140, 1);
                         nk_checkbox_label(ctx, "Microstep 1", &cb_A4988_ms1);
                         
-                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_layout_row_static(ctx, 50, 140, 1);
                         nk_checkbox_label(ctx, "Microstep 2", &cb_A4988_ms2);
                         
-                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_layout_row_static(ctx, 50, 140, 1);
                         nk_checkbox_label(ctx, "Microstep 3", &cb_A4988_ms3);
                         
-                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_layout_row_static(ctx, 50, 140, 1);
                         nk_checkbox_label(ctx, "Oprire", &cb_A4988_sleep);
                         
-                        nk_layout_row_static(ctx, 30, 140, 1);
+                        nk_layout_row_static(ctx, 50, 140, 1);
                         if(nk_button_label(ctx, "Resetare"))
                         {
                             log_info("A4988 reset event");
@@ -651,7 +655,8 @@ void render_main_window(struct nk_context *ctx)
                         nk_rule_horizontal(ctx, nk_white, nk_true);
                     }
                     
-                    nk_layout_row_static(ctx, 30, 140, 2);
+                    float sc_widths[] = {180, 190};
+                    nk_layout_row(ctx, NK_STATIC, 40, 2, sc_widths);
                     nk_label(ctx, "Număr de pași: ", NK_TEXT_LEFT);
                     //nk_edit_string(ctx, NK_EDIT_SIMPLE, A4988_step_count_text[1], &A4988_step_count[1], 64, nk_filter_decimal);
                     
@@ -666,15 +671,18 @@ void render_main_window(struct nk_context *ctx)
                         }
                     }
                     
-                    nk_layout_row_static(ctx, 30, 250, 2);
+                    float widths[] = {400, 840};
+                    nk_layout_row(ctx, NK_STATIC, 45, 2, widths);
                     nk_property_int(ctx, "Viteză de rotație: ", 400, &A4988_speed_delay, 900, 1, 1);
                     nk_slider_int(ctx, 400, &A4988_speed_delay, 900, 1);
                     
-                    nk_layout_row_static(ctx, 30, 140, 1);
+                    nk_layout_row_static(ctx, 50, 140, 1);
                     nk_checkbox_label(ctx, "Activare", &cb_A4988_enable);
                     
+                    float cb_widths[] = {100, 200};
+                    nk_layout_row(ctx, NK_STATIC, 50, 2, cb_widths);
                     nk_label(ctx, "Direcție: ", NK_TEXT_LEFT);
-                    new_direction = nk_combo(ctx, A4988_directions, NK_LEN(A4988_directions), A4988_current_direction, 35, nk_vec2(140, 200));
+                    new_direction = nk_combo(ctx, A4988_directions, NK_LEN(A4988_directions), A4988_current_direction, 55, nk_vec2(200, 200));
                     
                     if(new_direction != A4988_current_direction)
                     {
@@ -721,8 +729,8 @@ void render_main_window(struct nk_context *ctx)
                 nk_group_end(ctx);
             }
             
-            float widths[] = {32, 32, 150, 180}; // Set custom widths for each column inside the row so everything fits nicely
-            nk_layout_row(ctx, NK_STATIC, 32, 4, widths);
+            float widths[] = {62, 62, 190, 230};
+            nk_layout_row(ctx, NK_STATIC, 62, 4, widths);
             if(nk_button_symbol(ctx, NK_SYMBOL_TRIANGLE_RIGHT))
                 start_test();
                 
@@ -843,10 +851,11 @@ void render_main_window(struct nk_context *ctx)
         }
         else if(current_tab == 2) // Handle tab selection
         {
-            nk_layout_row_static(ctx, 40, 150, 10);
             int new_theme;
+            float cb_widths[] = {190, 330};
+            nk_layout_row(ctx, NK_STATIC, 50, 2, cb_widths);
             nk_label(ctx, "Temă de culori:", NK_TEXT_LEFT);
-            new_theme = nk_combo(ctx, themes, NK_LEN(themes), current_theme, 35, nk_vec2(260, 200));
+            new_theme = nk_combo(ctx, themes, NK_LEN(themes), current_theme, 50, nk_vec2(330, 200));
             if(new_theme != current_theme)
             {
                 current_theme = new_theme;

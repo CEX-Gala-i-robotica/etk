@@ -1,0 +1,27 @@
+{
+    errdata = "\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:\27[m\27[K In function ‘\27[01m\27[Kstyle_vec2\27[m\27[K’:\
+\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:68:9:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Ksprintf\27[m\27[K’ [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+   68 |         \27[01;35m\27[Ksprintf\27[m\27[K(buffer, \"%.2f, %.2f\", vec->x, vec->y);\
+      |         \27[01;35m\27[K^~~~~~~\27[m\27[K\
+\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:17:1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<stdio.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Ksprintf\27[m\27[K’\
+   16 | #include <stdlib.h>\
+  +++ |+\27[32m\27[K#include <stdio.h>\27[m\27[K\
+   17 | \
+\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:68:9:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kincompatible implicit declaration of built-in function ‘\27[01m\27[Ksprintf\27[m\27[K’ [\27[01;35m\27[K-Wbuiltin-declaration-mismatch\27[m\27[K]\
+   68 |         \27[01;35m\27[Ksprintf\27[m\27[K(buffer, \"%.2f, %.2f\", vec->x, vec->y);\
+      |         \27[01;35m\27[K^~~~~~~\27[m\27[K\
+\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:68:9:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<stdio.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Ksprintf\27[m\27[K’\
+\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:\27[m\27[K In function ‘\27[01m\27[Kstyle_configurator\27[m\27[K’:\
+\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:830:25:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Kmemcpy\27[m\27[K’ [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+  830 |                         \27[01;35m\27[Kmemcpy\27[m\27[K(color_table, nk_default_color_style, sizeof(nk_default_color_style));\
+      |                         \27[01;35m\27[K^~~~~~\27[m\27[K\
+\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:17:1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<string.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Kmemcpy\27[m\27[K’\
+   16 | #include <stdlib.h>\
+  +++ |+\27[32m\27[K#include <string.h>\27[m\27[K\
+   17 | \
+\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:830:25:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kincompatible implicit declaration of built-in function ‘\27[01m\27[Kmemcpy\27[m\27[K’ [\27[01;35m\27[K-Wbuiltin-declaration-mismatch\27[m\27[K]\
+  830 |                         \27[01;35m\27[Kmemcpy\27[m\27[K(color_table, nk_default_color_style, sizeof(nk_default_color_style));\
+      |                         \27[01;35m\27[K^~~~~~\27[m\27[K\
+\27[01m\27[Kext_deps/nuklear/extra_components/style_configurator.c:830:25:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<string.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Kmemcpy\27[m\27[K’\
+"
+}

@@ -1,0 +1,20 @@
+{
+    errdata = "\27[01m\27[Kext_deps/nuklear/extra_components/calculator.c:\27[m\27[K In function ‘\27[01m\27[Kcalculator\27[m\27[K’:\
+\27[01m\27[Kext_deps/nuklear/extra_components/calculator.c:26:15:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Ksnprintf\27[m\27[K’ [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+   26 |         len = \27[01;35m\27[Ksnprintf\27[m\27[K(buffer, 256, \"%.2f\", *current);\
+      |               \27[01;35m\27[K^~~~~~~~\27[m\27[K\
+\27[01m\27[Kext_deps/nuklear/extra_components/calculator.c:7:1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<stdio.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Ksnprintf\27[m\27[K’\
+    6 | #include \"../nuklear.h\"\
+  +++ |+\27[32m\27[K#include <stdio.h>\27[m\27[K\
+    7 | \
+\27[01m\27[Kext_deps/nuklear/extra_components/calculator.c:26:15:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kincompatible implicit declaration of built-in function ‘\27[01m\27[Ksnprintf\27[m\27[K’ [\27[01;35m\27[K-Wbuiltin-declaration-mismatch\27[m\27[K]\
+   26 |         len = \27[01;35m\27[Ksnprintf\27[m\27[K(buffer, 256, \"%.2f\", *current);\
+      |               \27[01;35m\27[K^~~~~~~~\27[m\27[K\
+\27[01m\27[Kext_deps/nuklear/extra_components/calculator.c:26:15:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kinclude ‘\27[01m\27[K<stdio.h>\27[m\27[K’ or provide a declaration of ‘\27[01m\27[Ksnprintf\27[m\27[K’\
+\27[01m\27[Kext_deps/nuklear/extra_components/calculator.c:29:20:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kimplicit declaration of function ‘\27[01m\27[Katof\27[m\27[K’ [\27[01;35m\27[K-Wimplicit-function-declaration\27[m\27[K]\
+   29 |         *current = \27[01;35m\27[Katof\27[m\27[K(buffer);}\
+      |                    \27[01;35m\27[K^~~~\27[m\27[K\
+At top level:\
+\27[01m\27[Kcc1:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kunrecognized command-line option ‘\27[01m\27[K-Wno-gnu-line-marker\27[m\27[K’ may have been intended to silence earlier diagnostics\
+"
+}

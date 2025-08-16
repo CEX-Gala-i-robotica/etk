@@ -23,7 +23,7 @@ The entire UI will get a full redesign using Nuklear due to some GTK related iss
 
 
 
-#define UI_DEVEL
+//#define UI_DEVEL
 
 
 #include "ui_main.h"
@@ -103,10 +103,10 @@ void ui_init()
     
     background = nk_rgb(0, 0, 0); // Background color of the x11 window
     
-    xcb_ctx = nk_xcb_init("ETK", 20, 20, 1500, 950); //Create a rendering window with cairo via xcb
+    xcb_ctx = nk_xcb_init("ETK", 20, 20, 1920, 1080); //Create a rendering window with cairo via xcb
     
     // Create rendering surface using a custom font (DEFAULT_UI_FONT)
-    cairo_ctx = nk_cairo_init(&background, DEFAULT_UI_FONT, 18, nk_xcb_create_cairo_surface(xcb_ctx));
+    cairo_ctx = nk_cairo_init(&background, DEFAULT_UI_FONT, 22, nk_xcb_create_cairo_surface(xcb_ctx));
     font = nk_cairo_default_font(cairo_ctx); // Set the loaded font
     ctx = malloc(sizeof(struct nk_context));
     nk_init_default(ctx, font); // Initialize the nuklear context with the font
