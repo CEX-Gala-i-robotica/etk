@@ -66,7 +66,24 @@
 
 
 
-
+void NewStepperTest()
+{
+    A4988_Stepper stepper_test =
+    {
+        .dir_pin = GPIO_26,
+        .step_pin = GPIO_21,
+        .enable_pin = GPIO_16
+    };
+    
+    A4988_Setup(stepper_test);
+    
+    for(int i = 0; i < 5; i++)
+    {
+        // prev speed delay: 850
+        A4988_Step(stepper_test, 5000, 850, A4988_FORWARD);
+        A4988_Step(stepper_test, 5000, 850, A4988_BACKWARDS);
+    }
+}
 
 
 
@@ -461,7 +478,7 @@ while (1) {
 */
 
 //tempTest();
-
+/*
     A4988_Stepper stepper_test =
     {
         .dir_pin = GPIO_26,
@@ -477,6 +494,8 @@ while (1) {
         A4988_Step(stepper_test, 2000, 850, A4988_FORWARD);
         A4988_Step(stepper_test, 2000, 850, A4988_BACKWARDS);
     }
+    
+    */
     
     //Todo: test the manual controll of A4988
     
@@ -602,5 +621,7 @@ trs_gen_sample_strings(lang_sample, "sample_ro.json");
 
 trs_free();
 */
+
+NewStepperTest();
 
 }

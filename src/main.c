@@ -2,7 +2,7 @@
 
 #include <signal.h>
 
-//#define DEV_TEST
+#define DEV_TEST
 
 #ifdef DEV_TEST
     #include "dev_test.h"
