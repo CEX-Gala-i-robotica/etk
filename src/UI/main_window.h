@@ -318,6 +318,10 @@ void *run_threaded_test(void * arg)
     {
         log_info("Running Arduino Giga test");
     }
+    else if(selected_component == CT_TB6600)
+    {
+        log_info("Running TB6600 test");
+    }
     return NULL;
 }
 
@@ -466,6 +470,7 @@ void render_main_window(struct nk_context *ctx)
                     add_tree_item(ctx, "Servo",                   CT_SERVO);
                     add_tree_item(ctx, "Stepper ULN2003",         CT_STEPPER_MOTOR_ULN2003);
                     add_tree_item(ctx, "Stepper A4988 / DRV8825", CT_A4988_DRIVER);
+                    add_tree_item(ctx, "TB 6600",                 CT_TB6600);
                     add_tree_item(ctx, "Punte H L298N",           CT_H_BRIDGE_L298N);
                     add_tree_item(ctx, "Servo PCA9685",           CT_PCA9685);
                     
@@ -725,6 +730,11 @@ void render_main_window(struct nk_context *ctx)
                 {
                     nk_layout_row_static(ctx, 30, component_widget_group, 1);
                     nk_label(ctx, "Page 28", NK_TEXT_LEFT);
+                }
+                else if(selected_component == CT_TB6600)
+                {
+                    nk_layout_row_static(ctx, 30, component_widget_group, 1);
+                    nk_label(ctx, "Page 29", NK_TEXT_LEFT);
                 }
                 nk_group_end(ctx);
             }

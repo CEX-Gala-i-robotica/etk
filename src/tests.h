@@ -55,7 +55,8 @@ enum ComponentTest
     CT_ARDUINO_MEGA,          //      yes       |                       |
     CT_ARDUINO_NANO,          //      yes       |                       |
     CT_ARDUINO_GIGA,          //      yes       |                       |
-    CT_RESISTOR
+    CT_RESISTOR,              //                |                       |
+    CT_TB6600                 //      -         |          yes          |
 };
 
 
