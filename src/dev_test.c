@@ -34,6 +34,7 @@
 #include "components/TTP229.h"
 #include "components/A4988.h"
 #include "components/PCA9685.h"
+#include "components/TB6600.h"
 
 #include "UI/components/trs/trs.h"
 
@@ -77,11 +78,89 @@ void NewStepperTest()
     
     A4988_Setup(stepper_test);
     
-    for(int i = 0; i < 5; i++)
+    //for(int i = 0; i < 5; i++)
+    while(1)
     {
         // prev speed delay: 850
         A4988_Step(stepper_test, 5000, 850, A4988_FORWARD);
         A4988_Step(stepper_test, 5000, 850, A4988_BACKWARDS);
+    }
+}
+
+#define STEP_PIN GPIO_16   // WiringPi pin 0 = BCM_GPIO 17
+#define DIR_PIN  GPIO_20   // WiringPi pin 1 = BCM_GPIO 18
+#define EN_PIN   GPIO_21   // WiringPi pin 2 = BCM_GPIO 27
+
+void TB6600_Test()
+{
+    // dflkgjdflkjg
+    int i;
+ 
+     // Init WiringPi using GPIO numbering
+     if (wiringPiSetup() == -1) {
+         printf("WiringPi setup failed!\n");
+        // return 1;
+     }
+ 
+     pinMode(STEP_PIN, OUTPUT);
+     pinMode(DIR_PIN, OUTPUT);
+     pinMode(EN_PIN, OUTPUT);
+ 
+     // Enable the driver
+     digitalWrite(EN_PIN, LOW); // Active low on most TB6600s
+ 
+     // Set direction
+     digitalWrite(DIR_PIN, HIGH); // HIGH = CW, LOW = CCW (depends on wiring)
+ 
+     // Send 200 steps (~1 rev if 1.8° motor in full-step mode)
+     for (i = 0; i < 4500; i++) {
+        log_info("Stepping...");
+         digitalWrite(STEP_PIN, HIGH);
+         delayMicroseconds(500);  // pulse width (min 5µs, TB6600 spec)
+         digitalWrite(STEP_PIN, LOW);
+         delayMicroseconds(500);  // step interval
+     }
+ 
+     // Disable driver
+     digitalWrite(EN_PIN, HIGH);
+}
+
+/*
+void IBT_Test()
+{
+    if (wiringPiSetup() == -1) {
+           printf("Setup wiringPi failed!\n");
+           return 1;
+       }
+   
+       pinMode(A_PLUS,  OUTPUT);
+       pinMode(A_MINUS, OUTPUT);
+       pinMode(B_PLUS,  OUTPUT);
+       pinMode(B_MINUS, OUTPUT);
+   
+       int step = 0;
+       while (1) {
+           setStep(seq[step][0], seq[step][1], seq[step][2], seq[step][3]);
+           step = (step + 1) % 4;
+           usleep(100000); // delay between steps (100ms)
+       }
+}
+*/
+
+void TB6600_api_test()
+{
+    TB6600_Stepper ts =
+    {
+        .en_a = GPIO_21,
+        .dir  = GPIO_20,
+        .pul  = GPIO_16
+    };
+    
+    TB6600_Setup(ts);
+    for(int i = 0; i < 2; i++)
+    {
+        TB6600_Step(ts, 4500, TB6600_FORWARD, 450);
+        TB6600_Step(ts, 4500, TB6600_BACKWARD, 450);
     }
 }
 
@@ -622,6 +701,8 @@ trs_gen_sample_strings(lang_sample, "sample_ro.json");
 trs_free();
 */
 
-NewStepperTest();
+//NewStepperTest();
+//TB6600_Test();
+TB6600_api_test();
 
 }
