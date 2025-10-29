@@ -57,6 +57,11 @@ target("etk")
         "UI/*.cpp"
     )
 
+    after_build(function (target)
+        -- Copy the fonts (for now)
+        os.cp("../assets/fonts/Tomorrow-Medium.ttf", target:targetdir())
+    end)
+
 
 
 
@@ -111,3 +116,8 @@ target("etk-de")
         "config/*.cpp",
         "UI/*.cpp"
     )
+
+    after_build(function (target)
+        -- Copy the fonts (for now)
+        os.cp("../assets/fonts/Tomorrow-Medium.ttf", target:targetdir())
+    end)

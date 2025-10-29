@@ -1,10 +1,4 @@
-//#define ETK_INDIVIDUAL_TESTS
-#define ETK_DEV
-
-
-
-
-
+#include "ui_entry.hpp"
 
 
 
@@ -12,7 +6,6 @@
     #include "tests/tests.h"
 #else
     #include <stdio.h>
-    #include "ui_entry.hpp"
 #endif
 
 
