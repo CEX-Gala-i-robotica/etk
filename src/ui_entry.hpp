@@ -9,8 +9,8 @@
 
 
 #ifdef ETK_PLATFORM_DRM
-    #define WINDOW_WIDTH 0
-    #define WINDOW_HEIGHT 0
+    #define WINDOW_WIDTH 1920
+    #define WINDOW_HEIGHT 1080
 #else
     #define WINDOW_WIDTH 1080
     #define WINDOW_HEIGHT 900

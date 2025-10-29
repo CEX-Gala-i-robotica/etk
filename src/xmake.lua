@@ -20,7 +20,10 @@ target("etk")
     )
 
     -- Internal dependencies
-    add_linkdirs("../externals/lib/raylib")
+    add_linkdirs(
+        "../externals",
+        "../externals/lib/raylib"
+    )
     add_links("raylib_drm")
 
     -- System dependencies

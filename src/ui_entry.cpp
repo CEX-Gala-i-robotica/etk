@@ -10,6 +10,7 @@
 
 #include "ui_entry.hpp"
 #include "UI/ui.hpp"
+#include "utils.hpp"
 
 //#define ETK_DEV
 
@@ -24,46 +25,46 @@ void SetDefaultTheme()
 
     ImGuiStyle& style = ImGui::GetStyle();
 
-    style.Alpha = 1.0f;
-    style.DisabledAlpha = 1.0f;
-    style.WindowRounding = 11.0f;
-    style.WindowBorderSize = 2.0f;
-    style.ChildRounding = 0.0f;
-    style.ChildBorderSize = 1.0f;
-    style.PopupRounding = 0.0f;
-    style.PopupBorderSize = 1.0f;
-    style.FrameRounding = 11.0f;
-    style.FrameBorderSize = 1.0f;
-    style.IndentSpacing = 0.0f;
-    style.ColumnsMinSpacing = 4.0f;
-    style.ScrollbarSize = 22.0f;
-    style.ScrollbarRounding = 11.0f;
-    style.ScrollbarPadding = 2.0f;
-    style.GrabMinSize = 20.0f;
-    style.GrabRounding = 8.0f;
-    style.LogSliderDeadzone = 4.0f;
-    style.TabRounding = 8.0f;
-    style.TabBorderSize = 0.0f;
-    style.MouseCursorScale = 1.0f;
-    style.CurveTessellationTol = 1.25f;
+    style.Alpha                      = 1.0f;
+    style.DisabledAlpha              = 1.0f;
+    style.WindowRounding             = 11.0f;
+    style.WindowBorderSize           = 2.0f;
+    style.ChildRounding              = 0.0f;
+    style.ChildBorderSize            = 1.0f;
+    style.PopupRounding              = 0.0f;
+    style.PopupBorderSize            = 1.0f;
+    style.FrameRounding              = 11.0f;
+    style.FrameBorderSize            = 1.0f;
+    style.IndentSpacing              = 0.0f;
+    style.ColumnsMinSpacing          = 4.0f;
+    style.ScrollbarSize              = 22.0f;
+    style.ScrollbarRounding          = 11.0f;
+    style.ScrollbarPadding           = 2.0f;
+    style.GrabMinSize                = 20.0f;
+    style.GrabRounding               = 8.0f;
+    style.LogSliderDeadzone          = 4.0f;
+    style.TabRounding                = 8.0f;
+    style.TabBorderSize              = 0.0f;
+    style.MouseCursorScale           = 1.0f;
+    style.CurveTessellationTol       = 1.25f;
     style.CircleTessellationMaxError = 0.3f;
-    style.WindowMenuButtonPosition = ImGuiDir_Right;
-    style.ColorButtonPosition = ImGuiDir_Right;
-    style.AntiAliasedLines = true;
-    style.AntiAliasedLinesUseTex = true;
-    style.AntiAliasedFill = true;
+    style.WindowMenuButtonPosition   = ImGuiDir_Right;
+    style.ColorButtonPosition        = ImGuiDir_Right;
+    style.AntiAliasedLines           = true;
+    style.AntiAliasedLinesUseTex     = true;
+    style.AntiAliasedFill            = true;
     
-    style.WindowPadding = ImVec2(11.0f, 12.0f);
-    style.WindowMinSize = ImVec2(20.0f, 20.0f);
-    style.WindowTitleAlign = ImVec2(0.5f, 0.5f);
-    style.FramePadding = ImVec2(20.0f, 3.0f);
-    style.ItemSpacing = ImVec2(4.0f, 5.0f);
-    style.ItemInnerSpacing = ImVec2(7.0f, 1.0f);
-    style.CellPadding = ImVec2(12.0f, 9.0f);
-    style.TouchExtraPadding = ImVec2(0.0f, 0.0f);
-    style.ButtonTextAlign = ImVec2(0.5f, 0.5f);
-    style.SelectableTextAlign = ImVec2(0.0f, 0.0f);
-    style.DisplayWindowPadding = ImVec2(19.0f, 19.0f);
+    style.WindowPadding          = ImVec2(11.0f, 12.0f);
+    style.WindowMinSize          = ImVec2(20.0f, 20.0f);
+    style.WindowTitleAlign       = ImVec2(0.5f, 0.5f);
+    style.FramePadding           = ImVec2(20.0f, 3.0f);
+    style.ItemSpacing            = ImVec2(4.0f, 5.0f);
+    style.ItemInnerSpacing       = ImVec2(7.0f, 1.0f);
+    style.CellPadding            = ImVec2(12.0f, 9.0f);
+    style.TouchExtraPadding      = ImVec2(0.0f, 0.0f);
+    style.ButtonTextAlign        = ImVec2(0.5f, 0.5f);
+    style.SelectableTextAlign    = ImVec2(0.0f, 0.0f);
+    style.DisplayWindowPadding   = ImVec2(19.0f, 19.0f);
     style.DisplaySafeAreaPadding = ImVec2(3.0f, 3.0f);
     
     ImVec4* colors = ImGui::GetStyle().Colors;
@@ -144,9 +145,13 @@ int ScaleToDPII(int value)
 
 etk::AppEntry::AppEntry(void)
 {
+
+#ifdef ETK_PLATFORM_DRM
+    EtkUtils::DRM_GetScreenSize(2, 4); // Has dummy value arguments for now
+#endif
     // - - - - GUI - - - -
 
-    SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
+    SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
 
     log_info("Showing main window...");
 	InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "ETK");
@@ -166,7 +171,7 @@ etk::AppEntry::AppEntry(void)
 
         rlImGuiBegin();
 
-#ifdef ETK_PLATFORM_DRM && ETK_DEV
+#if defined(ETK_PLATFORM_DRM) && defined(ETK_DEV)
         ImGui::GetIO().MouseDrawCursor = true;
 #endif
 
