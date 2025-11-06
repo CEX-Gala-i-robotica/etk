@@ -145,16 +145,22 @@ int ScaleToDPII(int value)
 
 etk::AppEntry::AppEntry(void)
 {
-
+    int screen_width;
+    int screen_height;
 #ifdef ETK_PLATFORM_DRM
-    EtkUtils::DRM_GetScreenSize(2, 4); // Has dummy value arguments for now
+    EtkUtils::DRM_GetScreenSize(screen_width, screen_height);
+    //log_trace("Screen size from utils: %dx%d", screen_width, screen_height);
+#else
+    screen_width = WINDOW_WIDTH;
+    screen_height = WINDOW_HEIGHT;
 #endif
+
     // - - - - GUI - - - -
 
     SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
 
     log_info("Showing main window...");
-	InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "ETK");
+	InitWindow(screen_width, screen_height, "ETK");
 	SetTargetFPS(144);
 	rlImGuiSetup(true);
 

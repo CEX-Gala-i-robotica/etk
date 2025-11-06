@@ -1,3 +1,6 @@
+#include <stdio.h>
+
+
 #include <raylib.h>
 #include <raymath.h>
 #include <rlImGui.h>
@@ -8,6 +11,7 @@
 
 #include "ui.hpp"
 #include "ui_helpers.cpp"
+#include "layouts.h"
 
 #include "../etk_tests.hpp"
 
@@ -24,10 +28,13 @@ void etkUI::RenderUI()
     if(ImGui::Begin("ETK", nullptr))
 	{
 		//ImGui::TextUnformatted(ICON_FA_CIRCLE_QUESTION);
-        if(ImGui::BeginTabBar("MyTabBar", 0))
+        if(ImGui::BeginTabBar("MainTabBar", 0))
         {
             if(ImGui::BeginTabItem("Componente"))
             {
+                ImGuiWindowFlags window_list_flags = ImGuiWindowFlags_HorizontalScrollbar;
+            
+                ImGui::BeginChild("InnerWindowList", ImVec2(ImGui::GetContentRegionAvail().x * ETK_WINDOW_LIST_WIDTH, 0), ImGuiChildFlags_None, window_list_flags);
                 // MARK: component list
                 if(ImGui::CollapsingHeader("Microcontrolere și plarforme", ImGuiTreeNodeFlags_None))
                 {
@@ -101,6 +108,31 @@ void etkUI::RenderUI()
                     ui_helpers::RenderSelectable("Senzor magnetic (Hall)", selected_component, etkTests::CT_HALL_SENSOR);
                     ui_helpers::RenderSelectable("Buzzer",                 selected_component, 505);
                 }
+
+                ImGui::EndChild();
+
+                ImGui::SameLine();
+
+                ImGuiWindowFlags ctrl_window_flags = ImGuiWindowFlags_None;
+                ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 5.0f);
+                ImGui::BeginChild("ControlsWindow", ImVec2(0, 0), ImGuiChildFlags_Borders, ctrl_window_flags);
+                
+                // Just some demo
+                if(ImGui::BeginTable("split", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings))
+                {
+                    for(int i = 0; i < 100; i++)
+                    {
+                        char buf[32];
+                        sprintf(buf, "%03d", i);
+                        ImGui::TableNextColumn();
+                        ImGui::Button(buf, ImVec2(-FLT_MIN, 0.0f));
+                    }
+                    ImGui::EndTable();
+                }
+                ImGui::EndChild();
+                ImGui::PopStyleVar();
+
+
                 ImGui::EndTabItem();
             }
             if(ImGui::BeginTabItem("Valori"))

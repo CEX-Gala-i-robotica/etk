@@ -6,7 +6,7 @@
 namespace EtkUtils
 {
 #ifdef ETK_PLATFORM_DRM
-    void DRM_GetScreenSize(int w, int h);
+    void DRM_GetScreenSize(int &w, int &h);
 #endif
 }
 #endif

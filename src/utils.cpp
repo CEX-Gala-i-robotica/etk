@@ -22,15 +22,18 @@
 
 
 
-// Some poor attempt to get the physical screen size + resolution
-// this is required for setting the rendering screen size in raylib drm
+
 #ifdef ETK_PLATFORM_DRM
-void EtkUtils::DRM_GetScreenSize(int w, int h)
-{
-    int fd = open("/dev/dri/card0", O_RDONLY);
+void EtkUtils::DRM_GetScreenSize(int &w, int &h)
+{   
+    // Set them to 0 if something fails so the app can still runn although the screen scaling might be bad
+    w = 0;
+    h = 0;
+
+    int fd = open("/dev/dri/card1", O_RDONLY | O_CLOEXEC);
     if(fd < 0)
     {
-        log_error("Failed to open /dev/dri/card0: %s", strerror(errno));
+        log_error("Failed to open /dev/dri/card1: %s", strerror(errno));
         return;
     }
 
@@ -62,8 +65,15 @@ void EtkUtils::DRM_GetScreenSize(int w, int h)
 
     log_debug("Physical size: %dmm x %dmm", conn->mmWidth, conn->mmHeight);
     if(conn->count_modes > 0)
+    {
+	    w = (int)conn -> modes[0].hdisplay;
+	    h = (int)conn -> modes[0].vdisplay;
         log_debug("Resolution: %dx%d @ %dHz", conn->modes[0].hdisplay, conn->modes[0].vdisplay, conn->modes[0].vrefresh);
+    }
+    else    
+        log_warn("Failed to get screen resolution !!!");
 
+ 
     drmModeFreeConnector(conn);
     drmModeFreeResources(res);
     close(fd);

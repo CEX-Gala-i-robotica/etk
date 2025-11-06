@@ -67,7 +67,7 @@ bool isI2C_available()
 {
     int fd1 = open(I2C_DEV_SYSFS, O_RDWR);
     int fd2 = open(I2C_KMOD_SYSFS, O_RDWR);
-    if (fd1 < 0)
+    if(fd1 < 0)
     {
         log_error("I2C Not Enabled !!!! [ %s ]\nTrying from kerel module...", I2C_DEV_SYSFS);
         return false;
