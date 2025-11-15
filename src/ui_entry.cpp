@@ -168,7 +168,8 @@ etk::AppEntry::AppEntry(void)
 
     ImGuiIO& io = ImGui::GetIO(); (void)io;
 
-    ImFont* FONT_TomorrowMedium = io.Fonts->AddFontFromFileTTF("Tomorrow-Medium.ttf", 24.0f); // Font ales de Miruna
+    //ImFont* FONT_TomorrowMedium = io.Fonts->AddFontFromFileTTF("Tomorrow-Medium.ttf", 24.0f); // Font ales de Miruna
+    etkUI::FONT_TomorrowMedium = io.Fonts->AddFontFromFileTTF("Tomorrow-Medium.ttf", 24.0f); // Font ales de Miruna
 
     while(!WindowShouldClose()) // Detect window close button or ESC key
 	{
@@ -181,7 +182,7 @@ etk::AppEntry::AppEntry(void)
         ImGui::GetIO().MouseDrawCursor = true;
 #endif
 
-        ImGui::PushFont(FONT_TomorrowMedium);
+        //ImGui::PushFont(FONT_TomorrowMedium);
 
 #ifdef ETK_DEV
         bool open = true;
@@ -191,7 +192,7 @@ etk::AppEntry::AppEntry(void)
         // Rendering the actual UI
         etkUI::RenderUI();
 
-        ImGui::PopFont();
+        //ImGui::PopFont();
 
 		// end ImGui Content
 		rlImGuiEnd();

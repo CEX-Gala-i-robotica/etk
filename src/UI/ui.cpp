@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#include <log_c/log.h>
+
 
 #include <raylib.h>
 #include <raymath.h>
@@ -8,7 +10,7 @@
 
 
 
-
+#include "../ui_entry.hpp"
 #include "ui.hpp"
 #include "ui_helpers.cpp"
 #include "layouts.h"
@@ -19,14 +21,47 @@
 
 
 static int selected_component = 1;
+static bool loop_test = true;
+static bool manual_test = false;
 
 
 
 void etkUI::RenderUI()
 {
+    ImGui::PushFont(etkUI::FONT_TomorrowMedium);
     ImGui::SetNextWindowSizeConstraints(ImVec2(500, 500), ImVec2(FLT_MAX, FLT_MAX));
     if(ImGui::Begin("ETK", nullptr))
 	{
+        ImGui::PopFont();
+
+        ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(8, 10));
+        
+        if(ImGui::Button(ICON_FA_CIRCLE_PLAY, ImVec2(40, 40)))
+        {
+            log_debug("Running Test...");
+        }
+
+        ImGui::SameLine();
+
+        if(ImGui::Button(ICON_FA_CIRCLE_PAUSE, ImVec2(40, 40)))
+        {
+            log_debug("Pausing Test...");
+        }
+
+        ImGui::PopStyleVar();
+
+        ImGui::SameLine();
+
+        ImGui::PushFont(etkUI::FONT_TomorrowMedium);
+
+        ImGui::Checkbox("Continuitate", &loop_test);
+
+        ImGui::SameLine();
+
+        ImGui::Checkbox("Control Manual", &manual_test);
+
+        ImGui::Separator();
+
 		//ImGui::TextUnformatted(ICON_FA_CIRCLE_QUESTION);
         if(ImGui::BeginTabBar("MainTabBar", 0))
         {
@@ -116,19 +151,182 @@ void etkUI::RenderUI()
                 ImGuiWindowFlags ctrl_window_flags = ImGuiWindowFlags_None;
                 ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 5.0f);
                 ImGui::BeginChild("ControlsWindow", ImVec2(0, 0), ImGuiChildFlags_Borders, ctrl_window_flags);
-                
-                // Just some demo
-                if(ImGui::BeginTable("split", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings))
+
+
+                if(selected_component == etkTests::CT_SERVO)
                 {
-                    for(int i = 0; i < 100; i++)
-                    {
-                        char buf[32];
-                        sprintf(buf, "%03d", i);
-                        ImGui::TableNextColumn();
-                        ImGui::Button(buf, ImVec2(-FLT_MIN, 0.0f));
-                    }
-                    ImGui::EndTable();
+                    ImGui::Text("Page 1");
                 }
+                else if(selected_component == etkTests::CT_STEPPER)
+                {
+                    ImGui::Text("Page 2");
+                }
+                else if(selected_component == etkTests::CT_H_BRIDGE_L298N)
+                {
+                    ImGui::Text("Page 3");
+                }
+                else if(selected_component == etkTests::CT_DHT)
+                {
+                    ImGui::Text("Page 4");
+                }
+                else if(selected_component == etkTests::CT_LCD_I2C)
+                {
+                    ImGui::Text("Page 5");
+                }
+                else if(selected_component == etkTests::CT_LCD)
+                {
+                    ImGui::Text("Page 6");
+                }
+                else if(selected_component == etkTests::CT_OLED)
+                {
+                    ImGui::Text("Page 7");
+                }
+                else if(selected_component == etkTests::CT_TFT)
+                {
+                    ImGui::Text("Page 8");
+                }
+                else if(selected_component == etkTests::CT_SEVEN_SEG_DISPLAY)
+                {
+                    ImGui::Text("Page 9");
+                }
+                else if(selected_component == etkTests::CT_MPU6050)
+                {
+                    ImGui::Text("Page 10");
+                }
+                else if(selected_component == etkTests::CT_ULTRASONIC_HC06)
+                {
+                    ImGui::Text("Page 11");
+                }
+                else if(selected_component == etkTests::CT_KEYPAD_2X4)
+                {
+                    ImGui::Text("Page 12");
+                }
+                else if(selected_component == etkTests::CT_KEYPAD_4X4)
+                {
+                    ImGui::Text("Page 13");
+                }
+                else if(selected_component == etkTests::CT_KEYPAD_3X4)
+                {
+                    ImGui::Text("Page 14");
+                }
+                else if(selected_component == etkTests::CT_INFRARED)
+                {
+                    ImGui::Text("Page 15");
+                }
+                else if(selected_component == etkTests::CT_LED_MATRIX)
+                {
+                    ImGui::Text("Page 16");
+                }
+                else if(selected_component == etkTests::CT_WATER_LEVEL)
+                {
+                    ImGui::Text("Page 17");
+                }
+                else if(selected_component == etkTests::CT_SOIL_MOISTURE)
+                {
+                    ImGui::Text("Page 18");
+                }
+                else if(selected_component == etkTests::CT_SPEED_SENSOR)
+                {
+                    ImGui::Text("Page 19");
+                }
+                else if(selected_component == etkTests::CT_GAS_SENSOR)
+                {
+                    ImGui::Text("Page 20");
+                }
+                else if(selected_component == etkTests::CT_SMOKE_DETECTOR)
+                {
+                    ImGui::Text("Page 21");
+                }
+                else if(selected_component == etkTests::CT_MICROPHONE)
+                {
+                    ImGui::Text("Page 22");
+                }
+                else if(selected_component == etkTests::CT_PH_METER)
+                {
+                    ImGui::Text("Page 23");
+                }
+                else if(selected_component == etkTests::CT_HALL_SENSOR)
+                {
+                    ImGui::Text("Page 24");
+                }
+                else if(selected_component == etkTests::CT_FLOW_METER)
+                {
+                    ImGui::Text("Page 25");
+                }
+                else if(selected_component == etkTests::CT_POTENTIOMETER)
+                {
+                    ImGui::Text("Page 26");
+                }
+                else if(selected_component == etkTests::CT_PHOTORESISTOR)
+                {
+                    ImGui::Text("Page 27");
+                }
+                else if(selected_component == etkTests::CT_STEPPER_MOTOR_ULN2003)
+                {
+                    ImGui::Text("Page 28");
+                }
+                else if(selected_component == etkTests::CT_RFID_RC522)
+                {
+                    ImGui::Text("Page 29");
+                }
+                else if(selected_component == etkTests::CT_JOYSTICK_X2)
+                {
+                    ImGui::Text("Page 30");
+                }
+                else if(selected_component == etkTests::CT_IR_REMOTE)
+                {
+                    ImGui::Text("Page 31");
+                }
+                else if(selected_component == etkTests::CT_PCA9685)
+                {
+                    ImGui::Text("Page 32");
+                }
+                else if(selected_component == etkTests::CT_A4988_DRIVER)
+                {
+                    ImGui::Text("Page 33");
+                }
+                else if(selected_component == etkTests::CT_RT_CLOCK_DS1302)
+                {
+                    ImGui::Text("Page 34");
+                }
+                else if(selected_component == etkTests::CT_RT_CLOCK_DS3231)
+                {
+                    ImGui::Text("Page 35");
+                }
+                else if(selected_component == etkTests::CT_RT_CLOCK_DS1307)
+                {
+                    ImGui::Text("Page 36");
+                }
+                else if(selected_component == etkTests::CT_TTP229)
+                {
+                    ImGui::Text("Page 37");
+                }
+                else if(selected_component == etkTests::CT_ARDUINO_UNO)
+                {
+                    ImGui::Text("Page 38");
+                }
+                else if(selected_component == etkTests::CT_ARDUINO_MEGA)
+                {
+                    ImGui::Text("Page 39");
+                }
+                else if(selected_component == etkTests::CT_ARDUINO_NANO)
+                {
+                    ImGui::Text("Page 40");
+                }
+                else if(selected_component == etkTests::CT_ARDUINO_GIGA)
+                {
+                    ImGui::Text("Page 41");
+                }
+                else if(selected_component == etkTests::CT_RESISTOR)
+                {
+                    ImGui::Text("Page 42");
+                }
+                else if(selected_component == etkTests::CT_TB6600)
+                {
+                    ImGui::Text("Page 43");
+                }
+                
+                
                 ImGui::EndChild();
                 ImGui::PopStyleVar();
 
@@ -149,4 +347,5 @@ void etkUI::RenderUI()
         }
 	}
     ImGui::End();
+    ImGui::PopFont();
 }

@@ -57,7 +57,7 @@
 #ifndef NO_FONT_AWESOME
 #include "IconsFontAwesome6.h"
 #ifndef FONT_AWESOME_ICON_SIZE
-#define FONT_AWESOME_ICON_SIZE 11
+#define FONT_AWESOME_ICON_SIZE 24
 #endif
 #endif
 

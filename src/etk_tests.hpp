@@ -3,6 +3,10 @@
 
 
 
+#include <thread>
+
+
+
 
 namespace etkTests
 {
@@ -59,5 +63,9 @@ namespace etkTests
         CT_RESISTOR,              //                |                       |
         CT_TB6600                 //      yes       |          yes          |
     };
+
+    inline std::thread test_thread;
+
+    void RunAuto(Component comp, bool loop);
 }
 #endif
