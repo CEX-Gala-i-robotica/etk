@@ -1,61 +1,6 @@
 [
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/backends/rlimgui/rlImGui.cpp.o", "../externals/imgui/backends/rlimgui/rlImGui.cpp"],
-  "file": "../externals/imgui/backends/rlimgui/rlImGui.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui_draw.cpp.o", "../externals/imgui/imgui_draw.cpp"],
-  "file": "../externals/imgui/imgui_draw.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui_demo.cpp.o", "../externals/imgui/imgui_demo.cpp"],
-  "file": "../externals/imgui/imgui_demo.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui.cpp.o", "../externals/imgui/imgui.cpp"],
-  "file": "../externals/imgui/imgui.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui_tables.cpp.o", "../externals/imgui/imgui_tables.cpp"],
-  "file": "../externals/imgui/imgui_tables.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui_widgets.cpp.o", "../externals/imgui/imgui_widgets.cpp"],
-  "file": "../externals/imgui/imgui_widgets.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/utils.cpp.o", "utils.cpp"],
-  "file": "utils.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/ui_entry.cpp.o", "ui_entry.cpp"],
-  "file": "ui_entry.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/main.cpp.o", "main.cpp"],
-  "file": "main.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/UI/ui_helpers.cpp.o", "UI/ui_helpers.cpp"],
-  "file": "UI/ui_helpers.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/UI/ui.cpp.o", "UI/ui.cpp"],
-  "file": "UI/ui.cpp"
-},
-{
-  "directory": "/home/rpi5/etk/src",
   "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/csv/libcsv.c.o", "../externals/csv/libcsv.c"],
   "file": "../externals/csv/libcsv.c"
 },
@@ -301,6 +246,11 @@
 },
 {
   "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/tests/tests.c.o", "tests/tests.c"],
+  "file": "tests/tests.c"
+},
+{
+  "directory": "/home/rpi5/etk/src",
   "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/gpio_utils.c.o", "gpio_utils.c"],
   "file": "gpio_utils.c"
 },
@@ -371,57 +321,62 @@
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/backends/rlimgui/rlImGui.cpp.o", "../externals/imgui/backends/rlimgui/rlImGui.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/backends/rlimgui/rlImGui.cpp.o", "../externals/imgui/backends/rlimgui/rlImGui.cpp"],
   "file": "../externals/imgui/backends/rlimgui/rlImGui.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui_draw.cpp.o", "../externals/imgui/imgui_draw.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui_draw.cpp.o", "../externals/imgui/imgui_draw.cpp"],
   "file": "../externals/imgui/imgui_draw.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui_demo.cpp.o", "../externals/imgui/imgui_demo.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui_demo.cpp.o", "../externals/imgui/imgui_demo.cpp"],
   "file": "../externals/imgui/imgui_demo.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui.cpp.o", "../externals/imgui/imgui.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui.cpp.o", "../externals/imgui/imgui.cpp"],
   "file": "../externals/imgui/imgui.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui_tables.cpp.o", "../externals/imgui/imgui_tables.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui_tables.cpp.o", "../externals/imgui/imgui_tables.cpp"],
   "file": "../externals/imgui/imgui_tables.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui_widgets.cpp.o", "../externals/imgui/imgui_widgets.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/__/externals/imgui/imgui_widgets.cpp.o", "../externals/imgui/imgui_widgets.cpp"],
   "file": "../externals/imgui/imgui_widgets.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/utils.cpp.o", "utils.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/utils.cpp.o", "utils.cpp"],
   "file": "utils.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ui_entry.cpp.o", "ui_entry.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/ui_entry.cpp.o", "ui_entry.cpp"],
   "file": "ui_entry.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/main.cpp.o", "main.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/etk_tests.cpp.o", "etk_tests.cpp"],
+  "file": "etk_tests.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/main.cpp.o", "main.cpp"],
   "file": "main.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/UI/ui_helpers.cpp.o", "UI/ui_helpers.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/UI/ui_helpers.cpp.o", "UI/ui_helpers.cpp"],
   "file": "UI/ui_helpers.cpp"
 },
 {
   "directory": "/home/rpi5/etk/src",
-  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/UI/ui.cpp.o", "UI/ui.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui", "-I../externals/imgui/backends/rlimgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DESKTOP", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk-de/linux/arm64/release/UI/ui.cpp.o", "UI/ui.cpp"],
   "file": "UI/ui.cpp"
 },
 {
@@ -671,6 +626,11 @@
 },
 {
   "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/tests/tests.c.o", "tests/tests.c"],
+  "file": "tests/tests.c"
+},
+{
+  "directory": "/home/rpi5/etk/src",
   "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/gpio_utils.c.o", "gpio_utils.c"],
   "file": "gpio_utils.c"
 },
@@ -738,4 +698,64 @@
   "directory": "/home/rpi5/etk/src",
   "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/components/ultrasonic.c.o", "components/ultrasonic.c"],
   "file": "components/ultrasonic.c"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/backends/rlimgui/rlImGui.cpp.o", "../externals/imgui/backends/rlimgui/rlImGui.cpp"],
+  "file": "../externals/imgui/backends/rlimgui/rlImGui.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui_draw.cpp.o", "../externals/imgui/imgui_draw.cpp"],
+  "file": "../externals/imgui/imgui_draw.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui_demo.cpp.o", "../externals/imgui/imgui_demo.cpp"],
+  "file": "../externals/imgui/imgui_demo.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui.cpp.o", "../externals/imgui/imgui.cpp"],
+  "file": "../externals/imgui/imgui.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui_tables.cpp.o", "../externals/imgui/imgui_tables.cpp"],
+  "file": "../externals/imgui/imgui_tables.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/__/externals/imgui/imgui_widgets.cpp.o", "../externals/imgui/imgui_widgets.cpp"],
+  "file": "../externals/imgui/imgui_widgets.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/utils.cpp.o", "utils.cpp"],
+  "file": "utils.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/ui_entry.cpp.o", "ui_entry.cpp"],
+  "file": "ui_entry.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/etk_tests.cpp.o", "etk_tests.cpp"],
+  "file": "etk_tests.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/main.cpp.o", "main.cpp"],
+  "file": "main.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/UI/ui_helpers.cpp.o", "UI/ui_helpers.cpp"],
+  "file": "UI/ui_helpers.cpp"
+},
+{
+  "directory": "/home/rpi5/etk/src",
+  "arguments": ["/usr/bin/gcc", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-I../assets/fonts/embeded", "-I../assets/icons/embeded", "-I../externals", "-I../externals/wiringpi", "-I../externals/raylib", "-I../externals/imgui/backends/rlimgui", "-I../externals/imgui", "-I../externals/implot", "-I../externals/libqrencode", "-I../externals/csv", "-DPLATFORM_DRM", "-DETK_PLATFORM_DRM", "-DLOGC__USER_SETTINGS", "-DHAVE_CONFIG_H", "-DNDEBUG", "-o", "build/.objs/etk/linux/arm64/release/UI/ui.cpp.o", "UI/ui.cpp"],
+  "file": "UI/ui.cpp"
 }]

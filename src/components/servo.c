@@ -28,8 +28,8 @@ void ServoInit(int pwm_pin, enum PWM_Mode pm)
     }
     else
     {
-        if(isPWM_available(pwm_pin))
-        {
+        //if(isPWM_available(pwm_pin))
+        //{
             if(pm == DEFAULT)
             {
                 pinMode(pwm_pin, PWM_OUTPUT);
@@ -51,12 +51,12 @@ void ServoInit(int pwm_pin, enum PWM_Mode pm)
                     is_servo_init = true;
                 }
             }
-        }
-        else
-        {
-            is_servo_init = false;
-            log_error("Servo: pin %d does not support PWM !!!");
-        }
+        //}
+        //else
+        //{
+        //    is_servo_init = false;
+        //    log_error("Servo: pin %d does not support PWM !!!");
+        //}
     }
 }
 

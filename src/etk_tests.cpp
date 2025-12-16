@@ -11,8 +11,6 @@
 
 
 
-
-
 void etkTests::RunAuto(etkTests::Component comp, bool loop)
 {
     switch(comp)
